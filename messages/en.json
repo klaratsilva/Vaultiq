@@ -1,0 +1,11 @@
+{
+  "dashboard": {
+    "title": "Bank Dashboard",
+    "welcome": "Welcome to your bank account manager"
+  },
+  "actions": {
+    "create": "Create",
+    "edit": "Edit",
+    "delete": "Delete"
+  }
+}

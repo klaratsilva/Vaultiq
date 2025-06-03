@@ -1,0 +1,11 @@
+{
+  "dashboard": {
+    "title": "Tableau de Bord Bancaire",
+    "welcome": "Bienvenue dans votre gestionnaire de comptes bancaires"
+  },
+  "actions": {
+    "create": "Créer",
+    "edit": "Modifier",
+    "delete": "Supprimer"
+  }
+}
