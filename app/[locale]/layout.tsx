@@ -7,6 +7,9 @@ import { routing } from "../../i18n/routing";
 import en from "../../messages/en.json";
 import fr from "../../messages/fr.json";
 import Navbar from "@/components/NavBar";
+import Image from "next/image";
+
+import MobileNavbar from "../../components/MobileNavbar";
 
 // Map locales to messages
 const messagesMap = { en, fr };
@@ -28,9 +31,17 @@ export default async function LocaleLayout({
 
   return (
     <NextIntlClientProvider locale={locale} messages={messages}>
-      <main className="relative flex h-screen w-full font-inter">
+      <main className="relative flex h-screen w-full">
         <Navbar />
-        <div className="flex-1 flex flex-col overflow-auto">{children}</div>
+        <div className="flex size-full flex-col">
+          <div className="flex h-16 items-center justify-between p-5 shadow-creditCard sm:p-8 md:hidden">
+            <Image src="/icons/logo.png" alt="logo" width={30} height={30} />
+            <div>
+              <MobileNavbar />
+            </div>
+          </div>
+          {children}
+        </div>
       </main>
     </NextIntlClientProvider>
   );
