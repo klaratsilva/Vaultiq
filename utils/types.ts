@@ -12,7 +12,7 @@ export interface Account {
   ownerId: string;           // UUID of the owning user/contact
   ownerEmail: string;           // Optional
   ownerName: string;
-  currentBalance: number;     
+  balance: string;     
 }
 
 interface Transaction {

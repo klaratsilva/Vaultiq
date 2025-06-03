@@ -3,13 +3,12 @@
 import { Form } from "@/components/ui/form";
 import { accountFormSchema, accountTypes, currencies } from "@/utils";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import CustomInput from "./CustomInput";
 import { Button } from "./ui/button";
-import { v4 as uuidv4 } from "uuid";
-import { useRouter } from "next/navigation";
 
 import CustomSelect from "./CustomSelect";
 
@@ -63,7 +62,6 @@ const NewAccountForm = ({ initialData }: NewAccountFormProps) => {
 
       alert(isEdit ? "Account updated!" : "Account created!");
 
-      // Success: reset form and redirect
       form.reset();
       router.push("/accounts");
     } catch (error) {

@@ -12,9 +12,6 @@ interface Props {
 const AccountDetailPage = async ({ params }: Props) => {
   const { id, locale } = params;
 
-  console.log(id, "id");
-  console.log(locale, "locale");
-
   return (
     <div>
       <h1>Account Detail Page</h1>

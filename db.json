@@ -1,72 +1,51 @@
 {
   "accounts": [
     {
-      "id": "9226dbf6-a634-4441-9d96-e4928cb6f295",
-      "name": "Klara Silva",
+      "id": "a1b2c3d4-e5f6-7890-abcd-1234567890ab",
+      "name": "Personal Savings",
       "type": "personal",
       "currency": "USD",
-      "ownerEmail": "klara.tsilva@gmail.com",
-      "ownerName": "klara",
-      "balance": "5000",
-      "ownerId": "6ae9253a-91ba-4877-bfdc-b6c33861252f"
+      "ownerEmail": "sara.james@example.com",
+      "ownerName": "Sara James",
+      "balance": "5200.75",
+      "ownerId": "u1001"
     },
     {
-      "id": "f9727862-ca5f-46e5-8651-bc52bcb7d2a9",
-      "ownerId": "6ae9253a-91ba-4877-bfdc-b6c33861252f",
-      "name": "Klara Silva",
+      "id": "b2c3d4e5-f6a7-8901-bcde-2345678901bc",
+      "name": "Company Revenue",
       "type": "business",
-      "currency": "USD",
-      "ownerEmail": "klara.tsilva@gmail.com",
-      "ownerName": "klara Silva",
-      "balance": "50000"
+      "currency": "EUR",
+      "ownerEmail": "ceo@techworld.com",
+      "ownerName": "Martin Keller",
+      "balance": "253400.00",
+      "ownerId": "u1002"
     },
     {
-      "id": "13abb016-0183-402e-a977-1c0ac6e522fe",
-      "name": "Klara Silva",
-      "type": "business",
-      "currency": "USD",
-      "ownerEmail": "klara.tsilva@gmail.com",
-      "ownerName": "klara Silva",
-      "balance": "6000",
-      "ownerId": "6ae9253a-91ba-4877-bfdc-b6c33861252f"
-    },
-    {
-      "id": "f7e25708-0b6f-4ac3-b7cf-c0e828759598",
-      "name": "Klara Silva",
+      "id": "c3d4e5f6-a7b8-9012-cdef-3456789012cd",
+      "name": "Admin Holdings",
       "type": "admin",
-      "currency": "USD",
-      "ownerEmail": "klara.tsilva@gmail.com",
-      "ownerName": "Klara Silva",
-      "balance": "5000",
-      "ownerId": "6ae9253a-91ba-4877-bfdc-b6c33861252f"
-    },
-    {
-      "id": "8ed52de2-3cdd-43dd-be85-43301f3dd664",
-      "name": "Klara Silva",
-      "type": "personal",
-      "currency": "USD",
-      "balance": "4000",
-      "ownerEmail": "klara.tsilva@gmail.com",
-      "ownerName": "klara",
-      "ownerId": "6ae9253a-91ba-4877-bfdc-b6c33861252f"
-    },
-    {
-      "id": "9140066a-806a-4bcf-9eb4-4aa7a7318a83",
-      "name": "Klara Silva",
-      "type": "personal",
-      "currency": "USD",
-      "balance": "4000",
-      "ownerEmail": "klara.tsilva@gmail.com",
-      "ownerName": "klara Silva",
-      "ownerId": "6ae9253a-91ba-4877-bfdc-b6c33861252f"
+      "currency": "GBP",
+      "ownerEmail": "admin@globalcorp.io",
+      "ownerName": "Lena Morgan",
+      "balance": "720000.00",
+      "ownerId": "u1003"
     }
   ],
   "users": [
     {
-      "id": "05f9",
-      "ownerEmail": "klara.tsilva@gmail.com",
-      "ownerName": "klara",
-      "ownerId": "6ae9253a-91ba-4877-bfdc-b6c33861252f"
+      "ownerEmail": "sara.james@example.com",
+      "ownerName": "Sara James",
+      "ownerId": "u1001"
+    },
+    {
+      "ownerEmail": "ceo@techworld.com",
+      "ownerName": "Martin Keller",
+      "ownerId": "u1002"
+    },
+    {
+      "ownerEmail": "admin@globalcorp.io",
+      "ownerName": "Lena Morgan",
+      "ownerId": "u1003"
     }
   ]
 }
