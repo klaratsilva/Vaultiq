@@ -7,7 +7,7 @@
       "currency": "USD",
       "ownerEmail": "sara.james@example.com",
       "ownerName": "Sara James",
-      "balance": "5200.75",
+      "balance": "13144.22",
       "ownerId": "u1001"
     },
     {
@@ -17,35 +17,51 @@
       "currency": "EUR",
       "ownerEmail": "ceo@techworld.com",
       "ownerName": "Martin Keller",
-      "balance": "253400.00",
+      "balance": "246500.00",
       "ownerId": "u1002"
-    },
-    {
-      "id": "c3d4e5f6-a7b8-9012-cdef-3456789012cd",
-      "name": "Admin Holdings",
-      "type": "admin",
-      "currency": "GBP",
-      "ownerEmail": "admin@globalcorp.io",
-      "ownerName": "Lena Morgan",
-      "balance": "720000.00",
-      "ownerId": "u1003"
     }
   ],
   "users": [
     {
       "ownerEmail": "sara.james@example.com",
       "ownerName": "Sara James",
-      "ownerId": "u1001"
+      "ownerId": "u1001",
+      "id": "1b48"
     },
     {
       "ownerEmail": "ceo@techworld.com",
       "ownerName": "Martin Keller",
-      "ownerId": "u1002"
+      "ownerId": "u1002",
+      "id": "f593"
+    }
+  ],
+  "transactions": [
+    {
+      "id": "42e7",
+      "fromAccountId": "a1b2c3d4-e5f6-7890-abcd-1234567890ab",
+      "toAccountId": "b2c3d4e5-f6a7-8901-bcde-2345678901bc",
+      "amount": 5000,
+      "description": "rent",
+      "status": "pending",
+      "createdAt": "2025-06-03T20:24:44.838Z"
     },
     {
-      "ownerEmail": "admin@globalcorp.io",
-      "ownerName": "Lena Morgan",
-      "ownerId": "u1003"
+      "id": "7e0b",
+      "fromAccountId": "a1b2c3d4-e5f6-7890-abcd-1234567890ab",
+      "toAccountId": "b2c3d4e5-f6a7-8901-bcde-2345678901bc",
+      "amount": 600,
+      "description": "rent",
+      "status": "pending",
+      "createdAt": "2025-06-03T20:25:22.394Z"
+    },
+    {
+      "id": "05f6",
+      "fromAccountId": "b2c3d4e5-f6a7-8901-bcde-2345678901bc",
+      "toAccountId": "a1b2c3d4-e5f6-7890-abcd-1234567890ab",
+      "amount": 5000,
+      "description": "rent",
+      "status": "pending",
+      "createdAt": "2025-06-03T20:40:05.076Z"
     }
   ]
 }

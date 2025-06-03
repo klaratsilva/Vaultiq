@@ -1,8 +1,8 @@
-import NewAccountForm from "@/components/NewAccountForm";
+import AccountForm from "@/components/AccountForm";
 import React from "react";
 
 const AddNewAccount = () => {
-  return <NewAccountForm />;
+  return <AccountForm />;
 };
 
 export default AddNewAccount;

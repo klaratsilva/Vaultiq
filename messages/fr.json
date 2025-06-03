@@ -16,5 +16,23 @@
     "languages": {
     "en": "AN",
     "fr": "FR"
+  },  
+  "accountForm": {
+    "accountTypes": {
+      "personal": "Personnel",
+      "business": "Professionnel",
+      "admin": "Administrateur"
+    },
+   "currencies": {
+      "USD": "Dollar américain",
+      "EUR": "Euro",
+      "GBP": "Livre sterling",
+      "JPY": "Yen japonais",
+      "CAD": "Dollar canadien"
+    },
+    "labels": {
+      "accountType": "Type de compte",
+      "currency": "Devise"
+    }
   }
 }

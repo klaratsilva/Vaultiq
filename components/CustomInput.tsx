@@ -5,23 +5,25 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { accountFormSchema } from "../utils";
-import { Control, FieldPath } from "react-hook-form";
-import { z } from "zod";
+import { Control, FieldPath, FieldValues } from "react-hook-form";
 
-interface CustomInputProps {
-  control: Control<z.infer<typeof accountFormSchema>>;
-  name: FieldPath<z.infer<typeof accountFormSchema>>;
+interface CustomInputProps<TFieldValues extends FieldValues> {
+  control: Control<TFieldValues>;
+  name: FieldPath<TFieldValues>;
   label: string;
-  placeholder: string;
+  placeholder?: string;
+  type?: string;
+  disabled?: boolean;
 }
 
-const CustomInput = ({
+const CustomInput = <TFieldValues extends FieldValues>({
   control,
   name,
   label,
-  placeholder,
-}: CustomInputProps) => {
+  placeholder = "",
+  type = "text",
+  disabled = false,
+}: CustomInputProps<TFieldValues>) => {
   return (
     <FormField
       control={control}
@@ -32,11 +34,12 @@ const CustomInput = ({
           <div className="flex w-full flex-col">
             <FormControl>
               <Input
+                {...field}
                 id={name}
                 placeholder={placeholder}
+                type={type}
+                disabled={disabled}
                 className="input-class"
-                type={"text"}
-                {...field}
               />
             </FormControl>
             <FormMessage className="form-message mt-2" />

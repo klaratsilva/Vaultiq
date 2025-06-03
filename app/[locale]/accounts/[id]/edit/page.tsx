@@ -1,4 +1,4 @@
-import NewAccountForm from "../../../../../components/NewAccountForm";
+import AccountForm from "../../../../../components/AccountForm";
 import { accountFormSchema } from "@/utils";
 import { z } from "zod";
 
@@ -18,5 +18,5 @@ export default async function EditAccountPage({ params }: Props) {
   const data = await res.json();
   console.log(data, "data");
 
-  return <NewAccountForm initialData={data} />;
+  return <AccountForm initialData={data} />;
 }

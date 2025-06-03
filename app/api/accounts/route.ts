@@ -65,3 +65,15 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });
   }
 }
+
+
+export async function GET() {
+  const res = await fetch("http://localhost:4000/accounts");
+
+  if (!res.ok) {
+    return new Response("Failed to fetch", { status: 500 });
+  }
+
+  const accounts = await res.json();
+  return Response.json(accounts);
+}

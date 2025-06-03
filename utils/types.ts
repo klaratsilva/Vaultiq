@@ -19,7 +19,7 @@ interface Transaction {
   id: string;
   fromAccountId: string;
   toAccountId: string;
-  amount: number;           // Amount to transfer (in fromAccount currency)   // Exchange rate from fromAccount.currency to toAccount.currency
+  amount: number;          
   status: TransactionStatus;
   createdAt: string;  
   description: string      // ISO string timestamp

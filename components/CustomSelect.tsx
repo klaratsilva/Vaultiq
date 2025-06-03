@@ -12,18 +12,23 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { Control, FieldPath } from "react-hook-form";
-import { z } from "zod";
-import { accountFormSchema } from "@/utils";
+import { Control, FieldPath, FieldValues } from "react-hook-form";
 
-interface CustomSelectProps {
-  control: Control<z.infer<typeof accountFormSchema>>;
-  name: FieldPath<z.infer<typeof accountFormSchema>>;
+interface CustomSelectProps<TFieldValues extends FieldValues> {
+  control: Control<TFieldValues>;
+  name: FieldPath<TFieldValues>;
   label: string;
-  options: string[];
+  options: { label: string; value: string }[]; // allows label/value pair
+  placeholder?: string;
 }
 
-const CustomSelect = ({ control, name, label, options }: CustomSelectProps) => {
+const CustomSelect = <TFieldValues extends FieldValues>({
+  control,
+  name,
+  label,
+  options,
+  placeholder,
+}: CustomSelectProps<TFieldValues>) => {
   return (
     <FormField
       control={control}
@@ -31,19 +36,16 @@ const CustomSelect = ({ control, name, label, options }: CustomSelectProps) => {
       render={({ field }) => (
         <FormItem>
           <FormLabel>{label}</FormLabel>
-          <Select
-            onValueChange={field.onChange}
-            defaultValue={field.value?.toString()}
-          >
+          <Select onValueChange={field.onChange} defaultValue={field.value}>
             <FormControl>
               <SelectTrigger>
-                <SelectValue placeholder={`Select ${label}`} />
+                <SelectValue placeholder={placeholder || `Select ${label}`} />
               </SelectTrigger>
             </FormControl>
             <SelectContent>
-              {options.map((option) => (
-                <SelectItem key={option} value={option}>
-                  {option}
+              {options.map(({ label, value }) => (
+                <SelectItem key={value} value={value}>
+                  {label}
                 </SelectItem>
               ))}
             </SelectContent>

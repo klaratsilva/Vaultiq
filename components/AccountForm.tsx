@@ -9,6 +9,7 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import CustomInput from "./CustomInput";
 import { Button } from "./ui/button";
+import { useLocale, useTranslations } from "next-intl";
 
 import CustomSelect from "./CustomSelect";
 
@@ -16,9 +17,20 @@ interface NewAccountFormProps {
   initialData?: Partial<z.infer<typeof accountFormSchema>>;
 }
 
-const NewAccountForm = ({ initialData }: NewAccountFormProps) => {
+const AccountForm = ({ initialData }: NewAccountFormProps) => {
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
+  const t = useTranslations("accountForm");
+
+  const accountTypeOptions = accountTypes.map((type) => ({
+    value: type,
+    label: t(`accountTypes.${type}`),
+  }));
+
+  const currencyOptions = currencies.map((code) => ({
+    value: code,
+    label: t(`currencies.${code}`),
+  }));
 
   const form = useForm<z.infer<typeof accountFormSchema>>({
     resolver: zodResolver(accountFormSchema),
@@ -55,12 +67,9 @@ const NewAccountForm = ({ initialData }: NewAccountFormProps) => {
 
       if (!response.ok) {
         const errorData = await response.json();
-        alert("Failed to submit form: " + JSON.stringify(errorData));
         setIsLoading(false);
         return;
       }
-
-      alert(isEdit ? "Account updated!" : "Account created!");
 
       form.reset();
       router.push("/accounts");
@@ -85,14 +94,14 @@ const NewAccountForm = ({ initialData }: NewAccountFormProps) => {
           <CustomSelect
             control={form.control}
             name="type"
-            label="Account Type"
-            options={[...accountTypes]}
+            label={t("labels.accountType")}
+            options={accountTypeOptions}
           />
           <CustomSelect
             control={form.control}
             name="currency"
-            label="Account Currency"
-            options={[...currencies]}
+            label={t("labels.currency")}
+            options={currencyOptions}
           />
 
           <CustomInput
@@ -120,4 +129,4 @@ const NewAccountForm = ({ initialData }: NewAccountFormProps) => {
   );
 };
 
-export default NewAccountForm;
+export default AccountForm;

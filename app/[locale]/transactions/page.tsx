@@ -1,7 +1,8 @@
+import TransactionForm from "@/components/TransactionForm";
 import React from "react";
 
 const Transactions = () => {
-  return <div>Transactions</div>;
+  return <section className="p-7">Trans</section>;
 };
 
 export default Transactions;
