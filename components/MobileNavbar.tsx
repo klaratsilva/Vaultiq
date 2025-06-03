@@ -48,7 +48,7 @@ const MobileNavbar = () => {
             className="cursor-pointer flex items-center gap-1 px-4"
           >
             <Image src="/icons/logo.png" alt="logo" width={34} height={34} />
-            <h1 className="text-lg font-bold text-gray-900">VaultIq</h1>
+            <h1 className="text-lg font-bold text-[var(--chart-3)]">VaultIq</h1>
           </Link>
           <div className="flex h-[calc(100vh-72px)] flex-col justify-between overflow-y-auto">
             <SheetClose asChild>

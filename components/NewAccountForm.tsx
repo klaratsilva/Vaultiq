@@ -1,0 +1,125 @@
+"use client";
+
+import { Form } from "@/components/ui/form";
+import { accountFormSchema, accountTypes, currencies } from "@/utils";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
+import CustomInput from "./CustomInput";
+import { Button } from "./ui/button";
+import { v4 as uuidv4 } from "uuid";
+import { useRouter } from "next/navigation";
+
+import CustomSelect from "./CustomSelect";
+
+interface NewAccountFormProps {
+  initialData?: Partial<z.infer<typeof accountFormSchema>>;
+}
+
+const NewAccountForm = ({ initialData }: NewAccountFormProps) => {
+  const [isLoading, setIsLoading] = useState(false);
+  const router = useRouter();
+
+  const form = useForm<z.infer<typeof accountFormSchema>>({
+    resolver: zodResolver(accountFormSchema),
+    defaultValues: {
+      name: "",
+      type: accountTypes[0],
+      currency: currencies[0],
+      ownerEmail: "",
+      ownerName: "",
+      balance: "",
+    },
+  });
+
+  useEffect(() => {
+    if (initialData) {
+      form.reset(initialData);
+    }
+  }, [initialData, form]);
+
+  const isEdit = !!initialData?.id;
+
+  async function onSubmit(data: z.infer<typeof accountFormSchema>) {
+    setIsLoading(true);
+
+    try {
+      const method = isEdit ? "PUT" : "POST";
+      const url = isEdit ? `/api/accounts/${initialData?.id}` : "/api/accounts";
+
+      const response = await fetch(url, {
+        method,
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        alert("Failed to submit form: " + JSON.stringify(errorData));
+        setIsLoading(false);
+        return;
+      }
+
+      alert(isEdit ? "Account updated!" : "Account created!");
+
+      // Success: reset form and redirect
+      form.reset();
+      router.push("/accounts");
+    } catch (error) {
+      alert("An unexpected error occurred.");
+      console.error(error);
+    } finally {
+      setIsLoading(false);
+    }
+  }
+
+  return (
+    <section className="p-5">
+      <Form {...form}>
+        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-5">
+          <CustomInput
+            control={form.control}
+            name="name"
+            label="Account Name"
+            placeholder="..add the name of the account"
+          />
+          <CustomSelect
+            control={form.control}
+            name="type"
+            label="Account Type"
+            options={[...accountTypes]}
+          />
+          <CustomSelect
+            control={form.control}
+            name="currency"
+            label="Account Currency"
+            options={[...currencies]}
+          />
+
+          <CustomInput
+            control={form.control}
+            name="ownerEmail"
+            label="Owner Email"
+            placeholder="email"
+          />
+          <CustomInput
+            control={form.control}
+            name="ownerName"
+            label="Owner Name"
+            placeholder="Enter the owner name"
+          />
+          <CustomInput
+            control={form.control}
+            name="balance"
+            label="balance"
+            placeholder="balance"
+          />
+          <Button type="submit">Submit</Button>
+        </form>
+      </Form>
+    </section>
+  );
+};
+
+export default NewAccountForm;
