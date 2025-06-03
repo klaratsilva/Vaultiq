@@ -7,5 +7,14 @@
     "create": "Créer",
     "edit": "Modifier",
     "delete": "Supprimer"
+  },
+   "sidebar": {
+    "home": "Accueil",
+    "accounts": "Mes Comptes",
+    "transactions": "Transactions"
+  },
+    "languages": {
+    "en": "AN",
+    "fr": "FR"
   }
 }

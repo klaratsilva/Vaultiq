@@ -6,6 +6,7 @@ import { routing } from "../../i18n/routing";
 // Import your messages here (paths relative to this file)
 import en from "../../messages/en.json";
 import fr from "../../messages/fr.json";
+import Navbar from "@/components/NavBar";
 
 // Map locales to messages
 const messagesMap = { en, fr };
@@ -26,12 +27,11 @@ export default async function LocaleLayout({
   const messages = messagesMap[locale];
 
   return (
-    <html lang={locale}>
-      <body>
-        <NextIntlClientProvider locale={locale} messages={messages}>
-          {children}
-        </NextIntlClientProvider>
-      </body>
-    </html>
+    <NextIntlClientProvider locale={locale} messages={messages}>
+      <main className="relative flex h-screen w-full font-inter">
+        <Navbar />
+        <div className="flex-1 flex flex-col overflow-auto">{children}</div>
+      </main>
+    </NextIntlClientProvider>
   );
 }
