@@ -1,13 +1,21 @@
+import Dashboard from "@/components/Dashboard";
+import { getAllAccounts, getAllTransactions } from "@/lib/api";
 import { getTranslations } from "next-intl/server";
 
 export default async function HomePage() {
   const t = await getTranslations("dashboard");
 
+  const transactions = await getAllTransactions();
+  const accounts = await getAllAccounts();
+
   return (
-    <section className="p-6">
+    <section className="no-scrollbar flex flex-col gap-6  p-8 md:max-h-screen xl:py-12">
       <h1 className="text-2xl font-bold">{t("title")}</h1>
-      <p>{t("welcome")}</p>
-      <p>Hello</p>
+      <Dashboard
+        accounts={accounts}
+        transactions={transactions}
+        userCount={45}
+      />
     </section>
   );
 }

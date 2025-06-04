@@ -9,7 +9,11 @@ const AccountDetails = ({ account }: AccountDetailsProps) => {
   const { id, name, balance, currency, type, ownerName } = account;
 
   return (
-    <article className={"p-12 rounded-xl shadow-md bg-white space-y-12"}>
+    <article
+      className={
+        "p-12 rounded-2xl shadow-md border border-grey bg-white space-y-12"
+      }
+    >
       {/* Header Section */}
       <div className="flex items-center gap-6 ">
         <div

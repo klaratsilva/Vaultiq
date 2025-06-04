@@ -1,13 +1,18 @@
-import TransactionList from "@/components/TransactionList";
+import TransactionTable from "@/components/TransactionTable";
 import { Button } from "@/components/ui/button";
-import { getAllTransactions } from "@/lib/api";
-import Link from "next/link";
-import React from "react";
+import { getAllAccounts, getAllTransactions } from "@/lib/api";
+import { Account } from "@/lib/types";
 import { getTranslations } from "next-intl/server";
+import Link from "next/link";
 
 const Transactions = async ({ params }: { params: { locale: string } }) => {
   const { locale } = await params;
   const transactions = await getAllTransactions();
+  const accounts = await getAllAccounts();
+
+  const accountsMap = Object.fromEntries(
+    accounts.map((account: Account) => [account.id, account])
+  );
 
   const t = await getTranslations("TransactionsPage");
 
@@ -22,7 +27,7 @@ const Transactions = async ({ params }: { params: { locale: string } }) => {
         <Button className="btn-primary bg-main-1">{t("newButton")}</Button>
       </Link>
 
-      <TransactionList transactions={transactions} />
+      <TransactionTable transactions={transactions} accountsMap={accountsMap} />
     </section>
   );
 };

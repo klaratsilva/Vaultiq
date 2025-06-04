@@ -120,3 +120,21 @@ export function formatAccountOptions(accounts: PartialAccount[]) {
     label: `${name ?? "Unknown"} - ${currency ?? "-"} - ${ownerName ?? "-"}`,
   }));
 }
+
+// const StatusBadge = (status: TransactionStatus) => {
+//   const { borderColor, backgroundColor, textColor, chipBackgroundColor } =
+//     statusStyles[status] || statusStyles.default;
+
+//   return (
+//     <div
+//       className={cn(
+//         "inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-medium border",
+//         borderColor,
+//         chipBackgroundColor
+//       )}
+//     >
+//       <div className={cn("w-3 h-3 rounded-full", backgroundColor)} />
+//       <span className={textColor}>{status}</span>
+//     </div>
+//   );
+// };
