@@ -1,19 +1,25 @@
 {
   "dashboard": {
-    "title": "Bank Dashboard",
-    "welcome": "Welcome to your bank account manager"
+    "title": "Dasboard",
+    "welcome": "Welcome to your bank account manager",
+    "totalBalance": "Total Balance",
+    "totalAccounts": "Total Accounts",
+    "totalUsers": "Total Users",
+    "viewAccount": "View Account",
+    "recentTransactions": "Recent Transactions",
+    "recentAccounts": "Recent Accounts"
   },
   "actions": {
     "create": "Create",
     "edit": "Edit",
     "delete": "Delete"
   },
-    "sidebar": {
+  "sidebar": {
     "home": "Home",
     "accounts": "My Accounts",
     "transactions": "Transactions"
   },
-   "languages": {
+  "languages": {
     "en": "EN",
     "fr": "FR"
   },
@@ -23,30 +29,30 @@
       "business": "Business",
       "admin": "Admin"
     },
-     "currencies": {
+    "currencies": {
       "USD": "US Dollar",
       "EUR": "Euro",
       "GBP": "British Pound",
       "JPY": "Japanese Yen",
       "CAD": "Canadian Dollar"
     },
-      "labels": {
-    "accountName": "Account Name",
-    "accountType": "Account Type",
-    "currency": "Currency",
-    "ownerEmail": "Owner Email",
-    "ownerName": "Owner Name",
-    "balance": "Balance"
+    "labels": {
+      "accountName": "Account Name",
+      "accountType": "Account Type",
+      "currency": "Currency",
+      "ownerEmail": "Owner Email",
+      "ownerName": "Owner Name",
+      "balance": "Balance"
+    },
+    "placeholders": {
+      "accountName": "Add the name of the account",
+      "ownerEmail": "Email",
+      "ownerName": "Enter the owner name",
+      "balance": "Balance"
+    },
+    "submit": "Submit"
   },
-  "placeholders": {
-    "accountName": "Add the name of the account",
-    "ownerEmail": "Email",
-    "ownerName": "Enter the owner name",
-    "balance": "Balance"
-  },
-  "submit": "Submit"
-  },
-    "TransactionsPage": {
+  "TransactionsPage": {
     "title": "List of Transactions",
     "newButton": "New Transaction",
     "noTransactions": "No transactions found."
@@ -63,24 +69,36 @@
   },
   "transactionForm": {
     "labels": {
-    "fromAccount": "From Account",
-    "toAccount": "To Account",
-    "amount": "Amount",
-    "description": "Description",
-    "convertedAmount": "Converted amount"
+      "fromAccount": "From Account",
+      "toAccount": "To Account",
+      "amount": "Amount",
+      "description": "Description",
+      "convertedAmount": "Converted amount"
+    },
+    "placeholders": {
+      "amount": "Enter amount",
+      "description": "What's this for?"
+    },
+    "buttons": {
+      "submit": "Submit",
+      "processing": "Processing..."
+    },
+    "alerts": {
+      "createSuccess": "Transaction created!",
+      "createError": "Failed to create transaction: ",
+      "unexpectedError": "An unexpected error occurred."
+    }
   },
-  "placeholders": {
-    "amount": "Enter amount",
-    "description": "What's this for?"
-  },
-  "buttons": {
-    "submit": "Submit",
-    "processing": "Processing..."
-  },
-  "alerts": {
-    "createSuccess": "Transaction created!",
-    "createError": "Failed to create transaction: ",
-    "unexpectedError": "An unexpected error occurred."
-  }
+  "accounts": {
+    "searchPlaceholder": "Search accounts...",
+    "accounts": "Accounts",
+    "currency": "Currency",
+    "type": "Type",
+    "balance": "Balance",
+    "noAccountsFound": "No accounts found.",
+    "minutesAlt": "minutes",
+    "checking": "Checking",
+    "savings": "Savings",
+    "credit": "Credit"
   }
 }

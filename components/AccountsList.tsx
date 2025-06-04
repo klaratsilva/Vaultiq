@@ -14,6 +14,7 @@ import Image from "next/image";
 import { Account } from "@/lib/types";
 import { useState } from "react";
 import { Input } from "./ui/input";
+import { useTranslations } from "next-intl";
 
 interface AccountsListProps {
   accounts: Account[];
@@ -21,6 +22,7 @@ interface AccountsListProps {
 
 const AccountsList = ({ accounts }: AccountsListProps) => {
   const [searchTerm, setSearchTerm] = useState("");
+  const t = useTranslations("accounts");
 
   const filteredAccounts = accounts.filter(
     ({ name, ownerName, type, balance }) =>
@@ -48,10 +50,10 @@ const AccountsList = ({ accounts }: AccountsListProps) => {
       <Table>
         <TableHeader>
           <TableRow>
-            <TableHead className="w-1/2">Accounts</TableHead>
-            <TableHead className="">Currency</TableHead>
-            <TableHead className="text-right">Type</TableHead>
-            <TableHead className="text-right">Balance</TableHead>
+            <TableHead className="w-1/2">{t("accounts")}</TableHead>
+            <TableHead className="">{t("currency")}</TableHead>
+            <TableHead className="text-right">{t("type")}</TableHead>
+            <TableHead className="text-right">{t("balance")}</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
@@ -85,7 +87,7 @@ const AccountsList = ({ accounts }: AccountsListProps) => {
                   <TableCell>
                     <div className="flex items-center gap-2 w-full justify-end">
                       <p className="text-lg">
-                        <span className=""> {type}</span>
+                        <span>{type}</span>
                       </p>
                     </div>
                   </TableCell>
@@ -94,13 +96,6 @@ const AccountsList = ({ accounts }: AccountsListProps) => {
                       <p className="text-lg">
                         <span className=""> {balance}</span>
                       </p>
-                      <Image
-                        src="/icons/clock.svg"
-                        alt="minutes"
-                        width={14}
-                        height={14}
-                        className="md:hidden"
-                      />
                     </div>
                   </TableCell>
                 </TableRow>

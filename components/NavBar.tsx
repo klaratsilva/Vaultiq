@@ -20,7 +20,7 @@ export default function Navbar() {
 
   const basePath = stripLocaleFromPath(pathname);
   return (
-    <section className="sticky left-0 top-0 flex h-screen w-fit flex-col  justify-between  border-r border-gray-200 bg-white pt-8 text-white max-md:hidden sm:p-4  xl:p-6 2xl:w-[355px]">
+    <section className="sticky left-0 top-0 flex h-screen w-fit flex-col justify-between p-6 border-r border-gray-200 bg-white pt-6 text-white max-md:hidden 2xl:w-[355px]">
       <nav className="flex flex-1 flex-col gap-4 px-4 py-6">
         <Link href="/" locale={locale} className="mb-8 flex items-center gap-2">
           <Image
@@ -28,7 +28,7 @@ export default function Navbar() {
             alt="logo"
             width={44}
             height={44}
-            className="h-[44px] w-[44px]"
+            className="h-[44px] w-[44px] opacity-60"
           />
           <h1 className="text-3xl text-[var(--primary)] font-bold">VaultIq</h1>
         </Link>
@@ -65,8 +65,8 @@ export default function Navbar() {
         })}
       </nav>
 
-      <footer className="mt-8 border-t pt-4">
-        <div className="flex gap-2  justify-end">
+      <footer className="flex mb-4 border-t pt-4 items-center justify-center">
+        <div className="flex gap-2 justify-end">
           {supportedLocales.map((loc) => (
             <Link
               key={loc}

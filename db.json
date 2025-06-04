@@ -39,6 +39,16 @@
       "ownerEmail": "klara.tsilva@gmail.com",
       "ownerName": "klara Silva",
       "ownerId": "887c718d-d7c5-4a5e-8e3f-00e3b5f0e459"
+    },
+    {
+      "id": "2c5269b1-0358-415c-82e6-70fd4651fa17",
+      "name": "Personal Savings",
+      "type": "business",
+      "currency": "JPY",
+      "balance": "3000",
+      "ownerEmail": "pablo@gmail.com",
+      "ownerName": "Pablo Santo",
+      "ownerId": "3c6c71bc-0cae-4aa7-ba7a-378c605f0463"
     }
   ],
   "users": [
@@ -59,6 +69,12 @@
       "ownerEmail": "tiago@gmail.com",
       "ownerName": "Tiago Holms",
       "ownerId": "1ab8dfdb-9306-40f3-bf2c-edd5d64b3f32"
+    },
+    {
+      "id": "053a",
+      "ownerEmail": "pablo@gmail.com",
+      "ownerName": "Pablo Santo",
+      "ownerId": "3c6c71bc-0cae-4aa7-ba7a-378c605f0463"
     }
   ],
   "transactions": [

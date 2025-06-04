@@ -1,7 +1,13 @@
 {
   "dashboard": {
     "title": "Tableau de Bord Bancaire",
-    "welcome": "Bienvenue dans votre gestionnaire de comptes bancaires"
+    "welcome": "Bienvenue dans votre gestionnaire de comptes bancaires",
+    "totalBalance": "Solde total",
+    "totalAccounts": "Comptes totaux",
+    "totalUsers": "Utilisateurs totaux",
+    "viewAccount": "Voir le compte",
+    "recentTransactions": "Transactions récentes",
+    "recentAccounts": "Comptes récentes"
   },
   "actions": {
     "create": "Créer",
@@ -30,21 +36,21 @@
       "JPY": "Yen japonais",
       "CAD": "Dollar canadien"
     },
-     "labels": {
-    "accountName": "Nom du compte",
-    "accountType": "Type de compte",
-    "currency": "Devise",
-    "ownerEmail": "Email du propriétaire",
-    "ownerName": "Nom du propriétaire",
-    "balance": "Solde"
-  },
-  "placeholders": {
-    "accountName": "Ajoutez le nom du compte",
-    "ownerEmail": "Email",
-    "ownerName": "Entrez le nom du propriétaire",
-    "balance": "Solde"
-  },
-  "submit": "Envoyer"
+    "labels": {
+      "accountName": "Nom du compte",
+      "accountType": "Type de compte",
+      "currency": "Devise",
+      "ownerEmail": "Email du propriétaire",
+      "ownerName": "Nom du propriétaire",
+      "balance": "Solde"
+    },
+    "placeholders": {
+      "accountName": "Ajoutez le nom du compte",
+      "ownerEmail": "Email",
+      "ownerName": "Entrez le nom du propriétaire",
+      "balance": "Solde"
+    },
+    "submit": "Envoyer"
   },
   "TransactionsPage": {
     "title": "Liste des transactions",
@@ -61,25 +67,37 @@
     "loadingAccount": "Chargement du compte..."
   },
   "transactionForm": {
-     "labels": {
-    "fromAccount": "Compte source",
-    "toAccount": "Compte destination",
-    "amount": "Montant",
-    "description": "Description",
-    "convertedAmount": "Le montant converti"
+    "labels": {
+      "fromAccount": "Compte source",
+      "toAccount": "Compte destination",
+      "amount": "Montant",
+      "description": "Description",
+      "convertedAmount": "Le montant converti"
+    },
+    "placeholders": {
+      "amount": "Entrez le montant",
+      "description": "À quoi cela sert-il ?"
+    },
+    "buttons": {
+      "submit": "Envoyer",
+      "processing": "Traitement en cours..."
+    },
+    "alerts": {
+      "createSuccess": "Transaction créée !",
+      "createError": "Échec de la création de la transaction : ",
+      "unexpectedError": "Une erreur inattendue est survenue."
+    }
   },
-  "placeholders": {
-    "amount": "Entrez le montant",
-    "description": "À quoi cela sert-il ?"
-  },
-  "buttons": {
-    "submit": "Envoyer",
-    "processing": "Traitement en cours..."
-  },
-  "alerts": {
-    "createSuccess": "Transaction créée !",
-    "createError": "Échec de la création de la transaction : ",
-    "unexpectedError": "Une erreur inattendue est survenue."
-  }
+  "accounts": {
+    "searchPlaceholder": "Rechercher des comptes...",
+    "accounts": "Comptes",
+    "currency": "Devise",
+    "type": "Type",
+    "balance": "Solde",
+    "noAccountsFound": "Aucun compte trouvé.",
+    "minutesAlt": "minutes",
+    "checking": "Courant",
+    "savings": "Épargne",
+    "credit": "Crédit"
   }
 }

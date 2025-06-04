@@ -28,7 +28,9 @@ const AccountDetailPage = async ({ params }: Props) => {
           className="cursor-pointer"
           href={`/${locale}/accounts/${id}/edit`}
         >
-          <Button className="bg-main-1 w-full">Edit</Button>
+          <Button className="w-full" variant="outline">
+            Edit
+          </Button>
         </Link>
         <DeleteAccountButton id={id} locale={locale} />
       </div>

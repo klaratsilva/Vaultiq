@@ -20,7 +20,7 @@ export default async function LocaleLayout({
   children: React.ReactNode;
   params: { locale: string };
 }) {
-  const { locale } = params;
+  const { locale } = await params;
 
   if (!hasLocale(routing.locales, locale)) {
     notFound();
@@ -33,8 +33,14 @@ export default async function LocaleLayout({
       <main className="relative flex h-screen w-full">
         <Navbar />
         <div className="flex size-full flex-col">
-          <div className="flex h-16 items-center justify-between p-5 shadow-creditCard sm:p-8 md:hidden">
-            <Image src="/icons/logo.png" alt="logo" width={30} height={30} />
+          <div className="flex h-16 p-5 items-center justify-between p- shadow-creditCard md:hidden">
+            <Image
+              className="mt-2 opacity-60"
+              src="/icons/logo.png"
+              alt="logo"
+              width={50}
+              height={50}
+            />
             <div>
               <MobileNavbar />
             </div>

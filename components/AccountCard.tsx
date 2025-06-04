@@ -10,7 +10,7 @@ const AccountCard = ({ account }: AccountCardProps) => {
   const { name, ownerName, balance, currency, type } = account;
 
   return (
-    <div className="bg-white p-2 flex gap-4 items-center">
+    <div className="bg-white p-2 flex gap-3 items-center">
       <div
         className="size-12 flex items-center justify-center rounded-full text-white font-semibold text-lg"
         style={{ backgroundColor: getTypeColor(type) }}
@@ -19,7 +19,6 @@ const AccountCard = ({ account }: AccountCardProps) => {
       </div>
       <div className="flex flex-col">
         <p className="text-base font-semibold">{name}</p>
-        <p className="text-sm text-gray-600">{ownerName}</p>
         <p className="text-sm mt-1">
           Balance:{" "}
           <span className="font-medium">

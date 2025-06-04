@@ -15,6 +15,7 @@ import {
 } from "@/components/ui/sheet";
 import { sidebarLinks } from "../constants";
 import { cn } from "../lib";
+import { localeNames, supportedLocales } from "@/i18n/locales";
 
 function stripLocaleFromPath(path: string) {
   const parts = path.split("/").slice(2);
@@ -41,18 +42,24 @@ const MobileNavbar = () => {
         </SheetTrigger>
         <SheetContent side="left" className="border-none bg-white">
           <SheetHeader>
-            <SheetTitle>Mobile Navigation Menu</SheetTitle>
+            <SheetTitle></SheetTitle>
           </SheetHeader>
           <Link
             href={`/${locale}`}
-            className="cursor-pointer flex items-center gap-1 px-4"
+            className="cursor-pointer flex items-center gap-1 px-8"
           >
-            <Image src="/icons/logo.png" alt="logo" width={34} height={34} />
-            <h1 className="text-lg font-bold text-[var(--chart-3)]">VaultIq</h1>
+            <Image
+              src="/icons/logo.png"
+              className="opacity-60"
+              alt="logo"
+              width={64}
+              height={64}
+            />
+            <h1 className="text-4xl font-bold text-primary">VaultIq</h1>
           </Link>
           <div className="flex h-[calc(100vh-72px)] flex-col justify-between overflow-y-auto">
             <SheetClose asChild>
-              <nav className="flex h-full flex-col gap-6 pt-16 text-white items-center">
+              <nav className="flex h-full flex-col gap-4 pt-16 text-white items-center">
                 {sidebarLinks.map((item) => {
                   const base = item.route === "/" ? "" : item.route;
                   const href = `/${locale}${base}`;
@@ -67,9 +74,9 @@ const MobileNavbar = () => {
                         href={href}
                         key={item.labelKey}
                         className={cn(
-                          "flex gap-3 items-center p-4 rounded-lg w-full max-w-80 ",
+                          "flex gap-3 items-center p-4 rounded-lg w-full max-w-80",
                           isActive
-                            ? "bg-[var(--chart-3)] text-white"
+                            ? "bg-primary text-white"
                             : "text-gray-700 hover:bg-gray-100"
                         )}
                       >
@@ -96,6 +103,27 @@ const MobileNavbar = () => {
                 })}
               </nav>
             </SheetClose>
+
+            {/* ✅ Language Switcher Footer */}
+            <footer className="mb-8 border-t pt-4 px-4">
+              <div className="flex gap-2 justify-center">
+                {supportedLocales.map((loc) => (
+                  <Link
+                    key={loc}
+                    href={`/${loc}${basePath}`}
+                    className={cn(
+                      "w-10 h-10 flex items-center justify-center rounded-full text-sm uppercase transition",
+                      loc === locale
+                        ? "bg-primary text-white"
+                        : "bg-gray-200 text-gray-800 hover:bg-gray-300"
+                    )}
+                    aria-label={`Switch to ${localeNames[loc]}`}
+                  >
+                    {loc}
+                  </Link>
+                ))}
+              </div>
+            </footer>
           </div>
         </SheetContent>
       </Sheet>

@@ -6,7 +6,7 @@ interface Props {
 }
 
 export default async function EditAccountPage({ params }: Props) {
-  const { locale, id } = params;
+  const { id } = await params;
 
   const account = await getAccountById(id);
   if (!account) throw new Error("Account not found");
