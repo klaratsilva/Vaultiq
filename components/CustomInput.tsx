@@ -29,7 +29,7 @@ const CustomInput = <TFieldValues extends FieldValues>({
       control={control}
       name={name}
       render={({ field }) => (
-        <div className="form-item">
+        <div className="flex flex-col gap-1.5">
           <FormLabel>{label}</FormLabel>
           <div className="flex w-full flex-col">
             <FormControl>
@@ -39,7 +39,7 @@ const CustomInput = <TFieldValues extends FieldValues>({
                 placeholder={placeholder}
                 type={type}
                 disabled={disabled}
-                className="input-class"
+                className="text-[16] placeholder:text-16 rounded-lg border border-gray-300 text-gray-500 placeholder:text-gray-500"
               />
             </FormControl>
             <FormMessage className="form-message mt-2" />

@@ -13,8 +13,8 @@ const AccountDetailPage = async ({ params }: Props) => {
   const { id, locale } = params;
 
   return (
-    <div>
-      <h1>Account Detail Page</h1>
+    <div className="no-scrollbar flex flex-col gap-6 overflow-y-scroll p-8 md:max-h-screen xl:py-12">
+      <h1 className="text-3xl text-bold">Account Detail Page</h1>
       <Link href={`/${locale}/accounts/${id}/edit`}>
         <Button>Edit Account</Button>
       </Link>

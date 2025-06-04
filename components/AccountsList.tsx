@@ -19,14 +19,13 @@ const AccountsList = ({ accounts }: AccountsListProps) => {
   console.log(accounts);
   return (
     <article className={cn("companion-list", "classNames")}>
-      <h2 className="font-bold text-3xl">{"title"}</h2>
-
       <Table>
-        <TableHeader>
+        <TableHeader className="bg-[#f9fafb]">
           <TableRow>
-            <TableHead className="text-lg w-2/3">Accounts</TableHead>
-            <TableHead className="text-lg">Currency</TableHead>
-            <TableHead className="text-lg text-right">Balance</TableHead>
+            <TableHead className="w-1/2">Accounts</TableHead>
+            <TableHead className="">Currency</TableHead>
+            <TableHead className="text-right">Type</TableHead>
+            <TableHead className="text-right">Balance</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
@@ -34,48 +33,37 @@ const AccountsList = ({ accounts }: AccountsListProps) => {
             <TableRow key={id}>
               <TableCell>
                 <Link href={`/accounts/${id}`}>
-                  <div className="flex items-center gap-2">
+                  <div className="p-2 flex items-center gap-3">
                     <div
-                      className="size-[72px] flex items-center justify-center rounded-lg max-md:hidden"
+                      className="size-[64px] flex items-center justify-center rounded-4xl max-md:hidden p-2"
                       style={{ backgroundColor: getTypeColor(type) }}
                     >
                       <h1 className="text-4xl text-white">
                         {ownerName.slice(0, 1)}
                       </h1>
                     </div>
-                    <div className="flex flex-col gap-2">
-                      <p className="font-bold text-2xl">{name}</p>
+                    <div className="flex flex-col gap-1">
+                      <p className="font-bold text-xl">{name}</p>
                       <p className="text-lg">{ownerName}</p>
                     </div>
                   </div>
                 </Link>
-              </TableCell>
+              </TableCell>{" "}
               <TableCell>
-                <div className="subject-badge w-fit max-md:hidden">
+                <div className="bg-main-1 text-white rounded-4xl text-sm px-4 py-2 capitalize w-fit max-md:hidden">
                   {currency}
-                </div>
-                <div
-                  className="flex items-center justify-center rounded-lg w-fit p-2 md:hidden"
-                  style={{ backgroundColor: getTypeColor(type) }}
-                >
-                  {/* <Image
-                      src={`/icons/${subject}.svg`}
-                      alt={subject}
-                      width={18}
-                      height={18}
-                    /> */}
                 </div>
               </TableCell>
               <TableCell>
                 <div className="flex items-center gap-2 w-full justify-end">
-                  <p className="text-2xl">
+                  <p className="text-lg">
                     <span className=""> {type}</span>
                   </p>
                 </div>
               </TableCell>
               <TableCell>
                 <div className="flex items-center gap-2 w-full justify-end">
-                  <p className="text-2xl">
+                  <p className="text-lg">
                     <span className=""> {balance}</span>
                   </p>
                   <Image

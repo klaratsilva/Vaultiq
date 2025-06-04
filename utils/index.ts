@@ -38,9 +38,9 @@ export const transactionSchema = z.object({
 });
 
 export const accountTypeColorsHex: Record<AccountType, string> = {
-  personal: "#8893B9",    // base
-  business: "#ABB5D5",    // lighter
-  admin: "#4A5173",       // darker
+  personal: "#6b89ad",  // 
+  business: "#7d9ac0",  // oklch(0.52 0.07 227.392)
+  admin: "#8fabd2",     // oklch(0.6 0.07 227.392)
 };
 
 export const getSubjectColor = (subject: string) => {

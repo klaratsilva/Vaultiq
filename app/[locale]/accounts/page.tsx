@@ -10,13 +10,14 @@ const Accounts = async () => {
   const accounts = await res.json();
 
   return (
-    <div className="p-7">
+    <section className="no-scrollbar flex flex-col gap-6 overflow-y-scroll p-8 md:max-h-screen xl:py-12">
+      <h1 className="text-3xl text-bold">List of Accounts</h1>
       <Link href="/accounts/new">
-        <Button className="btn-primary">Add New Account</Button>
+        <Button className="btn-primary bg-main-1">Add New Account</Button>
       </Link>
 
       <AccountsList accounts={accounts} />
-    </div>
+    </section>
   );
 };
 

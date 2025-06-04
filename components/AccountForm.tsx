@@ -3,13 +3,13 @@
 import { Form } from "@/components/ui/form";
 import { accountFormSchema, accountTypes, currencies } from "@/utils";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useTranslations } from "next-intl";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import CustomInput from "./CustomInput";
 import { Button } from "./ui/button";
-import { useLocale, useTranslations } from "next-intl";
 
 import CustomSelect from "./CustomSelect";
 
@@ -82,7 +82,7 @@ const AccountForm = ({ initialData }: NewAccountFormProps) => {
   }
 
   return (
-    <section className="p-5">
+    <section>
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-5">
           <CustomInput
@@ -122,7 +122,9 @@ const AccountForm = ({ initialData }: NewAccountFormProps) => {
             label="balance"
             placeholder="balance"
           />
-          <Button type="submit">Submit</Button>
+          <Button type="submit" className="bg-main-1">
+            Submit
+          </Button>
         </form>
       </Form>
     </section>
