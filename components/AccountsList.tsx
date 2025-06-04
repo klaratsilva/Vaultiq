@@ -65,28 +65,28 @@ const AccountsList = ({ accounts }: AccountsListProps) => {
                     <Link href={`/accounts/${id}`}>
                       <div className="p-2 flex items-center gap-3">
                         <div
-                          className="size-[64px] flex items-center justify-center rounded-4xl max-md:hidden p-2"
+                          className="size-[44px] flex items-center justify-center rounded-4xl max-md:hidden p-1"
                           style={{ backgroundColor: getTypeColor(type) }}
                         >
-                          <h1 className="text-4xl text-white">
+                          <h1 className="text-xl text-white">
                             {ownerName.slice(0, 1)}
                           </h1>
                         </div>
-                        <div className="flex flex-col gap-1">
-                          <p className="font-bold text-xl">{name}</p>
-                          <p className="text-lg">{ownerName}</p>
+                        <div className="flex flex-col">
+                          <p className="font-bold text-lg">{name}</p>
+                          <p className="text-md">{ownerName}</p>
                         </div>
                       </div>
                     </Link>
                   </TableCell>
                   <TableCell>
-                    <div className="bg-main-1 text-white rounded-4xl text-sm px-4 py-2 capitalize w-fit max-md:hidden">
+                    <div className="bg-yellow-100 text-yellow-600 rounded-4xl text-sm px-4 py-2 w-fit max-md:hidden">
                       {currency}
                     </div>
                   </TableCell>
                   <TableCell>
                     <div className="flex items-center gap-2 w-full justify-end">
-                      <p className="text-lg">
+                      <p className="text-md">
                         <span>{type}</span>
                       </p>
                     </div>
@@ -94,7 +94,7 @@ const AccountsList = ({ accounts }: AccountsListProps) => {
                   <TableCell>
                     <div className="flex items-center gap-2 w-full justify-end">
                       <p className="text-lg">
-                        <span className=""> {balance}</span>
+                        <span>{balance}</span>
                       </p>
                     </div>
                   </TableCell>

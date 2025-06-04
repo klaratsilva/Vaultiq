@@ -41,7 +41,7 @@ const Dashboard = ({ accounts, transactions, userCount }: DashboardProps) => {
         </div>
 
         <div
-          className="card p-4 rounded-lg shadow-md text-white"
+          className="card max-sm:hidden p-4 rounded-lg shadow-md text-white"
           style={{ backgroundColor: accountTypeColorsHex.business }}
         >
           <h3 className="text-lg font-semibold mb-2">{t("totalAccounts")}</h3>
@@ -49,7 +49,7 @@ const Dashboard = ({ accounts, transactions, userCount }: DashboardProps) => {
         </div>
 
         <div
-          className="card p-4 rounded-lg shadow-md text-white"
+          className="card p-4 max-sm:hidden rounded-lg shadow-md text-white"
           style={{ backgroundColor: accountTypeColorsHex.admin }}
         >
           <h3 className="text-lg font-semibold mb-2">{t("totalUsers")}</h3>

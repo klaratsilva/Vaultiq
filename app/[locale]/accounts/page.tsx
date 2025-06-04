@@ -8,7 +8,7 @@ const Accounts = async () => {
   const accounts = await getAllAccounts();
 
   return (
-    <section className="no-scrollbar flex flex-col gap-6  p-8 md:max-h-screen xl:py-12">
+    <section className="no-scrollbar flex flex-col gap-6 p-8 md:max-h-screen xl:py-12">
       <h1 className="headline">List of Accounts</h1>
       <Link className="cursor-pointer" href="/accounts/new">
         <Button variant="outline">New Account</Button>

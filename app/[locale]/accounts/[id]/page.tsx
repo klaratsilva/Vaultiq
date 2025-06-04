@@ -21,9 +21,11 @@ const AccountDetailPage = async ({ params }: Props) => {
   }
 
   return (
-    <div className="no-scrollbar flex flex-col lg:flex-row gap-6 overflow-y-scroll p-6 md:max-h-screen xl:py-12">
-      <AccountDetails account={account} />
-      <div className="w-full lg:w-1/6 flex flex-col gap-4 max-lg:max-w-full max-lg:w-full">
+    <div className="no-scrollbar flex flex-col lg:flex-row gap-10 overflow-y-scroll p-6 md:max-h-screen xl:py-12">
+      <div className="flex-grow">
+        <AccountDetails account={account} />
+      </div>
+      <div className="w-full lg:w-1/5 flex flex-col gap-4 max-lg:w-full">
         <Link
           className="cursor-pointer"
           href={`/${locale}/accounts/${id}/edit`}

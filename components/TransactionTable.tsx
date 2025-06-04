@@ -74,8 +74,12 @@ const TransactionsTable = ({
             <TableHead className="px-2">{t("fromAccountHeader")}</TableHead>
             <TableHead className="px-2">{t("toAccountHeader")}</TableHead>
             <TableHead className="px-2">{t("amountHeader")}</TableHead>
-            <TableHead className="px-2">{t("statusHeader")}</TableHead>
-            <TableHead className="px-2">{t("dateHeader")}</TableHead>
+            <TableHead className="px-2 max-md:hidden">
+              {t("statusHeader")}
+            </TableHead>
+            <TableHead className="px-2 max-md:hidden">
+              {t("dateHeader")}
+            </TableHead>
             <TableHead className="px-2 max-md:hidden">
               {t("descriptionHeader")}
             </TableHead>
@@ -91,14 +95,14 @@ const TransactionsTable = ({
                 {t.amount} {t.currency}
               </TableCell>
 
-              <TableCell className="pl-2 pr-10">
+              <TableCell className="max-md:hidden pl-2 pr-10">
                 {StatusBadge(t.status)}
               </TableCell>
 
-              <TableCell className="min-w-32 pl-2 pr-10">
+              <TableCell className="max-md:hidden min-w-32 pl-2 pr-10">
                 {formatDateTime(t.createdAt)}
               </TableCell>
-              <TableCell className="max-w-[250px] pl-2 pr-10">
+              <TableCell className="max-md:hidden max-w-[250px] pl-2 pr-10">
                 {t.description}
               </TableCell>
             </TableRow>
