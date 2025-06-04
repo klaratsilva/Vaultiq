@@ -1,5 +1,5 @@
 // store/accountsSlice.ts
-import { Account } from "@/utils/types";
+import { Account } from "@/lib/types";
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 export const fetchAccounts = createAsyncThunk(

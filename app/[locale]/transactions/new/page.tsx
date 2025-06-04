@@ -1,6 +1,6 @@
 import TransactionForm from "@/components/TransactionForm";
 import { getAllAccounts } from "@/lib/api";
-import { Account } from "@/utils/types";
+import { Account } from "@/lib/types";
 
 const NewTransactionPage = async () => {
   const accounts = await getAllAccounts();

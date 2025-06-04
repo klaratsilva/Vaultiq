@@ -8,10 +8,10 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { cn, getTypeColor as getTypeColor } from "../utils";
+import { cn, getTypeColor as getTypeColor } from "../lib";
 import Link from "next/link";
 import Image from "next/image";
-import { Account } from "@/utils/types";
+import { Account } from "@/lib/types";
 import { useState } from "react";
 import { Input } from "./ui/input";
 

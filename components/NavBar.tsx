@@ -6,7 +6,7 @@ import { useLocale, useTranslations } from "next-intl";
 import { usePathname } from "next/navigation";
 import { SidebarItem, sidebarLinks } from "../constants";
 import { supportedLocales, localeNames } from "../i18n/locales";
-import { cn } from "@/utils";
+import { cn } from "@/lib";
 
 function stripLocaleFromPath(path: string) {
   const parts = path.split("/").slice(2);

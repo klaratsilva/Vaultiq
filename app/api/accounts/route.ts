@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { v4 as uuidv4 } from "uuid";
-import { accountFormSchema } from "@/utils"; // your Zod schema
+import { accountFormSchema } from "@/lib"; // your Zod schema
 
 export async function POST(request: NextRequest) {
   try {

@@ -1,5 +1,5 @@
-import { getTypeColor as getTypeColor } from "../utils";
-import { Account } from "@/utils/types";
+import { getTypeColor as getTypeColor } from "../lib";
+import { Account } from "@/lib/types";
 
 interface AccountDetailsProps {
   account: Account;

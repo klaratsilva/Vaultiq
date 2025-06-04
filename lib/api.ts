@@ -1,3 +1,6 @@
+import { transactionSchema } from ".";
+import { z } from "zod";
+
 export async function getAccountById(id: string) {
   try {
     const apiUrl = `${process.env.API_URL}/accounts/${id}`; // Backend, not the frontend
@@ -58,5 +61,29 @@ export async function getAllTransactions() {
   } catch (error) {
     console.error("Error fetching transactions:", error);
     return [];
+  }
+}
+
+export async function createTransaction(data: z.infer<typeof transactionSchema>): Promise<z.infer<typeof transactionSchema>> {
+  try {
+    const res = await fetch("/api/transactions", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        ...data,
+        status: "pending",
+        createdAt: new Date().toISOString(),
+      }),
+    });
+
+    if (!res.ok) {
+      const errorData = await res.json().catch(() => ({}));
+      throw new Error(errorData.message || "API request failed");
+    }
+
+    return await res.json();
+  } catch (error) {
+    console.error("API fetch error:", error);
+    throw error;
   }
 }

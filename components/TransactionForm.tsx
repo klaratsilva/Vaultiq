@@ -12,12 +12,14 @@ import {
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import { Currency, transactionSchema } from "@/utils";
+import { Currency, formatAccountOptions, transactionSchema } from "@/lib";
 import { Button } from "./ui/button";
 import CustomInput from "./CustomInput";
 import CustomSelect from "./CustomSelect";
 import { type } from "os";
 import { Input } from "./ui/input";
+import { useTranslations } from "next-intl";
+import { createTransaction } from "@/lib/api";
 
 interface TransactionFormProps {
   accounts: {
@@ -31,6 +33,8 @@ interface TransactionFormProps {
 const TransactionForm = ({ accounts }: TransactionFormProps) => {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
+  const t = useTranslations("transactionForm");
+  const accountOptions = formatAccountOptions(accounts);
 
   const form = useForm<z.infer<typeof transactionSchema>>({
     resolver: zodResolver(transactionSchema),
@@ -46,38 +50,16 @@ const TransactionForm = ({ accounts }: TransactionFormProps) => {
     setIsLoading(true);
 
     try {
-      console.log(values);
-      const response = await fetch("/api/transactions", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          ...values,
-          status: "pending",
-          createdAt: new Date().toISOString(),
-        }),
-      });
-
-      if (!response.ok) {
-        const error = await response.json();
-        alert("Failed to create transaction: " + JSON.stringify(error));
-        return;
-      }
-
-      alert("Transaction created!");
+      await createTransaction(values);
       form.reset();
       router.push("/transactions");
-    } catch (error) {
-      console.error(error);
-      alert("An unexpected error occurred.");
+    } catch (error: any) {
+      alert("Failed to create transaction: " + error.message);
     } finally {
       setIsLoading(false);
     }
   }
 
-  const accountOptions = accounts.map((acc) => ({
-    value: acc.id,
-    label: `${acc.name} - ${acc.currency} - ${acc.ownerName}`,
-  }));
   return (
     <section className="w-full max-w-full md:max-w-[60%]">
       <Form {...form}>
@@ -85,13 +67,13 @@ const TransactionForm = ({ accounts }: TransactionFormProps) => {
           <CustomSelect
             control={form.control}
             name="fromAccountId"
-            label="From Account"
+            label={t("labels.fromAccount")}
             options={accountOptions}
           />
           <CustomSelect
             control={form.control}
             name="toAccountId"
-            label="To Account"
+            label={t("labels.toAccount")}
             options={accountOptions}
           />
 
@@ -100,14 +82,14 @@ const TransactionForm = ({ accounts }: TransactionFormProps) => {
             name={"amount"}
             render={({ field }) => (
               <div className="flex flex-col gap-1.5">
-                <FormLabel>Amount</FormLabel>
+                <FormLabel>{t("labels.amount")}</FormLabel>
                 <div className="flex w-full flex-col">
                   <FormControl>
                     <Input
                       id={"amount"}
-                      placeholder={"Enter amount"}
+                      placeholder={t("placeholders.amount")}
                       type="number"
-                      className="input-class"
+                      className="text-sm placeholder:text-16 rounded-lg border border-gray-300 text-gray-500 placeholder:text-gray-500"
                       value={
                         field.value === undefined || field.value === null
                           ? ""
@@ -115,7 +97,6 @@ const TransactionForm = ({ accounts }: TransactionFormProps) => {
                       }
                       onChange={(e) => {
                         const val = e.target.value;
-                        // Convert empty string to undefined (to reset) or to number
                         field.onChange(val === "" ? undefined : Number(val));
                       }}
                       onBlur={field.onBlur}
@@ -129,11 +110,11 @@ const TransactionForm = ({ accounts }: TransactionFormProps) => {
           <CustomInput
             control={form.control}
             name="description"
-            label="Description"
-            placeholder="What's this for?"
+            label={t("labels.description")}
+            placeholder={t("placeholders.description")}
           />
           <Button className="bg-main-1" type="submit" disabled={isLoading}>
-            {isLoading ? "Processing..." : "Submit"}
+            {isLoading ? t("buttons.processing") : t("buttons.submit")}
           </Button>
         </form>
       </Form>

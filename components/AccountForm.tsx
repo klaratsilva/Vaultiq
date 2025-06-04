@@ -1,7 +1,7 @@
 "use client";
 
 import { Form } from "@/components/ui/form";
-import { accountFormSchema, accountTypes, currencies } from "@/utils";
+import { accountFormSchema, accountTypes, currencies } from "@/lib";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useTranslations } from "next-intl";
 import { useRouter } from "next/navigation";
@@ -88,8 +88,8 @@ const AccountForm = ({ initialData }: NewAccountFormProps) => {
           <CustomInput
             control={form.control}
             name="name"
-            label="Account Name"
-            placeholder="..add the name of the account"
+            label={t("labels.accountName")}
+            placeholder={t("placeholders.accountName")}
           />
           <div className="flex gap-10">
             <CustomSelect
@@ -109,23 +109,23 @@ const AccountForm = ({ initialData }: NewAccountFormProps) => {
           <CustomInput
             control={form.control}
             name="ownerEmail"
-            label="Owner Email"
-            placeholder="email"
+            label={t("labels.ownerEmail")}
+            placeholder={t("placeholders.ownerEmail")}
           />
           <CustomInput
             control={form.control}
             name="ownerName"
-            label="Owner Name"
-            placeholder="Enter the owner name"
+            label={t("labels.ownerName")}
+            placeholder={t("placeholders.ownerName")}
           />
           <CustomInput
             control={form.control}
             name="balance"
-            label="balance"
-            placeholder="balance"
+            label={t("labels.balance")}
+            placeholder={t("placeholders.balance")}
           />
           <Button type="submit" className="bg-main-1">
-            Submit
+            {t("submit")}
           </Button>
         </form>
       </Form>

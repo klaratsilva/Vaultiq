@@ -30,10 +30,21 @@
       "JPY": "Japanese Yen",
       "CAD": "Canadian Dollar"
     },
-    "labels": {
-      "accountType": "Account Type",
-      "currency": "Currency"
-    }
+      "labels": {
+    "accountName": "Account Name",
+    "accountType": "Account Type",
+    "currency": "Currency",
+    "ownerEmail": "Owner Email",
+    "ownerName": "Owner Name",
+    "balance": "Balance"
+  },
+  "placeholders": {
+    "accountName": "Add the name of the account",
+    "ownerEmail": "Email",
+    "ownerName": "Enter the owner name",
+    "balance": "Balance"
+  },
+  "submit": "Submit"
   },
     "TransactionsPage": {
     "title": "List of Transactions",
@@ -49,5 +60,26 @@
     "dateHeader": "Date",
     "noTransactions": "No transactions found.",
     "loadingAccount": "Loading account..."
+  },
+  "transactionForm": {
+    "labels": {
+    "fromAccount": "From Account",
+    "toAccount": "To Account",
+    "amount": "Amount",
+    "description": "Description"
+  },
+  "placeholders": {
+    "amount": "Enter amount",
+    "description": "What's this for?"
+  },
+  "buttons": {
+    "submit": "Submit",
+    "processing": "Processing..."
+  },
+  "alerts": {
+    "createSuccess": "Transaction created!",
+    "createError": "Failed to create transaction: ",
+    "unexpectedError": "An unexpected error occurred."
+  }
   }
 }

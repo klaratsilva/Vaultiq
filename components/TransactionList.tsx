@@ -9,9 +9,9 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { useEffect, useState } from "react";
-import { cn, statusStyles, getTypeColor } from "../utils";
+import { cn, statusStyles, getTypeColor } from "../lib";
 
-import { Account, Transaction, TransactionStatus } from "@/utils/types";
+import { Account, Transaction, TransactionStatus } from "@/lib/types";
 import { useTranslations } from "next-intl";
 
 const StatusBadge = (status: TransactionStatus) => {

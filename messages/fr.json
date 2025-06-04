@@ -30,10 +30,21 @@
       "JPY": "Yen japonais",
       "CAD": "Dollar canadien"
     },
-    "labels": {
-      "accountType": "Type de compte",
-      "currency": "Devise"
-    }
+     "labels": {
+    "accountName": "Nom du compte",
+    "accountType": "Type de compte",
+    "currency": "Devise",
+    "ownerEmail": "Email du propriétaire",
+    "ownerName": "Nom du propriétaire",
+    "balance": "Solde"
+  },
+  "placeholders": {
+    "accountName": "Ajoutez le nom du compte",
+    "ownerEmail": "Email",
+    "ownerName": "Entrez le nom du propriétaire",
+    "balance": "Solde"
+  },
+  "submit": "Envoyer"
   },
   "TransactionsPage": {
     "title": "Liste des transactions",
@@ -48,5 +59,26 @@
     "dateHeader": "Date",
     "noTransactions": "Aucune transaction trouvée.",
     "loadingAccount": "Chargement du compte..."
+  },
+  "transactionForm": {
+     "labels": {
+    "fromAccount": "Compte source",
+    "toAccount": "Compte destination",
+    "amount": "Montant",
+    "description": "Description"
+  },
+  "placeholders": {
+    "amount": "Entrez le montant",
+    "description": "À quoi cela sert-il ?"
+  },
+  "buttons": {
+    "submit": "Envoyer",
+    "processing": "Traitement en cours..."
+  },
+  "alerts": {
+    "createSuccess": "Transaction créée !",
+    "createError": "Échec de la création de la transaction : ",
+    "unexpectedError": "Une erreur inattendue est survenue."
+  }
   }
 }

@@ -14,7 +14,7 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import { sidebarLinks } from "../constants";
-import { cn } from "../utils";
+import { cn } from "../lib";
 
 function stripLocaleFromPath(path: string) {
   const parts = path.split("/").slice(2);

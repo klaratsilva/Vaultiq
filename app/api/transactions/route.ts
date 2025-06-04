@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { convertCurrency, transactionSchema } from "@/utils";
+import { convertCurrency, transactionSchema } from "@/lib";
 
 export async function POST(request: Request) {
   try {

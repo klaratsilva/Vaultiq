@@ -2,6 +2,7 @@ import { type ClassValue, clsx } from "clsx";
 
 import { twMerge } from "tailwind-merge";
 import { z } from "zod";
+import { Account } from "./types";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -110,3 +111,12 @@ export const formatDateTime = (dateString: Date) => {
       chipBackgroundColor: "bg-neutral-100",
     },
   };
+
+type PartialAccount = Partial<Account>;
+
+export function formatAccountOptions(accounts: PartialAccount[]) {
+  return accounts.map(({ id, name, currency, ownerName }) => ({
+    value: id ?? "",
+    label: `${name ?? "Unknown"} - ${currency ?? "-"} - ${ownerName ?? "-"}`,
+  }));
+}

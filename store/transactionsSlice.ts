@@ -1,6 +1,6 @@
 // store/slices/transactionsSlice.ts
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { Transaction } from "@/utils/types";
+import { Transaction } from "@/lib/types";
 
 export const fetchTransactions = createAsyncThunk(
   "transactions/fetchAll",

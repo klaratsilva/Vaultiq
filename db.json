@@ -5,7 +5,7 @@
       "name": "Bussines Checking",
       "type": "business",
       "currency": "EUR",
-      "balance": "4444.00",
+      "balance": "4394.00",
       "ownerEmail": "klara.tsilva@gmail.com",
       "ownerName": "klara Silva",
       "ownerId": "887c718d-d7c5-4a5e-8e3f-00e3b5f0e459"
@@ -29,6 +29,16 @@
       "ownerEmail": "tiago@gmail.com",
       "ownerName": "Tiago Holms",
       "ownerId": "1ab8dfdb-9306-40f3-bf2c-edd5d64b3f32"
+    },
+    {
+      "id": "44a61fdb-d0c1-4592-94ed-189800dc597f",
+      "name": "Bussines Checking",
+      "type": "personal",
+      "currency": "USD",
+      "balance": "5054.35",
+      "ownerEmail": "klara.tsilva@gmail.com",
+      "ownerName": "klara Silva",
+      "ownerId": "887c718d-d7c5-4a5e-8e3f-00e3b5f0e459"
     }
   ],
   "users": [
@@ -69,6 +79,15 @@
       "description": "New mortgage",
       "status": "pending",
       "createdAt": "2025-06-04T09:26:11.129Z"
+    },
+    {
+      "id": "d04a",
+      "fromAccountId": "19a4e669-02d0-4d8f-bb03-fb02ac6ebe28",
+      "toAccountId": "44a61fdb-d0c1-4592-94ed-189800dc597f",
+      "amount": 50,
+      "description": "rent",
+      "status": "pending",
+      "createdAt": "2025-06-04T11:12:29.031Z"
     }
   ]
 }
