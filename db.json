@@ -9,6 +9,16 @@
       "ownerName": "Sara James",
       "balance": "13144.22",
       "ownerId": "u1001"
+    },
+    {
+      "id": "26e09ea0-1ec9-46a0-b2fd-e58af9927089",
+      "name": "Personal Savings",
+      "type": "business",
+      "currency": "GBP",
+      "balance": "100000",
+      "ownerEmail": "marcopolo@gmail.com",
+      "ownerName": "Marco Polo",
+      "ownerId": "4054bf55-947f-443f-9e1e-ec94c813f11a"
     }
   ],
   "users": [
@@ -29,6 +39,12 @@
       "ownerEmail": "fil@gmail.com",
       "ownerName": "Filipe SIlva",
       "ownerId": "7bd5f811-6cfb-4a2b-b61b-18418e95537c"
+    },
+    {
+      "id": "944a",
+      "ownerEmail": "marcopolo@gmail.com",
+      "ownerName": "Marco Polo",
+      "ownerId": "4054bf55-947f-443f-9e1e-ec94c813f11a"
     }
   ],
   "transactions": [
