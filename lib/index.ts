@@ -29,6 +29,7 @@ export const accountFormSchema = z.object({
   balance: z.string().min(1, "Balance must be non-negative"),
 });
 
+
 export const transactionSchema = z.object({
   fromAccountId: z.string().min(1, "From Account is required"),
   toAccountId: z.string().min(1, "To Account is required"),
@@ -36,12 +37,27 @@ export const transactionSchema = z.object({
     .number({ invalid_type_error: "Amount must be a number" })
     .positive("Amount must be greater than 0"),
   description: z.string().min(1, "Description is required"),
+ 
+});
+
+export const extendedTransactionSchema = z.object({
+  fromAccountId: z.string().min(1, "From Account is required"),
+  toAccountId: z.string().min(1, "To Account is required"),
+  amount: z
+    .number({ invalid_type_error: "Amount must be a number" })
+    .positive("Amount must be greater than 0"),
+  description: z.string().min(1, "Description is required"),
+  currency: z.string().min(1, "Currency is required"),
+  targetCurrency: z.string().min(1, "Target Currency is required"),
+  clientConvertedAmount: z
+    .number({ invalid_type_error: "Converted amount must be a number" })
+    .positive("Converted amount must be greater than 0"),
 });
 
 export const accountTypeColorsHex: Record<AccountType, string> = {
-  personal: "#6b89ad",  // 
-  business: "#7d9ac0",  // oklch(0.52 0.07 227.392)
-  admin: "#8fabd2",     // oklch(0.6 0.07 227.392)
+  personal: "#6b89ad",  
+  business: "#7d9ac0",  
+  admin: "#8fabd2",    
 };
 
 export const getTypeColor = (subject: string) => {
@@ -67,16 +83,19 @@ export function convertCurrency(amount: number, from: string, to: string): numbe
   return Number(convertedAmount.toFixed(2)); // Round to 2 decimals
 }
 
-export const formatDateTime = (dateString: Date) => {
+export const formatDateTime = (dateString: Date | string) => {
   const dateTimeOptions: Intl.DateTimeFormatOptions = {
-    weekday: "short", // abbreviated weekday name (e.g., 'Mon')
-    month: "short", // abbreviated month name (e.g., 'Oct')
-    day: "numeric", // numeric day of the month (e.g., '25')
-    hour: "numeric", // numeric hour (e.g., '8')
-    minute: "numeric", // numeric minute (e.g., '30')
-    hour12: true, // use 12-hour clock (true) or 24-hour clock (false)
+    weekday: "short",
+    month: "short",
+    day: "numeric",
+    hour: "numeric",
+    minute: "numeric",
+    hour12: true,
   };
-}
+
+  const date = new Date(dateString);
+  return date.toLocaleString("en-US", dateTimeOptions);
+};
 
 
   export const statusStyles = {
@@ -120,21 +139,3 @@ export function formatAccountOptions(accounts: PartialAccount[]) {
     label: `${name ?? "Unknown"} - ${currency ?? "-"} - ${ownerName ?? "-"}`,
   }));
 }
-
-// const StatusBadge = (status: TransactionStatus) => {
-//   const { borderColor, backgroundColor, textColor, chipBackgroundColor } =
-//     statusStyles[status] || statusStyles.default;
-
-//   return (
-//     <div
-//       className={cn(
-//         "inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-medium border",
-//         borderColor,
-//         chipBackgroundColor
-//       )}
-//     >
-//       <div className={cn("w-3 h-3 rounded-full", backgroundColor)} />
-//       <span className={textColor}>{status}</span>
-//     </div>
-//   );
-// };

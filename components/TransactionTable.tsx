@@ -11,7 +11,7 @@ import {
 
 import { Account, Transaction, TransactionStatus } from "@/lib/types";
 import { useTranslations } from "next-intl";
-import { cn, statusStyles, getTypeColor } from "../lib";
+import { cn, statusStyles, getTypeColor, formatDateTime } from "../lib";
 
 interface TransactionsTableProps {
   transactions: Transaction[];
@@ -88,7 +88,7 @@ const TransactionsTable = ({
               <TableCell>{renderAccountCell(t.toAccountId)}</TableCell>
 
               <TableCell className="pl-2 pr-10 text-lg font-semibold">
-                {t.amount}
+                {t.amount} {t.currency}
               </TableCell>
 
               <TableCell className="pl-2 pr-10">
@@ -96,7 +96,7 @@ const TransactionsTable = ({
               </TableCell>
 
               <TableCell className="min-w-32 pl-2 pr-10">
-                {t.createdAt}
+                {formatDateTime(t.createdAt)}
               </TableCell>
               <TableCell className="max-w-[250px] pl-2 pr-10">
                 {t.description}

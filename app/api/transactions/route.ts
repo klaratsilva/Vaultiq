@@ -1,14 +1,14 @@
 import { NextResponse } from "next/server";
-import { convertCurrency, transactionSchema } from "@/lib";
+import { extendedTransactionSchema, transactionSchema } from "@/lib";
 
 export async function POST(request: Request) {
   try {
     const body = await request.json();
 
-    // Validate incoming data
-    const data = transactionSchema.parse(body);
+    // Validate incoming data including new fields (make sure your schema includes currency, targetCurrency, clientConvertedAmount)
+    const data = extendedTransactionSchema.parse(body);
 
-    const { fromAccountId, toAccountId, amount } = data;
+    const { fromAccountId, toAccountId, amount, clientConvertedAmount } = data;
 
     // Fetch sender and receiver accounts
     const [fromRes, toRes] = await Promise.all([
@@ -26,11 +26,9 @@ export async function POST(request: Request) {
     const fromAccount = await fromRes.json();
     const toAccount = await toRes.json();
 
-    const fromCurrency = fromAccount.currency;
-    const toCurrency = toAccount.currency;
-
-    // Sender's balance in sender's currency
+    // Use balances as numbers
     const fromBalance = parseFloat(fromAccount.balance);
+    const toBalance = parseFloat(toAccount.balance);
 
     // Check sender balance for the original amount (already in sender's currency)
     if (fromBalance < amount) {
@@ -40,13 +38,13 @@ export async function POST(request: Request) {
       );
     }
 
-    const amountInReceiverCurrency = convertCurrency(amount, fromCurrency, toCurrency);
-
-    const toBalance = parseFloat(toAccount.balance);
-
+    // Deduct from sender balance the original amount (no conversion)
     const updatedFromBalance = (fromBalance - amount).toFixed(2);
-    const updatedToBalance = (toBalance + amountInReceiverCurrency).toFixed(2);
 
+    // Add to receiver balance the converted amount sent by client
+    const updatedToBalance = (toBalance + clientConvertedAmount).toFixed(2);
+
+    // Update balances
     const [patchFromRes, patchToRes] = await Promise.all([
       fetch(`${process.env.API_URL}/accounts/${fromAccountId}`, {
         method: "PATCH",
@@ -67,7 +65,7 @@ export async function POST(request: Request) {
       );
     }
 
-    // Save the transaction itself (amount stored as sent, in sender currency)
+    // Save the transaction itself, including currency details and client converted amount
     const saveTransactionRes = await fetch(`${process.env.API_URL}/transactions`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },

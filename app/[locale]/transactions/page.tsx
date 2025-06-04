@@ -16,18 +16,19 @@ const Transactions = async ({ params }: { params: { locale: string } }) => {
 
   const t = await getTranslations("TransactionsPage");
 
-  if (!transactions || transactions.length === 0) {
-    return <div className="p-8">{t("noTransactions")}</div>;
-  }
-
   return (
     <section className="no-scrollbar flex flex-col gap-6  p-8 md:max-h-screen xl:py-12">
-      <h1 className="text-3xl text-bold">{t("title")}</h1>
-      <Link className="cursor-pointer" href="/transactions/new">
-        <Button className="btn-primary bg-main-1">{t("newButton")}</Button>
+      <h1 className="headline">{t("title")}</h1>
+      <Link href="/transactions/new">
+        <Button variant="outline">{t("newButton")}</Button>
       </Link>
 
-      <TransactionTable transactions={transactions} accountsMap={accountsMap} />
+      {transactions.length > 0 && (
+        <TransactionTable
+          transactions={transactions}
+          accountsMap={accountsMap}
+        />
+      )}
     </section>
   );
 };

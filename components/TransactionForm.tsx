@@ -11,15 +11,20 @@ import {
 } from "../components/ui/form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
-import { Currency, formatAccountOptions, transactionSchema } from "@/lib";
+import { useEffect, useState } from "react";
+import {
+  Currency,
+  formatAccountOptions,
+  transactionSchema,
+  convertCurrency,
+} from "@/lib";
 import { Button } from "./ui/button";
-import CustomInput from "./CustomInput";
 import CustomSelect from "./CustomSelect";
-import { type } from "os";
 import { Input } from "./ui/input";
 import { useTranslations } from "next-intl";
 import { createTransaction } from "@/lib/api";
+import { Textarea } from "./ui/textarea";
+import { CreateTransactionPayload, Transaction } from "@/lib/types";
 
 interface TransactionFormProps {
   accounts: {
@@ -34,6 +39,7 @@ const TransactionForm = ({ accounts }: TransactionFormProps) => {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
   const t = useTranslations("transactionForm");
+
   const accountOptions = formatAccountOptions(accounts);
 
   const form = useForm<z.infer<typeof transactionSchema>>({
@@ -46,11 +52,57 @@ const TransactionForm = ({ accounts }: TransactionFormProps) => {
     },
   });
 
+  const [convertedAmount, setConvertedAmount] = useState<number | null>(null);
+  const watchAmount = form.watch("amount");
+  const watchFromAccountId = form.watch("fromAccountId");
+  const watchToAccountId = form.watch("toAccountId");
+
+  useEffect(() => {
+    const from = accounts.find((acc) => acc.id === watchFromAccountId);
+    const to = accounts.find((acc) => acc.id === watchToAccountId);
+
+    if (from && to && from.currency !== to.currency && watchAmount > 0) {
+      const result = convertCurrency(watchAmount, from.currency, to.currency);
+      setConvertedAmount(result);
+    } else {
+      setConvertedAmount(null);
+    }
+  }, [watchAmount, watchFromAccountId, watchToAccountId, accounts]);
+
   async function onSubmit(values: z.infer<typeof transactionSchema>) {
     setIsLoading(true);
 
+    const from = accounts.find((acc) => acc.id === values.fromAccountId);
+    const to = accounts.find((acc) => acc.id === values.toAccountId);
+
     try {
-      await createTransaction(values);
+      let finalPayload: CreateTransactionPayload;
+
+      if (from && to && from.currency !== to.currency) {
+        const converted = convertCurrency(
+          values.amount,
+          from.currency,
+          to.currency
+        );
+
+        finalPayload = {
+          ...values,
+          amount: converted, // Store the converted value
+          clientConvertedAmount: values.amount, // Store the original input
+          currency: from.currency,
+          targetCurrency: to.currency,
+        };
+      } else {
+        finalPayload = {
+          ...values,
+          amount: values.amount, // Same currency: no conversion
+          clientConvertedAmount: values.amount,
+          currency: from!.currency,
+          targetCurrency: to!.currency,
+        };
+      }
+
+      await createTransaction(finalPayload);
       form.reset();
       router.push("/transactions");
     } catch (error: any) {
@@ -107,13 +159,38 @@ const TransactionForm = ({ accounts }: TransactionFormProps) => {
               </div>
             )}
           />
-          <CustomInput
+
+          {convertedAmount !== null && (
+            <div className="text-sm text-gray-600">
+              {t("labels.convertedAmount")}:{" "}
+              <span className="font-semibold">
+                {convertedAmount}{" "}
+                {accounts.find((acc) => acc.id === watchToAccountId)
+                  ?.currency ?? ""}
+              </span>
+            </div>
+          )}
+
+          <FormField
             control={form.control}
-            name="description"
-            label={t("labels.description")}
-            placeholder={t("placeholders.description")}
+            name={"description"}
+            render={({ field }) => (
+              <div className="flex flex-col gap-1.5">
+                <FormLabel>{t("labels.description")}</FormLabel>
+                <div className="flex w-full flex-col">
+                  <FormControl>
+                    <Textarea
+                      {...field}
+                      placeholder={t("placeholders.description")}
+                    />
+                  </FormControl>
+                  <FormMessage className="form-message mt-2" />
+                </div>
+              </div>
+            )}
           />
-          <Button className="bg-main-1" type="submit" disabled={isLoading}>
+
+          <Button className="bg-primary" type="submit" disabled={isLoading}>
             {isLoading ? t("buttons.processing") : t("buttons.submit")}
           </Button>
         </form>

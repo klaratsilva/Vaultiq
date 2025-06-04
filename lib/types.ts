@@ -18,9 +18,14 @@ export interface Account {
 export interface Transaction {
   id: string;
   fromAccountId: string;
-  toAccountId: string;
-  amount: number;          
+  toAccountId: string;        
   status: TransactionStatus;
   createdAt: string;  
-  description: string      
+  description: string;
+  currency: Currency,
+  targetCurrency: Currency,
+  amount: number;   
+  clientConvertedAmount: number,
 }
+
+export type CreateTransactionPayload = Omit<Transaction, "id" | "createdAt" | "status">;

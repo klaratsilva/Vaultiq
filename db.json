@@ -5,7 +5,7 @@
       "name": "Bussines Checking",
       "type": "business",
       "currency": "EUR",
-      "balance": "4394.00",
+      "balance": "4458.35",
       "ownerEmail": "klara.tsilva@gmail.com",
       "ownerName": "klara Silva",
       "ownerId": "887c718d-d7c5-4a5e-8e3f-00e3b5f0e459"
@@ -15,7 +15,7 @@
       "name": "Personal Savings",
       "type": "personal",
       "currency": "EUR",
-      "balance": "10556.00",
+      "balance": "4034.26",
       "ownerEmail": "sim@gmail.com",
       "ownerName": "Simao Silva",
       "ownerId": "8676bf3e-4114-4c07-850e-7fa2345f6a07"
@@ -25,7 +25,7 @@
       "name": "Business Admin",
       "type": "admin",
       "currency": "USD",
-      "balance": "4000",
+      "balance": "9980.45",
       "ownerEmail": "tiago@gmail.com",
       "ownerName": "Tiago Holms",
       "ownerId": "1ab8dfdb-9306-40f3-bf2c-edd5d64b3f32"
@@ -63,31 +63,40 @@
   ],
   "transactions": [
     {
-      "id": "cb65",
+      "id": "19e0",
       "fromAccountId": "19a4e669-02d0-4d8f-bb03-fb02ac6ebe28",
-      "toAccountId": "0779487f-29c1-49ac-a412-500ef063f1a0",
-      "amount": 100,
-      "description": "rent",
+      "toAccountId": "f9498d8e-aa12-4520-bf6f-a5602951915c",
+      "amount": 495.65,
+      "description": "Gift",
+      "currency": "EUR",
+      "targetCurrency": "USD",
+      "clientConvertedAmount": 495.65,
       "status": "pending",
-      "createdAt": "2025-06-04T08:54:23.905Z"
+      "createdAt": "2025-06-04T14:59:00.196Z"
     },
     {
-      "id": "df46",
-      "fromAccountId": "19a4e669-02d0-4d8f-bb03-fb02ac6ebe28",
-      "toAccountId": "0779487f-29c1-49ac-a412-500ef063f1a0",
-      "amount": 456,
-      "description": "New mortgage",
+      "id": "2f79",
+      "fromAccountId": "0779487f-29c1-49ac-a412-500ef063f1a0",
+      "toAccountId": "f9498d8e-aa12-4520-bf6f-a5602951915c",
+      "amount": 6521.74,
+      "description": "Shoes",
+      "currency": "EUR",
+      "targetCurrency": "USD",
+      "clientConvertedAmount": 6000,
       "status": "pending",
-      "createdAt": "2025-06-04T09:26:11.129Z"
+      "createdAt": "2025-06-04T15:07:01.032Z"
     },
     {
-      "id": "d04a",
-      "fromAccountId": "19a4e669-02d0-4d8f-bb03-fb02ac6ebe28",
-      "toAccountId": "44a61fdb-d0c1-4592-94ed-189800dc597f",
-      "amount": 50,
-      "description": "rent",
+      "id": "34b3",
+      "fromAccountId": "f9498d8e-aa12-4520-bf6f-a5602951915c",
+      "toAccountId": "19a4e669-02d0-4d8f-bb03-fb02ac6ebe28",
+      "amount": 515.2,
+      "description": "Rent",
+      "currency": "USD",
+      "targetCurrency": "EUR",
+      "clientConvertedAmount": 560,
       "status": "pending",
-      "createdAt": "2025-06-04T11:12:29.031Z"
+      "createdAt": "2025-06-04T15:08:49.373Z"
     }
   ]
 }

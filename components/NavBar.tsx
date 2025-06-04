@@ -30,7 +30,7 @@ export default function Navbar() {
             height={44}
             className="h-[44px] w-[44px]"
           />
-          <h1 className="text-3xl text-[var(--chart-3)] font-bold">VaultIq</h1>
+          <h1 className="text-3xl text-[var(--primary)] font-bold">VaultIq</h1>
         </Link>
 
         {sidebarLinks.map((item: SidebarItem) => {
@@ -45,8 +45,8 @@ export default function Navbar() {
               href={item.route}
               locale={locale}
               className={cn("flex items-center gap-3 rounded-lg px-3 py-2", {
-                "bg-[var(--chart-3)] text-white": isActive,
-                "text-gray-700 hover:bg-gray-100": !isActive,
+                "bg-primary  text-white": isActive,
+                "text-gray-800 hover:bg-gray-100": !isActive,
               })}
             >
               <div className="relative h-6 w-6">
@@ -74,7 +74,7 @@ export default function Navbar() {
               className={cn(
                 "w-10 h-10 flex items-center justify-center rounded-full text-sm uppercase transition",
                 loc === locale
-                  ? "bg-[var(--chart-3)] text-white"
+                  ? "bg-primary text-white"
                   : "bg-gray-200 text-gray-800 hover:bg-gray-300"
               )}
               aria-label={`Switch to ${localeNames[loc]}`}

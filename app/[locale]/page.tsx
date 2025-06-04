@@ -10,7 +10,7 @@ export default async function HomePage() {
 
   return (
     <section className="no-scrollbar flex flex-col gap-6  p-8 md:max-h-screen xl:py-12">
-      <h1 className="text-2xl font-bold">{t("title")}</h1>
+      <h1 className="text-2xl text-gray-700 font-bold">{t("title")}</h1>
       <Dashboard
         accounts={accounts}
         transactions={transactions}

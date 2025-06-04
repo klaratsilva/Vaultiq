@@ -65,7 +65,8 @@
     "fromAccount": "Compte source",
     "toAccount": "Compte destination",
     "amount": "Montant",
-    "description": "Description"
+    "description": "Description",
+    "convertedAmount": "Le montant converti"
   },
   "placeholders": {
     "amount": "Entrez le montant",

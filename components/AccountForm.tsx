@@ -124,7 +124,7 @@ const AccountForm = ({ initialData }: NewAccountFormProps) => {
             label={t("labels.balance")}
             placeholder={t("placeholders.balance")}
           />
-          <Button type="submit" className="bg-main-1">
+          <Button type="submit" className="bg-primary">
             {t("submit")}
           </Button>
         </form>
