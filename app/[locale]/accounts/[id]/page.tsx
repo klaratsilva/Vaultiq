@@ -3,6 +3,7 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import AccountDetails from "@/components/AccountDetails";
 import { getAccountById } from "@/lib/api";
+import { DeleteAccountButton } from "@/components/DeleteAccountButton";
 
 interface Props {
   params: {
@@ -30,12 +31,7 @@ const AccountDetailPage = async ({ params }: Props) => {
         >
           <Button className="bg-main-1 w-full">Edit</Button>
         </Link>
-        <Link
-          className="cursor-pointer"
-          href={`/${locale}/accounts/${id}/edit`}
-        >
-          <Button className="bg-red-400 w-full">Delete</Button>
-        </Link>
+        <DeleteAccountButton id={id} locale={locale} />
       </div>
     </div>
   );

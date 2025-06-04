@@ -9,26 +9,6 @@
       "ownerName": "Sara James",
       "balance": "13144.22",
       "ownerId": "u1001"
-    },
-    {
-      "id": "b2c3d4e5-f6a7-8901-bcde-2345678901bc",
-      "name": "Company Revenue",
-      "type": "business",
-      "currency": "EUR",
-      "ownerEmail": "ceo@techworld.com",
-      "ownerName": "Martin Keller",
-      "balance": "246500.00",
-      "ownerId": "u1002"
-    },
-    {
-      "id": "ea55a4b2-757e-4dd8-86e1-c45297f9f96f",
-      "ownerId": "7bd5f811-6cfb-4a2b-b61b-18418e95537c",
-      "name": "Personal Savings",
-      "type": "personal",
-      "currency": "EUR",
-      "ownerEmail": "filipe@gmail.com",
-      "ownerName": "Filipe SIlva",
-      "balance": "100000"
     }
   ],
   "users": [
