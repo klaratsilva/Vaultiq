@@ -1,6 +1,19 @@
 // app/api/accounts/[id]/route.ts
 import { NextRequest, NextResponse } from "next/server";
 
+export async function GET(request: NextRequest, { params }: { params: { id: string } }) {
+  const id = params.id;
+
+  const response = await fetch(`http://localhost:4000/accounts/${id}`);
+
+  if (!response.ok) {
+    return NextResponse.json({ error: "Account not found" }, { status: 404 });
+  }
+
+  const account = await response.json();
+  return NextResponse.json(account);
+}
+
 export async function PUT(request: NextRequest, { params }: { params: { id: string } }) {
   const id = params.id;
   const body = await request.json();

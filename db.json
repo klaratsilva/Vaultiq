@@ -19,6 +19,16 @@
       "ownerName": "Martin Keller",
       "balance": "246500.00",
       "ownerId": "u1002"
+    },
+    {
+      "id": "ea55a4b2-757e-4dd8-86e1-c45297f9f96f",
+      "ownerId": "7bd5f811-6cfb-4a2b-b61b-18418e95537c",
+      "name": "Personal Savings",
+      "type": "personal",
+      "currency": "EUR",
+      "ownerEmail": "filipe@gmail.com",
+      "ownerName": "Filipe SIlva",
+      "balance": "100000"
     }
   ],
   "users": [
@@ -33,6 +43,12 @@
       "ownerName": "Martin Keller",
       "ownerId": "u1002",
       "id": "f593"
+    },
+    {
+      "id": "4d95",
+      "ownerEmail": "fil@gmail.com",
+      "ownerName": "Filipe SIlva",
+      "ownerId": "7bd5f811-6cfb-4a2b-b61b-18418e95537c"
     }
   ],
   "transactions": [

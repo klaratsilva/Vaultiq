@@ -82,7 +82,7 @@ const AccountForm = ({ initialData }: NewAccountFormProps) => {
   }
 
   return (
-    <section>
+    <section className="w-full max-w-full md:max-w-[60%]">
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-5">
           <CustomInput
@@ -91,18 +91,20 @@ const AccountForm = ({ initialData }: NewAccountFormProps) => {
             label="Account Name"
             placeholder="..add the name of the account"
           />
-          <CustomSelect
-            control={form.control}
-            name="type"
-            label={t("labels.accountType")}
-            options={accountTypeOptions}
-          />
-          <CustomSelect
-            control={form.control}
-            name="currency"
-            label={t("labels.currency")}
-            options={currencyOptions}
-          />
+          <div className="flex gap-10">
+            <CustomSelect
+              control={form.control}
+              name="type"
+              label={t("labels.accountType")}
+              options={accountTypeOptions}
+            />
+            <CustomSelect
+              control={form.control}
+              name="currency"
+              label={t("labels.currency")}
+              options={currencyOptions}
+            />
+          </div>
 
           <CustomInput
             control={form.control}

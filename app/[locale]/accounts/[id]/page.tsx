@@ -1,6 +1,8 @@
 import React from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import AccountDetails from "@/components/AccountDetails";
+import { getAccountById } from "@/lib/api";
 
 interface Props {
   params: {
@@ -12,12 +14,29 @@ interface Props {
 const AccountDetailPage = async ({ params }: Props) => {
   const { id, locale } = params;
 
+  const account = await getAccountById(id);
+
+  if (!account) {
+    return <div>Account not found.</div>;
+  }
+
   return (
-    <div className="no-scrollbar flex flex-col gap-6 overflow-y-scroll p-8 md:max-h-screen xl:py-12">
-      <h1 className="text-3xl text-bold">Account Detail Page</h1>
-      <Link href={`/${locale}/accounts/${id}/edit`}>
-        <Button>Edit Account</Button>
-      </Link>
+    <div className="no-scrollbar flex flex-col lg:flex-row gap-6 overflow-y-scroll p-6 md:max-h-screen xl:py-12">
+      <AccountDetails account={account} />
+      <div className="w-full lg:w-1/6 flex flex-col gap-4 max-lg:max-w-full max-lg:w-full">
+        <Link
+          className="cursor-pointer"
+          href={`/${locale}/accounts/${id}/edit`}
+        >
+          <Button className="bg-main-1 w-full">Edit</Button>
+        </Link>
+        <Link
+          className="cursor-pointer"
+          href={`/${locale}/accounts/${id}/edit`}
+        >
+          <Button className="bg-red-400 w-full">Delete</Button>
+        </Link>
+      </div>
     </div>
   );
 };
