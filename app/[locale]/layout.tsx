@@ -11,7 +11,6 @@ import Image from "next/image";
 
 import MobileNavbar from "../../components/MobileNavbar";
 
-// Map locales to messages
 const messagesMap = { en, fr };
 
 export default async function LocaleLayout({
@@ -21,7 +20,7 @@ export default async function LocaleLayout({
   children: React.ReactNode;
   params: { locale: string };
 }) {
-  const { locale } = await params;
+  const { locale } = params;
 
   if (!hasLocale(routing.locales, locale)) {
     notFound();

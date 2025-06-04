@@ -79,7 +79,7 @@ const TransactionForm = ({ accounts }: TransactionFormProps) => {
     label: `${acc.name} - ${acc.currency} - ${acc.ownerName}`,
   }));
   return (
-    <section className="p-5">
+    <section className="w-full max-w-full md:max-w-[60%]">
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-5">
           <CustomSelect
@@ -99,8 +99,8 @@ const TransactionForm = ({ accounts }: TransactionFormProps) => {
             control={form.control}
             name={"amount"}
             render={({ field }) => (
-              <div className="form-item">
-                <FormLabel>{"Amount"}</FormLabel>
+              <div className="flex flex-col gap-1.5">
+                <FormLabel>Amount</FormLabel>
                 <div className="flex w-full flex-col">
                   <FormControl>
                     <Input
@@ -132,7 +132,7 @@ const TransactionForm = ({ accounts }: TransactionFormProps) => {
             label="Description"
             placeholder="What's this for?"
           />
-          <Button type="submit" disabled={isLoading}>
+          <Button className="bg-main-1" type="submit" disabled={isLoading}>
             {isLoading ? "Processing..." : "Submit"}
           </Button>
         </form>

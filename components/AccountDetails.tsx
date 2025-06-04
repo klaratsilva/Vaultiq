@@ -1,7 +1,5 @@
-import { getSubjectColor as getTypeColor } from "../utils";
+import { getTypeColor as getTypeColor } from "../utils";
 import { Account } from "@/utils/types";
-import { cn } from "../utils";
-import Image from "next/image";
 
 interface AccountDetailsProps {
   account: Account;

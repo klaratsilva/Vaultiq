@@ -43,7 +43,7 @@ export const accountTypeColorsHex: Record<AccountType, string> = {
   admin: "#8fabd2",     // oklch(0.6 0.07 227.392)
 };
 
-export const getSubjectColor = (subject: string) => {
+export const getTypeColor = (subject: string) => {
   return accountTypeColorsHex[subject as keyof typeof accountTypeColorsHex];
 };
 
@@ -65,3 +65,48 @@ export function convertCurrency(amount: number, from: string, to: string): numbe
   const convertedAmount = amountInUSD * exchangeRates[to];
   return Number(convertedAmount.toFixed(2)); // Round to 2 decimals
 }
+
+export const formatDateTime = (dateString: Date) => {
+  const dateTimeOptions: Intl.DateTimeFormatOptions = {
+    weekday: "short", // abbreviated weekday name (e.g., 'Mon')
+    month: "short", // abbreviated month name (e.g., 'Oct')
+    day: "numeric", // numeric day of the month (e.g., '25')
+    hour: "numeric", // numeric hour (e.g., '8')
+    minute: "numeric", // numeric minute (e.g., '30')
+    hour12: true, // use 12-hour clock (true) or 24-hour clock (false)
+  };
+}
+
+
+  export const statusStyles = {
+    active: {
+      borderColor: "border-green-300",
+      backgroundColor: "bg-green-500",
+      textColor: "text-green-700",
+      chipBackgroundColor: "bg-green-100",
+    },
+    inactive: {
+      borderColor: "border-gray-300",
+      backgroundColor: "bg-gray-500",
+      textColor: "text-gray-700",
+      chipBackgroundColor: "bg-gray-100",
+    },
+    pending: {
+      borderColor: "border-yellow-300",
+      backgroundColor: "bg-yellow-400",
+      textColor: "text-yellow-800",
+      chipBackgroundColor: "bg-yellow-100",
+    },
+    suspended: {
+      borderColor: "border-red-300",
+      backgroundColor: "bg-red-500",
+      textColor: "text-red-700",
+      chipBackgroundColor: "bg-red-100",
+    },
+    default: {
+      borderColor: "border-neutral-300",
+      backgroundColor: "bg-neutral-400",
+      textColor: "text-neutral-700",
+      chipBackgroundColor: "bg-neutral-100",
+    },
+  };

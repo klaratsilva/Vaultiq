@@ -8,22 +8,22 @@
     "edit": "Modifier",
     "delete": "Supprimer"
   },
-   "sidebar": {
+  "sidebar": {
     "home": "Accueil",
     "accounts": "Mes Comptes",
     "transactions": "Transactions"
   },
-    "languages": {
+  "languages": {
     "en": "AN",
     "fr": "FR"
-  },  
+  },
   "accountForm": {
     "accountTypes": {
       "personal": "Personnel",
       "business": "Professionnel",
       "admin": "Administrateur"
     },
-   "currencies": {
+    "currencies": {
       "USD": "Dollar américain",
       "EUR": "Euro",
       "GBP": "Livre sterling",
@@ -34,5 +34,19 @@
       "accountType": "Type de compte",
       "currency": "Devise"
     }
+  },
+  "TransactionsPage": {
+    "title": "Liste des transactions",
+    "newButton": "Nouvelle transaction"
+  },
+  "TransactionList": {
+    "fromAccountHeader": "Compte source",
+    "toAccountHeader": "Compte destination",
+    "descriptionHeader": "Description",
+    "amountHeader": "Montant",
+    "statusHeader": "Statut",
+    "dateHeader": "Date",
+    "noTransactions": "Aucune transaction trouvée.",
+    "loadingAccount": "Chargement du compte..."
   }
 }

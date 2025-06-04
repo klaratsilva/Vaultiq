@@ -16,7 +16,6 @@ const AccountDetailPage = async ({ params }: Props) => {
   const { id, locale } = params;
 
   const account = await getAccountById(id);
-
   if (!account) {
     return <div>Account not found.</div>;
   }

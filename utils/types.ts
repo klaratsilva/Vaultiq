@@ -2,7 +2,7 @@ export type AccountStatus = 'active' | 'suspended' | 'pending';
 export type AccountType = 'personal' | 'business' | 'admin';
 export type Currency = 'USD' | 'EUR' | 'GBP' | 'JPY' | 'CAD';
 
-type TransactionStatus = 'pending' | 'completed' | 'failed';
+export type TransactionStatus = "active" | "inactive" | "pending" | "suspended" | "default";
 
 export interface Account {
   id: string;                // UUID
@@ -15,12 +15,12 @@ export interface Account {
   balance: string;     
 }
 
-interface Transaction {
+export interface Transaction {
   id: string;
   fromAccountId: string;
   toAccountId: string;
   amount: number;          
   status: TransactionStatus;
   createdAt: string;  
-  description: string      // ISO string timestamp
+  description: string      
 }

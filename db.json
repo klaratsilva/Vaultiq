@@ -1,79 +1,74 @@
 {
   "accounts": [
     {
-      "id": "a1b2c3d4-e5f6-7890-abcd-1234567890ab",
-      "name": "Personal Savings",
-      "type": "personal",
-      "currency": "USD",
-      "ownerEmail": "sara.james@example.com",
-      "ownerName": "Sara James",
-      "balance": "13144.22",
-      "ownerId": "u1001"
+      "id": "19a4e669-02d0-4d8f-bb03-fb02ac6ebe28",
+      "name": "Bussines Checking",
+      "type": "business",
+      "currency": "EUR",
+      "balance": "4444.00",
+      "ownerEmail": "klara.tsilva@gmail.com",
+      "ownerName": "klara Silva",
+      "ownerId": "887c718d-d7c5-4a5e-8e3f-00e3b5f0e459"
     },
     {
-      "id": "26e09ea0-1ec9-46a0-b2fd-e58af9927089",
+      "id": "0779487f-29c1-49ac-a412-500ef063f1a0",
       "name": "Personal Savings",
-      "type": "business",
-      "currency": "GBP",
-      "balance": "100000",
-      "ownerEmail": "marcopolo@gmail.com",
-      "ownerName": "Marco Polo",
-      "ownerId": "4054bf55-947f-443f-9e1e-ec94c813f11a"
+      "type": "personal",
+      "currency": "EUR",
+      "balance": "10556.00",
+      "ownerEmail": "sim@gmail.com",
+      "ownerName": "Simao Silva",
+      "ownerId": "8676bf3e-4114-4c07-850e-7fa2345f6a07"
+    },
+    {
+      "id": "f9498d8e-aa12-4520-bf6f-a5602951915c",
+      "name": "Business Admin",
+      "type": "admin",
+      "currency": "USD",
+      "balance": "4000",
+      "ownerEmail": "tiago@gmail.com",
+      "ownerName": "Tiago Holms",
+      "ownerId": "1ab8dfdb-9306-40f3-bf2c-edd5d64b3f32"
     }
   ],
   "users": [
     {
-      "ownerEmail": "sara.james@example.com",
-      "ownerName": "Sara James",
-      "ownerId": "u1001",
-      "id": "1b48"
+      "id": "3bc8",
+      "ownerEmail": "klara.tsilva@gmail.com",
+      "ownerName": "klara Silva",
+      "ownerId": "887c718d-d7c5-4a5e-8e3f-00e3b5f0e459"
     },
     {
-      "ownerEmail": "ceo@techworld.com",
-      "ownerName": "Martin Keller",
-      "ownerId": "u1002",
-      "id": "f593"
+      "id": "7294",
+      "ownerEmail": "sim@gmail.com",
+      "ownerName": "Simao Silva",
+      "ownerId": "8676bf3e-4114-4c07-850e-7fa2345f6a07"
     },
     {
-      "id": "4d95",
-      "ownerEmail": "fil@gmail.com",
-      "ownerName": "Filipe SIlva",
-      "ownerId": "7bd5f811-6cfb-4a2b-b61b-18418e95537c"
-    },
-    {
-      "id": "944a",
-      "ownerEmail": "marcopolo@gmail.com",
-      "ownerName": "Marco Polo",
-      "ownerId": "4054bf55-947f-443f-9e1e-ec94c813f11a"
+      "id": "9eff",
+      "ownerEmail": "tiago@gmail.com",
+      "ownerName": "Tiago Holms",
+      "ownerId": "1ab8dfdb-9306-40f3-bf2c-edd5d64b3f32"
     }
   ],
   "transactions": [
     {
-      "id": "42e7",
-      "fromAccountId": "a1b2c3d4-e5f6-7890-abcd-1234567890ab",
-      "toAccountId": "b2c3d4e5-f6a7-8901-bcde-2345678901bc",
-      "amount": 5000,
+      "id": "cb65",
+      "fromAccountId": "19a4e669-02d0-4d8f-bb03-fb02ac6ebe28",
+      "toAccountId": "0779487f-29c1-49ac-a412-500ef063f1a0",
+      "amount": 100,
       "description": "rent",
       "status": "pending",
-      "createdAt": "2025-06-03T20:24:44.838Z"
+      "createdAt": "2025-06-04T08:54:23.905Z"
     },
     {
-      "id": "7e0b",
-      "fromAccountId": "a1b2c3d4-e5f6-7890-abcd-1234567890ab",
-      "toAccountId": "b2c3d4e5-f6a7-8901-bcde-2345678901bc",
-      "amount": 600,
-      "description": "rent",
+      "id": "df46",
+      "fromAccountId": "19a4e669-02d0-4d8f-bb03-fb02ac6ebe28",
+      "toAccountId": "0779487f-29c1-49ac-a412-500ef063f1a0",
+      "amount": 456,
+      "description": "New mortgage",
       "status": "pending",
-      "createdAt": "2025-06-03T20:25:22.394Z"
-    },
-    {
-      "id": "05f6",
-      "fromAccountId": "b2c3d4e5-f6a7-8901-bcde-2345678901bc",
-      "toAccountId": "a1b2c3d4-e5f6-7890-abcd-1234567890ab",
-      "amount": 5000,
-      "description": "rent",
-      "status": "pending",
-      "createdAt": "2025-06-03T20:40:05.076Z"
+      "createdAt": "2025-06-04T09:26:11.129Z"
     }
   ]
 }

@@ -34,5 +34,20 @@
       "accountType": "Account Type",
       "currency": "Currency"
     }
+  },
+    "TransactionsPage": {
+    "title": "List of Transactions",
+    "newButton": "New Transaction",
+    "noTransactions": "No transactions found."
+  },
+  "TransactionList": {
+    "fromAccountHeader": "From Account",
+    "toAccountHeader": "To Account",
+    "descriptionHeader": "Description",
+    "amountHeader": "Amount",
+    "statusHeader": "Status",
+    "dateHeader": "Date",
+    "noTransactions": "No transactions found.",
+    "loadingAccount": "Loading account..."
   }
 }

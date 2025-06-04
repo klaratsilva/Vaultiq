@@ -8,7 +8,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { cn, getSubjectColor as getTypeColor } from "../utils";
+import { cn, getTypeColor as getTypeColor } from "../utils";
 import Link from "next/link";
 import Image from "next/image";
 import { Account } from "@/utils/types";

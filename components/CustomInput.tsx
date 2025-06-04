@@ -39,7 +39,7 @@ const CustomInput = <TFieldValues extends FieldValues>({
                 placeholder={placeholder}
                 type={type}
                 disabled={disabled}
-                className="text-[16] placeholder:text-16 rounded-lg border border-gray-300 text-gray-500 placeholder:text-gray-500"
+                className="text-sm placeholder:text-16 rounded-lg border border-gray-300 text-gray-500 placeholder:text-gray-500"
               />
             </FormControl>
             <FormMessage className="form-message mt-2" />
