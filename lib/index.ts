@@ -77,10 +77,9 @@ export function convertCurrency(amount: number, from: string, to: string): numbe
     throw new Error("Unsupported currency");
   }
 
-  // Convert amount to USD first, then to target currency
   const amountInUSD = amount / exchangeRates[from];
   const convertedAmount = amountInUSD * exchangeRates[to];
-  return Number(convertedAmount.toFixed(2)); // Round to 2 decimals
+  return Number(convertedAmount.toFixed(2));
 }
 
 export const formatDateTime = (dateString: Date | string) => {

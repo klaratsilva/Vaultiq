@@ -4,7 +4,7 @@ import { NextRequest, NextResponse } from "next/server";
 export async function GET(request: NextRequest, { params }: { params: { id: string } }) {
   const id = await params.id;
 
-  const response = await fetch(`http://localhost:4000/accounts/${id}`);
+  const response = await fetch(`http://${process.env.API_URL}/accounts/${id}`);
 
   if (!response.ok) {
     return NextResponse.json({ error: "Account not found" }, { status: 404 });
@@ -18,10 +18,8 @@ export async function PUT(request: NextRequest, { params }: { params: { id: stri
   const id = params.id;
   const body = await request.json();
 
-  // validate body...
 
-  // call json-server or DB to update account
-  const response = await fetch(`http://localhost:4000/accounts/${id}`, {
+  const response = await fetch(`http://${process.env.API_URL}/accounts/${id}`, {
     method: "PUT",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(body),
@@ -41,7 +39,7 @@ export async function DELETE(
   { params }: { params: { id: string } }
 ) {
   try {
-    const res = await fetch(`http://localhost:4000/accounts/${params.id}`, {
+    const res = await fetch(`http://${process.env.API_URL}/accounts/${params.id}`, {
       method: "DELETE",
     });
 

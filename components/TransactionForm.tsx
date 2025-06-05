@@ -11,7 +11,7 @@ import {
 } from "../components/ui/form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 import {
   Currency,
   formatAccountOptions,
@@ -24,7 +24,8 @@ import { Input } from "./ui/input";
 import { useTranslations } from "next-intl";
 import { createTransaction } from "@/lib/api";
 import { Textarea } from "./ui/textarea";
-import { CreateTransactionPayload, Transaction } from "@/lib/types";
+import { CreateTransactionPayload } from "@/lib/types";
+import { useConvertedAmount } from "@/hooks/useConvertedAmount";
 
 interface TransactionFormProps {
   accounts: {
@@ -37,10 +38,13 @@ interface TransactionFormProps {
 
 const TransactionForm = ({ accounts }: TransactionFormProps) => {
   const router = useRouter();
-  const [isLoading, setIsLoading] = useState(false);
   const t = useTranslations("transactionForm");
+  const [isLoading, setIsLoading] = useState(false);
 
-  const accountOptions = formatAccountOptions(accounts);
+  const accountOptions = useMemo(
+    () => formatAccountOptions(accounts),
+    [accounts]
+  );
 
   const form = useForm<z.infer<typeof transactionSchema>>({
     resolver: zodResolver(transactionSchema),
@@ -52,61 +56,51 @@ const TransactionForm = ({ accounts }: TransactionFormProps) => {
     },
   });
 
-  const [convertedAmount, setConvertedAmount] = useState<number | null>(null);
   const watchAmount = form.watch("amount");
   const watchFromAccountId = form.watch("fromAccountId");
   const watchToAccountId = form.watch("toAccountId");
 
-  useEffect(() => {
-    const from = accounts.find((acc) => acc.id === watchFromAccountId);
-    const to = accounts.find((acc) => acc.id === watchToAccountId);
+  const fromAccount = useMemo(
+    () => accounts.find((acc) => acc.id === watchFromAccountId),
+    [watchFromAccountId, accounts]
+  );
+  const toAccount = useMemo(
+    () => accounts.find((acc) => acc.id === watchToAccountId),
+    [watchToAccountId, accounts]
+  );
 
-    if (from && to && from.currency !== to.currency && watchAmount > 0) {
-      const result = convertCurrency(watchAmount, from.currency, to.currency);
-      setConvertedAmount(result);
-    } else {
-      setConvertedAmount(null);
-    }
-  }, [watchAmount, watchFromAccountId, watchToAccountId, accounts]);
+  const convertedAmount = useConvertedAmount({
+    fromAccountId: watchFromAccountId,
+    toAccountId: watchToAccountId,
+    amount: watchAmount,
+    accounts,
+  });
 
   async function onSubmit(values: z.infer<typeof transactionSchema>) {
     setIsLoading(true);
-
-    const from = accounts.find((acc) => acc.id === values.fromAccountId);
-    const to = accounts.find((acc) => acc.id === values.toAccountId);
-
     try {
-      let finalPayload: CreateTransactionPayload;
+      const payload: CreateTransactionPayload = {
+        ...values,
+        clientConvertedAmount: values.amount,
+        amount:
+          fromAccount &&
+          toAccount &&
+          fromAccount.currency !== toAccount.currency
+            ? convertCurrency(
+                values.amount,
+                fromAccount.currency,
+                toAccount.currency
+              )
+            : values.amount,
+        currency: fromAccount!.currency,
+        targetCurrency: toAccount!.currency,
+      };
 
-      if (from && to && from.currency !== to.currency) {
-        const converted = convertCurrency(
-          values.amount,
-          from.currency,
-          to.currency
-        );
-
-        finalPayload = {
-          ...values,
-          amount: converted, // Store the converted value
-          clientConvertedAmount: values.amount, // Store the original input
-          currency: from.currency,
-          targetCurrency: to.currency,
-        };
-      } else {
-        finalPayload = {
-          ...values,
-          amount: values.amount, // Same currency: no conversion
-          clientConvertedAmount: values.amount,
-          currency: from!.currency,
-          targetCurrency: to!.currency,
-        };
-      }
-
-      await createTransaction(finalPayload);
+      await createTransaction(payload);
       form.reset();
       router.push("/transactions");
     } catch (error: any) {
-      alert("Failed to create transaction: " + error.message);
+      alert(t("errors.failedToCreate") + ": " + error.message);
     } finally {
       setIsLoading(false);
     }
@@ -131,61 +125,51 @@ const TransactionForm = ({ accounts }: TransactionFormProps) => {
 
           <FormField
             control={form.control}
-            name={"amount"}
+            name="amount"
             render={({ field }) => (
               <div className="flex flex-col gap-1.5">
                 <FormLabel>{t("labels.amount")}</FormLabel>
-                <div className="flex w-full flex-col">
-                  <FormControl>
-                    <Input
-                      id={"amount"}
-                      placeholder={t("placeholders.amount")}
-                      type="number"
-                      className="text-sm placeholder:text-16 rounded-lg border border-gray-300 text-gray-500 placeholder:text-gray-500"
-                      value={
-                        field.value === undefined || field.value === null
-                          ? ""
-                          : String(field.value)
-                      }
-                      onChange={(e) => {
-                        const val = e.target.value;
-                        field.onChange(val === "" ? undefined : Number(val));
-                      }}
-                      onBlur={field.onBlur}
-                    />
-                  </FormControl>
-                  <FormMessage className="form-message mt-2" />
-                </div>
+                <FormControl>
+                  <Input
+                    type="number"
+                    placeholder={t("placeholders.amount")}
+                    className="text-sm rounded-lg border border-gray-300 text-gray-500 placeholder:text-gray-500"
+                    value={field.value || ""}
+                    onChange={(e) =>
+                      field.onChange(Number(e.target.value) || 0)
+                    }
+                    onBlur={field.onBlur}
+                  />
+                </FormControl>
+                <FormMessage />
               </div>
             )}
           />
 
-          {convertedAmount !== null && (
-            <div className="text-sm text-gray-600">
+          {convertedAmount !== null && toAccount && (
+            <p className="text-sm text-gray-600">
               {t("labels.convertedAmount")}:{" "}
               <span className="font-semibold">
-                {convertedAmount}{" "}
+                {convertedAmount}
                 {accounts.find((acc) => acc.id === watchToAccountId)
                   ?.currency ?? ""}
               </span>
-            </div>
+            </p>
           )}
 
           <FormField
             control={form.control}
-            name={"description"}
+            name="description"
             render={({ field }) => (
               <div className="flex flex-col gap-1.5">
                 <FormLabel>{t("labels.description")}</FormLabel>
-                <div className="flex w-full flex-col">
-                  <FormControl>
-                    <Textarea
-                      {...field}
-                      placeholder={t("placeholders.description")}
-                    />
-                  </FormControl>
-                  <FormMessage className="form-message mt-2" />
-                </div>
+                <FormControl>
+                  <Textarea
+                    {...field}
+                    placeholder={t("placeholders.description")}
+                  />
+                </FormControl>
+                <FormMessage />
               </div>
             )}
           />

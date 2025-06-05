@@ -8,13 +8,12 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { cn, getTypeColor as getTypeColor } from "../lib";
-import Link from "next/link";
-import Image from "next/image";
 import { Account } from "@/lib/types";
-import { useState } from "react";
-import { Input } from "./ui/input";
 import { useTranslations } from "next-intl";
+import Link from "next/link";
+import { useState } from "react";
+import { cn, getTypeColor } from "../lib";
+import { Input } from "./ui/input";
 
 interface AccountsListProps {
   accounts: Account[];
@@ -104,7 +103,7 @@ const AccountsList = ({ accounts }: AccountsListProps) => {
           ) : (
             <TableRow>
               <TableCell colSpan={4} className="text-center py-6">
-                No accounts found.
+                {t("noAccountsFound")}
               </TableCell>
             </TableRow>
           )}
