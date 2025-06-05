@@ -23,7 +23,7 @@ export async function POST(request: NextRequest) {
 
     // Check if user exists in json-server
     const userCheckResponse = await fetch(
-      `http://${process.env.API_URL}/users?ownerEmail=${encodeURIComponent(ownerEmail)}`
+      `${process.env.API_URL}/users?ownerEmail=${encodeURIComponent(ownerEmail)}`
     );
     const users = await userCheckResponse.json();
 
@@ -35,7 +35,7 @@ export async function POST(request: NextRequest) {
       ownerId = uuidv4();
 
     // Create new user in json-server
-      await fetch(`http://${process.env.API_URL}/users`, {
+      await fetch(`${process.env.API_URL}/users`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ ownerEmail, ownerName, ownerId }),
@@ -51,7 +51,7 @@ export async function POST(request: NextRequest) {
       id: uuidv4(),
     };
 
-    const createAccountRes = await fetch(`http://${process.env.API_URL}/accounts`, {
+    const createAccountRes = await fetch(`${process.env.API_URL}/accounts`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(newAccount),
@@ -68,7 +68,7 @@ export async function POST(request: NextRequest) {
 
 
 export async function GET() {
-  const res = await fetch(`http://${process.env.API_URL}/accounts`);
+  const res = await fetch(`${process.env.API_URL}/accounts`);
 
   if (!res.ok) {
     return new Response("Failed to fetch", { status: 500 });

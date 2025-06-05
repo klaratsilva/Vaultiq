@@ -1,16 +1,14 @@
 import { NextResponse } from "next/server";
-import { extendedTransactionSchema, transactionSchema } from "@/lib";
+import { extendedTransactionSchema } from "@/lib";
 
 export async function POST(request: Request) {
   try {
     const body = await request.json();
-
-    // Validate incoming data including new fields (make sure your schema includes currency, targetCurrency, clientConvertedAmount)
     const data = extendedTransactionSchema.parse(body);
 
     const { fromAccountId, toAccountId, amount, clientConvertedAmount } = data;
 
-    // Fetch sender and receiver accounts
+    // Fetching sender and receiver accounts
     const [fromRes, toRes] = await Promise.all([
       fetch(`${process.env.API_URL}/accounts/${fromAccountId}`),
       fetch(`${process.env.API_URL}/accounts/${toAccountId}`),
@@ -38,10 +36,7 @@ export async function POST(request: Request) {
       );
     }
 
-    // Deduct from sender balance the original amount (no conversion)
     const updatedFromBalance = (fromBalance - amount).toFixed(2);
-
-    // Add to receiver balance the converted amount sent by client
     const updatedToBalance = (toBalance + clientConvertedAmount).toFixed(2);
 
     // Update balances
