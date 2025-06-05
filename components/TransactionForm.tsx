@@ -186,7 +186,11 @@ const TransactionForm = ({ accounts }: TransactionFormProps) => {
             )}
           />
 
-          <Button className="bg-primary" type="submit" disabled={isLoading}>
+          <Button
+            className="bg-primary cursor-pointer"
+            type="submit"
+            disabled={isLoading}
+          >
             {isLoading ? t("buttons.processing") : t("buttons.submit")}
           </Button>
         </form>

@@ -7,6 +7,7 @@ import Link from "next/link";
 import AccountCard from "./AccountCard";
 import TransactionsTable from "./TransactionTable";
 import { Button } from "./ui/button";
+import Card from "./DashboardSummaryCard";
 
 interface DashboardProps {
   accounts: Account[];
@@ -32,29 +33,23 @@ const Dashboard = ({ accounts, transactions, userCount }: DashboardProps) => {
   return (
     <section className="space-y-8">
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
-        <div
-          className="card p-4 rounded-lg shadow-md text-white"
-          style={{ backgroundColor: accountTypeColorsHex.personal }}
-        >
-          <h3 className="text-lg font-semibold mb-2">{t("totalBalance")}</h3>
-          <p className="text-3xl font-bold">${totalBalance.toFixed(2)}</p>
-        </div>
-
-        <div
-          className="card max-sm:hidden p-4 rounded-lg shadow-md text-white"
-          style={{ backgroundColor: accountTypeColorsHex.business }}
-        >
-          <h3 className="text-lg font-semibold mb-2">{t("totalAccounts")}</h3>
-          <p className="text-3xl font-bold">{accounts.length}</p>
-        </div>
-
-        <div
-          className="card p-4 max-sm:hidden rounded-lg shadow-md text-white"
-          style={{ backgroundColor: accountTypeColorsHex.admin }}
-        >
-          <h3 className="text-lg font-semibold mb-2">{t("totalUsers")}</h3>
-          <p className="text-3xl font-bold">{userCount}</p>
-        </div>
+        <Card
+          title={t("totalBalance")}
+          value={`$${totalBalance.toFixed(2)}`}
+          backgroundColor={accountTypeColorsHex.personal}
+        />
+        <Card
+          title={t("totalAccounts")}
+          value={accounts.length}
+          backgroundColor={accountTypeColorsHex.business}
+          className="max-sm:hidden"
+        />
+        <Card
+          title={t("totalUsers")}
+          value={userCount}
+          backgroundColor={accountTypeColorsHex.admin}
+          className="p-4 max-sm:hidden"
+        />
       </div>
       <h2 className="text-xl font-semibold mb-2">{t("recentAccounts")}</h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">

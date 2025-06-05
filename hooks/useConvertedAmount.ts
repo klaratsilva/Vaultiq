@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Currency, convertCurrency } from "@/lib";
+import { Currency, convertCurrency, exchangeRates } from "@/lib";
 
 interface UseConvertedAmountParams {
   fromAccountId: string;
@@ -24,7 +24,7 @@ export function useConvertedAmount({
     const to = accounts.find((acc) => acc.id === toAccountId);
 
     if (from && to && from.currency !== to.currency && amount > 0) {
-      setConvertedAmount(convertCurrency(amount, from.currency, to.currency));
+      setConvertedAmount(convertCurrency(amount, from.currency, to.currency, exchangeRates));
     } else {
       setConvertedAmount(null);
     }

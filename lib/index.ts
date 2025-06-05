@@ -79,8 +79,8 @@ export function convertCurrency(
   exchangeRates: Record<string, number>
 ): number {
   
-  if (!exchangeRates[from] || !exchangeRates[to]) {
-    throw new Error("Unsupported currency");
+   if (!exchangeRates || !exchangeRates[from] || !exchangeRates[to]) {
+    throw new Error(`Unsupported currency: ${from} or ${to} not found in exchange rates.`);
   }
 
   const amountInUSD = amount / exchangeRates[from];

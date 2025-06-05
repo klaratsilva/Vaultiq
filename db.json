@@ -19,6 +19,16 @@
       "ownerEmail": "sim@gmail.com",
       "ownerName": "Simao Silva",
       "ownerId": "8676bf3e-4114-4c07-850e-7fa2345f6a07"
+    },
+    {
+      "id": "b1fecec7-4a6f-4880-9a8b-4976e1934a98",
+      "name": "Klara Silva",
+      "type": "personal",
+      "currency": "USD",
+      "balance": "5000",
+      "ownerEmail": "klara.tsilva@gmail.com",
+      "ownerName": "klara Silva",
+      "ownerId": "887c718d-d7c5-4a5e-8e3f-00e3b5f0e459"
     }
   ],
   "users": [
