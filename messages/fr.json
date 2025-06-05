@@ -99,5 +99,11 @@
     "checking": "Courant",
     "savings": "Épargne",
     "credit": "Crédit"
+  },
+  "accountDetails": {
+    "balance": "Solde",
+    "accountId": "ID du compte",
+    "accountType": "Type de compte",
+    "currency": "Devise"
   }
 }

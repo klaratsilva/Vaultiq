@@ -100,5 +100,11 @@
     "checking": "Checking",
     "savings": "Savings",
     "credit": "Credit"
+  },
+  "accountDetails": {
+    "balance": "Balance",
+    "accountId": "Account ID",
+    "accountType": "Account Type",
+    "currency": "Currency"
   }
 }

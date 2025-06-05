@@ -17,6 +17,7 @@ import {
   formatAccountOptions,
   transactionSchema,
   convertCurrency,
+  exchangeRates,
 } from "@/lib";
 import { Button } from "./ui/button";
 import CustomSelect from "./CustomSelect";
@@ -69,6 +70,16 @@ const TransactionForm = ({ accounts }: TransactionFormProps) => {
     [watchToAccountId, accounts]
   );
 
+  const fromAccountOptions = useMemo(() => {
+    return accountOptions.filter((option) => option.value !== watchToAccountId);
+  }, [accountOptions, watchToAccountId]);
+
+  const toAccountOptions = useMemo(() => {
+    return accountOptions.filter(
+      (option) => option.value !== watchFromAccountId
+    );
+  }, [accountOptions, watchFromAccountId]);
+
   const convertedAmount = useConvertedAmount({
     fromAccountId: watchFromAccountId,
     toAccountId: watchToAccountId,
@@ -89,7 +100,8 @@ const TransactionForm = ({ accounts }: TransactionFormProps) => {
             ? convertCurrency(
                 values.amount,
                 fromAccount.currency,
-                toAccount.currency
+                toAccount.currency,
+                exchangeRates
               )
             : values.amount,
         currency: fromAccount!.currency,
@@ -114,13 +126,13 @@ const TransactionForm = ({ accounts }: TransactionFormProps) => {
             control={form.control}
             name="fromAccountId"
             label={t("labels.fromAccount")}
-            options={accountOptions}
+            options={fromAccountOptions}
           />
           <CustomSelect
             control={form.control}
             name="toAccountId"
             label={t("labels.toAccount")}
-            options={accountOptions}
+            options={toAccountOptions}
           />
 
           <FormField

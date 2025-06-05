@@ -63,7 +63,6 @@ export const accountTypeColorsHex: Record<AccountType, string> = {
 export const getTypeColor = (subject: string) => {
   return accountTypeColorsHex[subject as keyof typeof accountTypeColorsHex];
 };
-
 export const exchangeRates: Record<string, number> = {
   USD: 1,      
   EUR: 0.92,   
@@ -72,7 +71,14 @@ export const exchangeRates: Record<string, number> = {
   CAD: 1.34,
 };
 
-export function convertCurrency(amount: number, from: string, to: string): number {
+
+export function convertCurrency(
+  amount: number,
+  from: string,
+  to: string,
+  exchangeRates: Record<string, number>
+): number {
+  
   if (!exchangeRates[from] || !exchangeRates[to]) {
     throw new Error("Unsupported currency");
   }

@@ -13,7 +13,7 @@ interface Props {
 }
 
 const AccountDetailPage = async ({ params }: Props) => {
-  const { id, locale } = params;
+  const { id, locale } = await params;
 
   const account = await getAccountById(id);
   if (!account) {
