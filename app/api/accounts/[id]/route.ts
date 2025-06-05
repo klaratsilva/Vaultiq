@@ -1,10 +1,9 @@
-// app/api/accounts/[id]/route.ts
 import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(request: NextRequest, { params }: { params: { id: string } }) {
   const id = await params.id;
 
-  const response = await fetch(`http://${process.env.API_URL}/accounts/${id}`);
+  const response = await fetch(`${process.env.API_URL}/accounts/${id}`);
 
   if (!response.ok) {
     return NextResponse.json({ error: "Account not found" }, { status: 404 });
@@ -14,13 +13,12 @@ export async function GET(request: NextRequest, { params }: { params: { id: stri
   return NextResponse.json(account);
 }
 
-export async function PUT(request: NextRequest, { params }: { params: { id: string } }) {
+export async function PATCH(request: NextRequest, { params }: { params: { id: string } }) {
   const id = params.id;
   const body = await request.json();
 
-
-  const response = await fetch(`http://${process.env.API_URL}/accounts/${id}`, {
-    method: "PUT",
+  const response = await fetch(`${process.env.API_URL}/accounts/${id}`, {
+    method: "PATCH",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(body),
   });
@@ -39,7 +37,7 @@ export async function DELETE(
   { params }: { params: { id: string } }
 ) {
   try {
-    const res = await fetch(`http://${process.env.API_URL}/accounts/${params.id}`, {
+    const res = await fetch(`${process.env.API_URL}/accounts/${params.id}`, {
       method: "DELETE",
     });
 

@@ -16,15 +16,12 @@ const validPayload = {
 };
 
 
-
 test.describe('POST /api/accounts', () => {
   test.beforeAll(() => {
-    // Restore a clean copy of the DB before all tests
     fs.copyFileSync(dbBackupPath, dbPath);
   });
 
   test.afterAll(() => {
-    // Optionally clean up or reset DB again
     fs.copyFileSync(dbBackupPath, dbPath);
   });
 
@@ -63,7 +60,6 @@ test.describe('POST /api/accounts', () => {
   });
 
   test('creates account for existing user', async ({ request }) => {
-    // Use existing email in your test db
     const existingUserPayload = { ...validPayload, ownerEmail: 'klara.tsilva@gmail.com' };
 
     const response = await request.post('http://localhost:3000/api/accounts', {
@@ -73,17 +69,21 @@ test.describe('POST /api/accounts', () => {
     const createdAccount = await response.json();
     expect(createdAccount.ownerEmail).toBe(existingUserPayload.ownerEmail);
   });
+});
 
-//   test('returns 500 if user check fetch fails', async ({ request }) => {
-//     // Simulate server error by using invalid API URL
-//   process.env.API_URL = 'http://invalid-host';  // add protocol
+test.describe('GET /api/accounts', () => {
+  test('returns 200 and a list of accounts', async ({ request }) => {
+    const response = await request.get('http://localhost:3000/api/accounts');
+    
+    expect(response.status()).toBe(200);
 
-// const response = await request.post('http://localhost:3000/api/accounts', {
-//   data: validPayload,
-// });
+    const json = await response.json();
+    expect(Array.isArray(json)).toBe(true);
 
-//     expect(response.status()).toBe(500);
-//     const body = await response.json();
-//     expect(body.error).toBe('Internal Server Error');
-//   });
+    if (json.length > 0) {
+      expect(json[0]).toHaveProperty('id');
+      expect(json[0]).toHaveProperty('name');
+      expect(json[0]).toHaveProperty('balance');
+    }
+  });
 });

@@ -68,12 +68,17 @@ export async function POST(request: NextRequest) {
 
 
 export async function GET() {
-  const res = await fetch(`${process.env.API_URL}/accounts`);
+  try {
+    const res = await fetch(`${process.env.API_URL}/accounts`);
 
-  if (!res.ok) {
+    if (!res.ok) {
+      return new Response("Failed to fetch", { status: 500 });
+    }
+
+    const accounts = await res.json();
+    return Response.json(accounts);
+  } catch (error) {
+    // fetch threw an error (network, DNS, etc)
     return new Response("Failed to fetch", { status: 500 });
   }
-
-  const accounts = await res.json();
-  return Response.json(accounts);
 }
