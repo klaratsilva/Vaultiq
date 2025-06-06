@@ -31,27 +31,6 @@ export async function PUT(request: NextRequest, { params }: { params: { id: stri
   return NextResponse.json(updatedAccount);
 }
 
-
-// export async function DELETE(
-//   request: NextRequest,
-//   { params }: { params: { id: string } }
-// ) {
-//     console.log("Deleting account id:", params.id);
-//   try {
-//     const res = await fetch(`${process.env.API_URL}/accounts/${params.id}`, {
-//       method: "DELETE",
-//     });
-
-//     if (!res.ok) {
-//       return NextResponse.json({ error: "Failed to delete account" }, { status: 500 });
-//     }
-
-//     return NextResponse.json({ message: "Account deleted" });
-//   } catch (error) {
-//     return NextResponse.json({ error: "Server error" }, { status: 500 });
-//   }
-// }
-
 export async function DELETE(
   request: NextRequest,
   { params }: { params: { id: string } }

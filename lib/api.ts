@@ -49,6 +49,20 @@ export async function getAllAccounts() {
   }
 }
 
+export async function getAllAccountsApi() {
+  try {
+    const apiUrl = `http://localhost:3000/api/accounts`;
+    const res = await fetch(apiUrl, { cache: "no-store" });
+
+    if (!res.ok) throw new Error("Failed to fetch accounts");
+
+    return await res.json();
+  } catch (error) {
+    console.error("Error fetching accounts:", error);
+    return [];
+  }
+}
+
 export async function getAllTransactions() {
   try {
     const apiUrl = `${process.env.API_URL}/transactions`; // use env for flexibility

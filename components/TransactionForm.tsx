@@ -1,5 +1,24 @@
 "use client";
 
+import { useConvertedAmount } from "@/hooks/useConvertedAmount";
+import { createTransaction, getAllAccountsApi } from "@/lib/api";
+import { CreateTransactionPayload } from "@/lib/types";
+import {
+  convertCurrency,
+  exchangeRates,
+  formatAccountOptions,
+  transactionSchema,
+} from "@/lib/utils";
+import {
+  selectFilteredAccountOptions,
+  setAccounts,
+} from "@/store/accountsSlice";
+import { useAppDispatch, useAppSelector } from "@/store/hooks";
+import { addTransaction } from "@/store/transactionsSlice";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useTranslations } from "next-intl";
+import { useRouter } from "next/navigation";
+import { useMemo, useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import {
@@ -9,27 +28,10 @@ import {
   FormLabel,
   FormMessage,
 } from "../components/ui/form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useRouter } from "next/navigation";
-import { useEffect, useState, useMemo } from "react";
-import {
-  formatAccountOptions,
-  transactionSchema,
-  convertCurrency,
-  exchangeRates,
-} from "@/lib/utils";
-import { Currency } from "@/lib/types";
-import { Button } from "./ui/button";
 import CustomSelect from "./CustomSelect";
+import { Button } from "./ui/button";
 import { Input } from "./ui/input";
-import { useTranslations } from "next-intl";
-import { createTransaction } from "@/lib/api";
 import { Textarea } from "./ui/textarea";
-import { CreateTransactionPayload } from "@/lib/types";
-import { useConvertedAmount } from "@/hooks/useConvertedAmount";
-import { useAppDispatch, useAppSelector } from "@/store/hooks";
-import { addTransaction } from "@/store/transactionsSlice";
-import { selectFilteredAccountOptions } from "@/store/accountsSlice";
 
 const TransactionForm = () => {
   const accounts = useAppSelector(selectFilteredAccountOptions);
@@ -107,8 +109,11 @@ const TransactionForm = () => {
       const createdTransaction = await createTransaction(payload);
       dispatch(addTransaction(createdTransaction));
 
-      form.reset();
+      const updatedAccounts = await getAllAccountsApi();
+      console.log(updatedAccounts, "updatedAccounts");
+      dispatch(setAccounts(updatedAccounts));
 
+      form.reset();
       router.push("/transactions");
     } catch (error: any) {
       alert(t("errors.failedToCreate") + ": " + error.message);
