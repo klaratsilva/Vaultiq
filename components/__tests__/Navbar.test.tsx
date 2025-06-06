@@ -2,6 +2,7 @@ import { render, screen } from "@testing-library/react";
 import Navbar from "../NavBar";
 import { usePathname } from "next/navigation";
 import { useLocale, useTranslations } from "next-intl";
+import clsx from "clsx";
 
 jest.mock("next/navigation", () => ({
   usePathname: jest.fn(),
@@ -12,12 +13,12 @@ jest.mock("next-intl", () => ({
   useTranslations: jest.fn(),
 }));
 
-jest.mock("../../constants", () => ({
+jest.mock("../../lib/utils", () => ({
   sidebarLinks: [
     { labelKey: "dashboard", route: "/", imgURL: "/icons/dashboard.svg" },
     { labelKey: "settings", route: "/settings", imgURL: "/icons/settings.svg" },
   ],
-  SidebarItem: {},
+  cn: (...inputs: any[]) => clsx(...inputs),
 }));
 
 jest.mock("../../i18n/locales", () => ({
@@ -53,7 +54,8 @@ describe("Navbar", () => {
 
     render(<Navbar />);
 
-    const settingsLink = screen.getByText("Settings");
+    const settingsLinkText = screen.getByText("Settings");
+    const settingsLink = settingsLinkText.closest("a");
     expect(settingsLink).toHaveClass("text-white");
   });
 

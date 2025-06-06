@@ -2,7 +2,7 @@ import { type ClassValue, clsx } from "clsx";
 
 import { twMerge } from "tailwind-merge";
 import { z } from "zod";
-import { Account, AccountType, accountTypes, currencies, Currency, SidebarItem } from "./types";
+import { Account, AccountType, accountTypes, currencies } from "./types";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -139,6 +139,11 @@ export function formatAccountOptions(accounts: PartialAccount[]) {
     label: `${name ?? "Unknown"} - ${currency ?? "-"} - ${ownerName ?? "-"}`,
   }));
 }
+export type SidebarItem = {
+  imgURL: string;
+  route: string;
+  labelKey: string;
+};
 
 export const sidebarLinks: SidebarItem[] = [
   {

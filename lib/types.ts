@@ -36,8 +36,3 @@ export type CreateAccountPayload = Omit<Account, 'id' | 'createdAt'>;
 export type UpdateAccountPayload = Partial<Omit<Account, 'createdAt'>> & { id: string };
 
 
-export type SidebarItem = {
-  imgURL: string;
-  route: string;
-  labelKey: string;
-};

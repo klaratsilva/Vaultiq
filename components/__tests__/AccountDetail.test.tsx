@@ -3,7 +3,7 @@ import AccountDetails from "../AccountDetails";
 import { Account } from "@/lib/types";
 
 jest.mock("next-intl", () => ({
-  useTranslations: () => (key: string) => key, // returns the translation key itself
+  useTranslations: () => (key: string) => key,
 }));
 
 const mockAccount: Account = {
@@ -15,6 +15,7 @@ const mockAccount: Account = {
   ownerName: "Jane Doe",
   ownerId: "23",
   ownerEmail: "kl@getMaxAge.com",
+  createdAt: "10-30-30",
 };
 
 describe("AccountDetails Component", () => {
