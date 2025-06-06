@@ -100,7 +100,8 @@
     "checking": "Courant",
     "savings": "Épargne",
     "credit": "Crédit",
-    "searchAccountPlaceholder": "Rechercher des comptes…"
+    "searchAccountPlaceholder": "Rechercher des comptes…",
+    "date": "Date"
   },
   "accountDetails": {
     "balance": "Solde",

@@ -1,24 +1,26 @@
 {
   "accounts": [
     {
-      "id": "0111",
-      "name": "Bussines Checking",
-      "type": "business",
-      "currency": "EUR",
-      "balance": "5899.35",
+      "id": "8ec9ee3d-8533-4a44-99bc-f67688f212d7",
+      "name": "Klara Silva",
+      "type": "personal",
+      "currency": "USD",
+      "balance": "533.00",
       "ownerEmail": "klara.tsilva@gmail.com",
-      "ownerName": "klara Silva",
-      "ownerId": "887c718d-d7c5-4a5e-8e3f-00e3b5f0e459"
+      "ownerName": "TEST TEST TES",
+      "ownerId": "887c718d-d7c5-4a5e-8e3f-00e3b5f0e459",
+      "createdAt": "2025-06-06T12:32:32.698Z"
     },
     {
-      "id": "0222",
+      "id": "3cc47923-bd09-4bbc-9eb2-49516c05e6e3",
       "name": "Personal Savings",
       "type": "personal",
-      "currency": "EUR",
-      "balance": "4034.26",
+      "currency": "USD",
+      "balance": "601.00",
       "ownerEmail": "sim@gmail.com",
-      "ownerName": "Simao Silva",
-      "ownerId": "8676bf3e-4114-4c07-850e-7fa2345f6a07"
+      "ownerName": "Filipe SIlva",
+      "ownerId": "8676bf3e-4114-4c07-850e-7fa2345f6a07",
+      "createdAt": "2025-06-06T12:35:31.459Z"
     }
   ],
   "users": [
@@ -35,5 +37,18 @@
       "ownerId": "8676bf3e-4114-4c07-850e-7fa2345f6a07"
     }
   ],
-  "transactions": []
+  "transactions": [
+    {
+      "id": "2071",
+      "fromAccountId": "8ec9ee3d-8533-4a44-99bc-f67688f212d7",
+      "toAccountId": "3cc47923-bd09-4bbc-9eb2-49516c05e6e3",
+      "amount": 34,
+      "description": "socks",
+      "currency": "USD",
+      "targetCurrency": "USD",
+      "clientConvertedAmount": 34,
+      "status": "pending",
+      "createdAt": "2025-06-06T12:35:43.486Z"
+    }
+  ]
 }

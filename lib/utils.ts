@@ -33,7 +33,6 @@ export const transactionSchema = z.object({
     .number({ invalid_type_error: "Amount must be a number" })
     .positive("Amount must be greater than 0"),
   description: z.string().min(1, "Description is required"),
- 
 });
 
 export const extendedTransactionSchema = z.object({

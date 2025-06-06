@@ -20,10 +20,12 @@ const StoreHydrator = ({
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    // Sort accounts if needed (e.g., by updatedAt or name)
-    const sortedAccounts = [...initialAccounts]; // customize if needed
+    const sortedAccounts = [...initialAccounts].sort(
+      (a, b) =>
+        new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+    );
+    console.log(sortedAccounts, "initialAccounts");
 
-    // Sort transactions by `createdAt` DESC to show recent first
     const sortedTransactions = [...initialTransactions].sort(
       (a, b) =>
         new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()

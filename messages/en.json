@@ -100,7 +100,8 @@
     "checking": "Checking",
     "savings": "Savings",
     "credit": "Credit",
-    "searchAccountPlaceholder": "Search accounts..."
+    "searchAccountPlaceholder": "Search accounts...",
+    "date": "Date"
   },
   "accountDetails": {
     "balance": "Balance",

@@ -6,7 +6,6 @@ export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
 
-    // Validate body using Zod schema
     const validation = accountFormSchema.safeParse(body);
     if (!validation.success) {
       return NextResponse.json(validation.error.errors, { status: 400 });
@@ -42,13 +41,13 @@ export async function POST(request: NextRequest) {
       });
     }
 
-    // Create new account with ownerId
     const newAccount = {
       ...accountData,
       ownerEmail,
       ownerName,
       ownerId,
       id: uuidv4(),
+      createdAt: new Date().toISOString(),
     };
 
     const createAccountRes = await fetch(`${process.env.API_URL}/accounts`, {
@@ -78,7 +77,6 @@ export async function GET() {
     const accounts = await res.json();
     return Response.json(accounts);
   } catch (error) {
-    // fetch threw an error (network, DNS, etc)
     return new Response("Failed to fetch", { status: 500 });
   }
 }

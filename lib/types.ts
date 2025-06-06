@@ -14,7 +14,8 @@ export interface Account {
   ownerId: string;           
   ownerEmail: string;           
   ownerName: string;
-  balance: string;    
+  balance: string;  
+  createdAt: string;    
 }
 
 export interface Transaction {

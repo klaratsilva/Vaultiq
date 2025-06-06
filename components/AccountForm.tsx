@@ -20,6 +20,9 @@ import { Button } from "./ui/button";
 
 import CustomSelect from "./CustomSelect";
 import { Input } from "./ui/input";
+import { updateAccount, createAccount } from "@/lib/api";
+import { addAccount, updateAccountAction } from "@/store/accountsSlice";
+import { useAppDispatch } from "@/store/hooks";
 
 interface NewAccountFormProps {
   initialData?: Partial<z.infer<typeof accountFormSchema>>;
@@ -27,6 +30,8 @@ interface NewAccountFormProps {
 
 const AccountForm = ({ initialData }: NewAccountFormProps) => {
   const [isLoading, setIsLoading] = useState(false);
+  const dispatch = useAppDispatch();
+
   const router = useRouter();
   const t = useTranslations("accountForm");
 
@@ -64,26 +69,20 @@ const AccountForm = ({ initialData }: NewAccountFormProps) => {
     setIsLoading(true);
 
     try {
-      const method = isEdit ? "PUT" : "POST";
-      const url = isEdit ? `/api/accounts/${initialData?.id}` : "/api/accounts";
-
-      const response = await fetch(url, {
-        method,
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
-      });
-
-      if (!response.ok) {
-        const errorData = await response.json();
-        setIsLoading(false);
-        return;
+      if (isEdit && initialData?.id) {
+        console.log("updating");
+        const updatedAccount = await updateAccount(initialData.id, data);
+        console.log("udaped");
+        dispatch(updateAccountAction(updatedAccount));
+      } else {
+        const createdAccount = await createAccount(data);
+        dispatch(addAccount(createdAccount));
       }
 
       form.reset();
-      router.refresh();
       router.push("/accounts");
     } catch (error) {
-      alert("An unexpected error occurred.");
+      alert("An unexpected error occurred: " + (error as Error).message);
       console.error(error);
     } finally {
       setIsLoading(false);

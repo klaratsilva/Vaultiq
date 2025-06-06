@@ -1,5 +1,5 @@
 import { CreateTransactionPayload, Transaction } from "./types";
-import { transactionSchema } from "./utils";
+import { accountFormSchema, transactionSchema } from "./utils";
 import { z } from "zod";
 
 export async function getAccountById(id: string) {
@@ -74,8 +74,8 @@ export async function createTransaction(
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         ...data,
-        status: "pending",
-        createdAt: new Date().toISOString(),
+        // status: "pending",
+        // createdAt: new Date().toISOString(),
       }),
     });
 
@@ -106,3 +106,45 @@ export async function getAllUsers() {
 }
 
 
+export async function createAccount(data: z.infer<typeof accountFormSchema>) {
+  try {
+    const res = await fetch("/api/accounts", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        ...data,
+        createdAt: new Date().toISOString(),
+      }),
+    });
+
+    if (!res.ok) {
+      const errorData = await res.json().catch(() => ({}));
+      throw new Error(errorData.message || "Failed to create account");
+    }
+
+    return await res.json(); 
+  } catch (error) {
+    console.error("createAccount API error:", error);
+    throw error;
+  }
+}
+
+export async function updateAccount(id: string, data: z.infer<typeof accountFormSchema>) {
+  try {
+    const res = await fetch(`/api/accounts/${id}`, {
+      method: "PUT", 
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data),
+    });
+
+    if (!res.ok) {
+      const errorData = await res.json().catch(() => ({}));
+      throw new Error(errorData.message || "Failed to update account");
+    }
+
+    return await res.json();
+  } catch (error) {
+    console.error("updateAccount API error:", error);
+    throw error;
+  }
+}

@@ -20,7 +20,7 @@ import { RootState } from "@/store/store";
 import { useTranslations } from "next-intl";
 import Link from "next/link";
 import { useDispatch, useSelector } from "react-redux";
-import { currencyStyles, getTypeColor } from "../lib/utils";
+import { currencyStyles, formatDateTime, getTypeColor } from "../lib/utils";
 import { Badge } from "./Badge";
 import Pagination from "./Pagination";
 import SearchInput from "./SearchInput";
@@ -58,16 +58,25 @@ const AccountsList = () => {
         <Table>
           <TableHeader>
             <TableRow>
-              <TableHead className="w-1/2">{t("accounts")}</TableHead>
-              <TableHead className="">{t("currency")}</TableHead>
-              <TableHead className="text-right">{t("type")}</TableHead>
-              <TableHead className="text-right">{t("balance")}</TableHead>
+              <TableHead className="w-1/3">{t("accounts")}</TableHead>
+              <TableHead>{t("currency")}</TableHead>
+              <TableHead>{t("balance")}</TableHead>
+              <TableHead>{t("date")}</TableHead>
+              <TableHead>{t("type")}</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
             {paginatedAccounts.length > 0 ? (
               paginatedAccounts.map(
-                ({ id, balance, name, type, ownerName, currency }) => (
+                ({
+                  id,
+                  balance,
+                  name,
+                  type,
+                  ownerName,
+                  currency,
+                  createdAt,
+                }) => (
                   <TableRow key={id}>
                     <TableCell>
                       <Link href={`/accounts/${id}`}>
@@ -88,7 +97,7 @@ const AccountsList = () => {
                       </Link>
                     </TableCell>
                     <TableCell>
-                      <div className="rounded-4xl text-sm px-4 py-2 w-fit max-md:hidden">
+                      <div className="min-w-32 pl-2 pr-10 max-md:hidden">
                         <Badge
                           label={currency}
                           variant={currency}
@@ -97,17 +106,19 @@ const AccountsList = () => {
                       </div>
                     </TableCell>
                     <TableCell>
-                      <div className="flex items-center gap-2 w-full justify-end">
-                        <p className="text-md">
-                          <span>{type}</span>
-                        </p>
+                      <div className=" pl-2 pr-10">
+                        <p className="text-lg">{balance}</p>
                       </div>
                     </TableCell>
                     <TableCell>
-                      <div className="flex items-center gap-2 w-full justify-end">
-                        <p className="text-lg">
-                          <span>{balance}</span>
-                        </p>
+                      <div className="min-w-32 pl-2 pr-10 max-md:hidden">
+                        <p className="text-md">{formatDateTime(createdAt)}</p>
+                      </div>
+                    </TableCell>
+
+                    <TableCell>
+                      <div className="min-w-32 pl-2 pr-10 max-md:hidden">
+                        <p className="text-md">{type}</p>
                       </div>
                     </TableCell>
                   </TableRow>
