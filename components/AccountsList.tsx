@@ -12,7 +12,8 @@ import { Account } from "@/lib/types";
 import { useTranslations } from "next-intl";
 import Link from "next/link";
 import { useState } from "react";
-import { cn, getTypeColor } from "../lib/utils";
+import { cn, currencyStyles, getTypeColor } from "../lib/utils";
+import { Badge, CurrencyBadge } from "./Badge";
 import { Input } from "./ui/input";
 
 interface AccountsListProps {
@@ -79,8 +80,12 @@ const AccountsList = ({ accounts }: AccountsListProps) => {
                     </Link>
                   </TableCell>
                   <TableCell>
-                    <div className="bg-yellow-100 text-yellow-600 rounded-4xl text-sm px-4 py-2 w-fit max-md:hidden">
-                      {currency}
+                    <div className="rounded-4xl text-sm px-4 py-2 w-fit max-md:hidden">
+                      <Badge
+                        label={currency}
+                        variant={currency}
+                        styleMap={currencyStyles}
+                      />
                     </div>
                   </TableCell>
                   <TableCell>

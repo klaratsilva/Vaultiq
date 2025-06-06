@@ -2,7 +2,7 @@ import { type ClassValue, clsx } from "clsx";
 
 import { twMerge } from "tailwind-merge";
 import { z } from "zod";
-import { Account, AccountType, accountTypes, currencies, SidebarItem } from "./types";
+import { Account, AccountType, accountTypes, currencies, Currency, SidebarItem } from "./types";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -156,3 +156,38 @@ export const sidebarLinks: SidebarItem[] = [
     labelKey: "transactions",
   },
 ];
+
+
+export const currencyStyles = {
+  USD: {
+    borderColor: "border-blue-600",
+    backgroundColor: "bg-blue-600",
+    textColor: "text-blue-900",
+    chipBackgroundColor: "bg-blue-100",
+  },
+  CAD: {
+    borderColor: "border-indigo-600",
+    backgroundColor: "bg-indigo-600",
+    textColor: "text-indigo-900",
+    chipBackgroundColor: "bg-indigo-100",
+  },
+  GBP: {
+    borderColor: "border-violet-600",
+    backgroundColor: "bg-violet-600",
+    textColor: "text-violet-900",
+    chipBackgroundColor: "bg-violet-100",
+  },
+  JPY: {
+    borderColor: "border-purple-600",
+    backgroundColor: "bg-purple-600",
+    textColor: "text-purple-900",
+    chipBackgroundColor: "bg-purple-100",
+  },
+  EUR: {
+    borderColor: "border-fuchsia-600",
+    backgroundColor: "bg-fuchsia-600",
+    textColor: "text-fuchsia-900",
+    chipBackgroundColor: "bg-fuchsia-100",
+  },
+};
+

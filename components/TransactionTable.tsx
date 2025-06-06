@@ -12,29 +12,12 @@ import {
 import { Account, Transaction, TransactionStatus } from "@/lib/types";
 import { useTranslations } from "next-intl";
 import { cn, statusStyles, getTypeColor, formatDateTime } from "../lib/utils";
+import { Badge } from "./Badge";
 
 interface TransactionsTableProps {
   transactions: Transaction[];
   accountsMap: Record<string, Account>; // pre-fetched and passed in
 }
-
-const StatusBadge = (status: TransactionStatus) => {
-  const { borderColor, backgroundColor, textColor, chipBackgroundColor } =
-    statusStyles[status] || statusStyles.default;
-
-  return (
-    <div
-      className={cn(
-        "inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-medium border",
-        borderColor,
-        chipBackgroundColor
-      )}
-    >
-      <div className={cn("w-3 h-3 rounded-full", backgroundColor)} />
-      <span className={textColor}>{status}</span>
-    </div>
-  );
-};
 
 const TransactionsTable = ({
   transactions,
@@ -96,7 +79,12 @@ const TransactionsTable = ({
               </TableCell>
 
               <TableCell className="max-md:hidden pl-2 pr-10">
-                {StatusBadge(t.status)}
+                <Badge
+                  label={t.status}
+                  variant={t.status}
+                  styleMap={statusStyles}
+                  showDot
+                />
               </TableCell>
 
               <TableCell className="max-md:hidden min-w-32 pl-2 pr-10">
