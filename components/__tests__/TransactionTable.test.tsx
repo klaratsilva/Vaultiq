@@ -1,4 +1,4 @@
-import { render, screen, waitFor } from "@testing-library/react";
+import { act, render, screen, waitFor } from "@testing-library/react";
 import TransactionsTable from "../TransactionTable";
 import { Transaction, Account } from "@/lib/types";
 import { formatDateTime } from "@/lib/utils";
@@ -177,7 +177,9 @@ describe("TransactionsTable with Redux", () => {
     expect(screen.getByText("Payment for groceries")).toBeInTheDocument();
     expect(screen.getByText("Subscription payment")).toBeInTheDocument();
 
-    store.dispatch(setSearchTerm("groceries"));
+    await act(async () => {
+      store.dispatch(setSearchTerm("groceries"));
+    });
 
     await waitFor(() =>
       expect(screen.queryByText("Subscription payment")).not.toBeInTheDocument()

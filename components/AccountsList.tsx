@@ -33,7 +33,6 @@ const AccountsList = () => {
   const t = useTranslations("accounts");
   const dispatch = useDispatch();
 
-  const accounts = useSelector((state: RootState) => state.accounts.accounts);
   const searchTerm = useSelector(
     (state: RootState) => state.accounts.searchTerm
   );

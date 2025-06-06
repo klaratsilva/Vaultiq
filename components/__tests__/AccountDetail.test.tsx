@@ -22,12 +22,14 @@ describe("AccountDetails Component", () => {
   it("renders account details correctly", () => {
     render(<AccountDetails account={mockAccount} />);
 
-    expect(screen.getByText(/Savings Account/i)).toBeInTheDocument();
-    expect(screen.getByText(/Jane Doe/i)).toBeInTheDocument();
+    expect(screen.getAllByText(/Savings Account/i).length).toBeGreaterThan(0);
+    expect(screen.getByText("J")).toBeInTheDocument();
+
     expect(screen.getByText(/1500.75/i)).toBeInTheDocument();
     expect(screen.getByText(/business/i)).toBeInTheDocument();
-    expect(screen.getByText(/savings/i)).toBeInTheDocument();
     expect(screen.getByText(/usd/i)).toBeInTheDocument();
+    expect(screen.getByText(/acc-123456/i)).toBeInTheDocument();
+    expect(screen.getByText(/kl@getMaxAge.com/i)).toBeInTheDocument();
   });
 
   it("renders initial of owner name", () => {

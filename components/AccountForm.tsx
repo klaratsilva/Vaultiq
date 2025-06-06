@@ -47,7 +47,7 @@ const AccountForm = ({ initialData }: NewAccountFormProps) => {
 
   const form = useForm<z.infer<typeof accountFormSchema>>({
     resolver: zodResolver(accountFormSchema),
-    defaultValues: {
+    defaultValues: initialData ?? {
       name: "",
       type: accountTypes[0],
       currency: currencies[0],
@@ -57,20 +57,14 @@ const AccountForm = ({ initialData }: NewAccountFormProps) => {
     },
   });
 
-  useEffect(() => {
-    if (initialData) {
-      form.reset(initialData);
-    }
-  }, [initialData, form]);
-
   const isEdit = !!initialData?.id;
 
   async function onSubmit(data: z.infer<typeof accountFormSchema>) {
     setIsLoading(true);
 
     try {
+      console.log("FORM SUBMITTED:", data);
       if (isEdit && initialData?.id) {
-        console.log("updating");
         const updatedAccount = await updateAccount(initialData.id, data);
         console.log("udaped");
         dispatch(updateAccountAction(updatedAccount));
