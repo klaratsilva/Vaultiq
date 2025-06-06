@@ -1,4 +1,4 @@
-import AccountsListWrapper from "@/components/AccountListWrapper";
+import DashboardWrapper from "@/components/DashboardWrapper";
 import AccountsList from "@/components/AccountsList";
 import Header from "@/components/Header";
 import { getAllAccounts } from "@/lib/api";

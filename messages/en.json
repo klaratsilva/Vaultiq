@@ -64,7 +64,8 @@
     "statusHeader": "Status",
     "dateHeader": "Date",
     "noTransactions": "No transactions found.",
-    "loadingAccount": "Loading account..."
+    "loadingAccount": "Loading account...",
+    "searchTransactiontPlaceholder": "Search transactions..."
   },
   "transactionForm": {
     "labels": {

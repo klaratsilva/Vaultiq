@@ -13,13 +13,15 @@ import { RootState } from "@/store/store";
 import { useSelector } from "react-redux";
 
 interface DashboardProps {
-  transactions: Transaction[];
   userCount: number;
 }
 
-const Dashboard = ({ transactions, userCount }: DashboardProps) => {
+const Dashboard = ({ userCount }: DashboardProps) => {
   const t = useTranslations("dashboard");
   const accounts = useSelector((state: RootState) => state.accounts.accounts);
+  const transactions = useSelector(
+    (state: RootState) => state.transactions.transactions
+  );
 
   const totalBalance = accounts.reduce(
     (sum, acc) => sum + Number(acc.balance),

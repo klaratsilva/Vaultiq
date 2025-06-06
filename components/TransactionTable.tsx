@@ -9,30 +9,44 @@ import {
   TableRow,
 } from "@/components/ui/table";
 
-import { Account, Transaction, TransactionStatus } from "@/lib/types";
+import { Account, Transaction } from "@/lib/types";
+import { RootState } from "@/store/store";
+import {
+  selectCurrentPage,
+  selectPaginatedTransactions,
+  selectTotalPages,
+  setCurrentPage,
+  setSearchTerm,
+} from "@/store/transactionsSlice";
 import { useTranslations } from "next-intl";
-import { cn, statusStyles, getTypeColor, formatDateTime } from "../lib/utils";
+import { useDispatch, useSelector } from "react-redux";
+import { formatDateTime, getTypeColor, statusStyles } from "../lib/utils";
 import { Badge } from "./Badge";
-import { usePagination } from "@/hooks/usePagination";
 import Pagination from "./Pagination";
+import SearchInput from "./SearchInput";
 
 interface TransactionsTableProps {
-  transactions: Transaction[];
   accountsMap: Record<string, Account>;
 }
 
-const TransactionsTable = ({
-  transactions,
-  accountsMap,
-}: TransactionsTableProps) => {
+const TransactionsTable = ({ accountsMap }: TransactionsTableProps) => {
   const t = useTranslations("TransactionList");
-  const {
-    paginatedData: paginatedTransactions,
-    currentPage,
-    totalPages,
-    goToNextPage,
-    goToPrevPage,
-  } = usePagination(transactions, 7);
+  const dispatch = useDispatch();
+
+  const transactions = useSelector(
+    (state: RootState) => state.transactions.transactions
+  );
+  const searchTerm = useSelector(
+    (state: RootState) => state.transactions.searchTerm
+  );
+
+  const paginatedTransactions = useSelector(selectPaginatedTransactions);
+  const currentPage = useSelector(selectCurrentPage);
+  const totalPages = useSelector(selectTotalPages);
+
+  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    dispatch(setSearchTerm(e.target.value));
+  };
 
   const renderAccountCell = (accountId: string) => {
     const account = accountsMap[accountId];
@@ -60,7 +74,12 @@ const TransactionsTable = ({
 
   return (
     <>
-      <div className="rounded-2xl shadow-md border border-grey px-3 pt-3 pb-4 max-lg:w-full bg-white">
+      <article className="rounded-2xl shadow-md border border-grey px-3 pt-3 pb-4 max-lg:w-full bg-white">
+        <SearchInput
+          placeholder={t("searchTransactiontPlaceholder")}
+          value={searchTerm}
+          onChange={handleSearchChange}
+        />
         <Table>
           <TableHeader>
             <TableRow>
@@ -107,13 +126,13 @@ const TransactionsTable = ({
             ))}
           </TableBody>
         </Table>
-      </div>
+      </article>
       {totalPages > 1 && (
         <Pagination
           currentPage={currentPage}
           totalPages={totalPages}
-          onNext={goToNextPage}
-          onPrev={goToPrevPage}
+          onNext={() => dispatch(setCurrentPage(currentPage + 1))}
+          onPrev={() => dispatch(setCurrentPage(currentPage - 1))}
         />
       )}
     </>

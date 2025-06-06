@@ -9,26 +9,21 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { Account } from "@/lib/types";
-import { useTranslations } from "next-intl";
-import Link from "next/link";
-import { useEffect, useState } from "react";
-import { cn, currencyStyles, getTypeColor } from "../lib/utils";
-import { Badge, CurrencyBadge } from "./Badge";
-import { Input } from "./ui/input";
-import { usePagination } from "@/hooks/usePagination";
-import Pagination from "./Pagination";
 import {
   selectCurrentPage,
-  selectFilteredAccounts,
   selectPaginatedAccounts,
   selectTotalPages,
-  setAccounts,
   setCurrentPage,
+  setSearchTerm,
 } from "@/store/accountsSlice";
-import { useAppDispatch } from "@/store/hooks";
-import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/store/store";
-import { setSearchTerm } from "@/store/accountsSlice";
+import { useTranslations } from "next-intl";
+import Link from "next/link";
+import { useDispatch, useSelector } from "react-redux";
+import { currencyStyles, getTypeColor } from "../lib/utils";
+import { Badge } from "./Badge";
+import Pagination from "./Pagination";
+import SearchInput from "./SearchInput";
 
 interface AccountsListProps {
   accounts: Account[];
@@ -53,20 +48,12 @@ const AccountsList = () => {
 
   return (
     <>
-      <article
-        className={cn(
-          "rounded-2xl border border-grey px-7 pt-7 pb-3 max-lg:w-full bg-white"
-        )}
-      >
-        <div className="mb-4">
-          <Input
-            type="search"
-            placeholder={t("searchAccountPlaceholder")}
-            value={searchTerm}
-            onChange={handleSearchChange}
-            className="w-full p-2 border rounded"
-          />
-        </div>
+      <article className="rounded-2xl shadow-md border border-grey px-3 pt-3 pb-4 max-lg:w-full bg-white">
+        <SearchInput
+          placeholder={t("searchAccountPlaceholder")}
+          value={searchTerm}
+          onChange={handleSearchChange}
+        />
 
         <Table>
           <TableHeader>

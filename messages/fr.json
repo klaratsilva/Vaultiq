@@ -64,7 +64,8 @@
     "statusHeader": "Statut",
     "dateHeader": "Date",
     "noTransactions": "Aucune transaction trouvée.",
-    "loadingAccount": "Chargement du compte..."
+    "loadingAccount": "Chargement du compte...",
+    "searchTransactiontPlaceholder": "Rechercher des transactions..."
   },
   "transactionForm": {
     "labels": {
