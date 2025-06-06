@@ -1,4 +1,4 @@
-import { convertCurrency } from '../';
+import { convertCurrency } from '../utils';
 
 const exchangeRates = {
   USD: 1,

@@ -1,8 +1,7 @@
 "use client";
 
-import { useTranslations } from "next-intl";
-import { getTypeColor as getTypeColor } from "../lib";
 import { Account } from "@/lib/types";
+import { useTranslations } from "next-intl";
 
 interface AccountDetailsProps {
   account: Account;

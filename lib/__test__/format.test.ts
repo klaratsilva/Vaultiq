@@ -1,5 +1,5 @@
-import { formatDateTime, formatAccountOptions, Currency } from '..';
-import { Account } from '../types';
+import { formatDateTime, formatAccountOptions } from '../utils';
+import { Account, Currency } from '../types';
 
 describe('formatDateTime', () => {
   it('formats a Date object correctly', () => {

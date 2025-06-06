@@ -5,7 +5,7 @@ import { CreateTransactionPayload } from "@/lib/types";
 import * as api from "@/lib/api";
 import { NextIntlClientProvider } from "next-intl";
 import userEvent from "@testing-library/user-event";
-import { Currency } from "@/lib";
+import { Currency } from "@/lib/types";
 
 window.HTMLElement.prototype.hasPointerCapture = () => false;
 // Mock `createTransaction` API

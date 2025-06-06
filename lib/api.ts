@@ -1,4 +1,4 @@
-import { transactionSchema } from ".";
+import { transactionSchema } from "./utils";
 import { z } from "zod";
 
 export async function getAccountById(id: string) {

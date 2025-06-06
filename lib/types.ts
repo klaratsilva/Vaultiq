@@ -1,16 +1,20 @@
 export type AccountStatus = 'active' | 'suspended' | 'pending';
-export type AccountType = 'personal' | 'business' | 'admin';
-export type Currency = 'USD' | 'EUR' | 'GBP' | 'JPY' | 'CAD';
+
+export const accountTypes = ['personal', 'business', 'admin'] as const;
+export const currencies = ['USD', 'EUR', 'GBP', 'JPY', 'CAD'] as const;
+
+export type AccountType = typeof accountTypes[number];
+export type Currency = typeof currencies[number];
 
 export type TransactionStatus = "active" | "inactive" | "pending" | "suspended" | "default";
 
 export interface Account {
-  id: string;                // UUID
+  id: string;                
   name: string;
   type: AccountType;
   currency: Currency;
-  ownerId: string;           // UUID of the owning user/contact
-  ownerEmail: string;           // Optional
+  ownerId: string;           
+  ownerEmail: string;           
   ownerName: string;
   balance: string;     
 }
@@ -29,3 +33,9 @@ export interface Transaction {
 }
 
 export type CreateTransactionPayload = Omit<Transaction, "id" | "createdAt" | "status">;
+
+export type SidebarItem = {
+  imgURL: string;
+  route: string;
+  labelKey: string;
+};

@@ -2,7 +2,7 @@
 
 import { useTransition } from "react";
 import { useRouter } from "next/navigation";
-import { deleteAccount } from "../lib/api"; // Import from same file or separate module
+import { deleteAccount } from "../lib/api";
 import { Button } from "./ui/button";
 
 export function DeleteAccountButton({

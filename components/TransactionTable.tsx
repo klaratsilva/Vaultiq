@@ -11,7 +11,7 @@ import {
 
 import { Account, Transaction, TransactionStatus } from "@/lib/types";
 import { useTranslations } from "next-intl";
-import { cn, statusStyles, getTypeColor, formatDateTime } from "../lib";
+import { cn, statusStyles, getTypeColor, formatDateTime } from "../lib/utils";
 
 interface TransactionsTableProps {
   transactions: Transaction[];

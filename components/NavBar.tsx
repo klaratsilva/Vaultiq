@@ -4,9 +4,9 @@ import Link from "next/link";
 import Image from "next/image";
 import { useLocale, useTranslations } from "next-intl";
 import { usePathname } from "next/navigation";
-import { SidebarItem, sidebarLinks } from "../constants";
+import { SidebarItem } from "../lib/types";
 import { supportedLocales, localeNames } from "../i18n/locales";
-import { cn } from "@/lib";
+import { cn, sidebarLinks } from "@/lib/utils";
 
 function stripLocaleFromPath(path: string) {
   const parts = path.split("/").slice(2);

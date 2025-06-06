@@ -13,12 +13,12 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
 import { useEffect, useState, useMemo } from "react";
 import {
-  Currency,
   formatAccountOptions,
   transactionSchema,
   convertCurrency,
   exchangeRates,
-} from "@/lib";
+} from "@/lib/utils";
+import { Currency } from "@/lib/types";
 import { Button } from "./ui/button";
 import CustomSelect from "./CustomSelect";
 import { Input } from "./ui/input";

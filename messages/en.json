@@ -1,7 +1,6 @@
 {
   "dashboard": {
     "title": "Dasboard",
-    "welcome": "Welcome to your bank account manager",
     "totalBalance": "Total Balance",
     "totalAccounts": "Total Accounts",
     "totalUsers": "Total Users",
@@ -99,12 +98,24 @@
     "minutesAlt": "minutes",
     "checking": "Checking",
     "savings": "Savings",
-    "credit": "Credit"
+    "credit": "Credit",
+    "searchAccountPlaceholder": "Search accounts..."
   },
   "accountDetails": {
     "balance": "Balance",
     "accountId": "Account ID",
     "accountType": "Account Type",
     "currency": "Currency"
+  },
+  "headers": {
+    "welcome": "Welcome to your bank account manager",
+    "accounts": "List of accounts",
+    "transactions": "List of transactions",
+    "recentAccount": "List of recent accounts",
+    "recentTransactions": "List of recent transactions",
+    "newTransaction": "New Transaction",
+    "newAccount": "New Account",
+    "addNewAccount": "Add a new account",
+    "addNewTransaction": "Add a new transaction"
   }
 }

@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
-import { Currency, convertCurrency, exchangeRates } from "@/lib";
+import { convertCurrency, exchangeRates } from "@/lib/utils";
+import { Currency } from "@/lib/types";
 
 interface UseConvertedAmountParams {
   fromAccountId: string;

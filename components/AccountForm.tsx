@@ -1,7 +1,8 @@
 "use client";
 
 import { Form } from "@/components/ui/form";
-import { accountFormSchema, accountTypes, currencies } from "@/lib";
+import { accountFormSchema } from "@/lib/utils";
+import { accountTypes, currencies } from "@/lib/types";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useTranslations } from "next-intl";
 import { useRouter } from "next/navigation";

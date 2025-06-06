@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { extendedTransactionSchema } from "@/lib";
+import { extendedTransactionSchema } from "@/lib/utils";
 
 export async function POST(request: Request) {
   try {

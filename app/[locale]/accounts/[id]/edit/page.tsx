@@ -1,5 +1,5 @@
 import { getAccountById } from "@/lib/api";
-import AccountForm from "../../../../../components/AccountForm";
+import AccountForm from "@/components/AccountForm";
 
 interface Props {
   params: { id: string; locale: string };

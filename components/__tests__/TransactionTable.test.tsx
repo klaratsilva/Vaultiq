@@ -1,9 +1,9 @@
 import { render, screen } from "@testing-library/react";
 import TransactionsTable from "../TransactionTable";
 import { Transaction, Account } from "@/lib/types";
-import { AccountType, formatDateTime } from "@/lib";
+import { formatDateTime } from "@/lib/utils";
+import { AccountType } from "@/lib/types";
 
-// Mock translation hook
 jest.mock("next-intl", () => ({
   useTranslations: () => (key: string) => key,
 }));

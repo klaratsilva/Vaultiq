@@ -1,6 +1,5 @@
 import { Account } from "@/lib/types";
-import { getTypeColor } from "../lib";
-import { cn } from "../lib"; // If you're using a utility like `clsx` or `classnames`
+import { getTypeColor } from "../lib/utils";
 
 interface AccountCardProps {
   account: Account;

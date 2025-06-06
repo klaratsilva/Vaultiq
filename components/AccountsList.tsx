@@ -12,7 +12,7 @@ import { Account } from "@/lib/types";
 import { useTranslations } from "next-intl";
 import Link from "next/link";
 import { useState } from "react";
-import { cn, getTypeColor } from "../lib";
+import { cn, getTypeColor } from "../lib/utils";
 import { Input } from "./ui/input";
 
 interface AccountsListProps {
@@ -39,7 +39,7 @@ const AccountsList = ({ accounts }: AccountsListProps) => {
       <div className="mb-4">
         <Input
           type="search"
-          placeholder="Search accounts..."
+          placeholder={t("searchAccountPlaceholder")}
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
           className="w-full p-2 border rounded"

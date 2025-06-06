@@ -1,10 +1,10 @@
 import { renderHook } from "@testing-library/react";
 import { useConvertedAmount } from "../useConvertedAmount";
-import { convertCurrency } from "../../lib";
+import { convertCurrency } from "../../lib/utils";
 import { Account, Currency } from "@/lib/types";
 
 // Mock convertCurrency function
-jest.mock("../../lib", () => ({
+jest.mock("../../lib/utils", () => ({
   convertCurrency: jest.fn(),
 }));
 

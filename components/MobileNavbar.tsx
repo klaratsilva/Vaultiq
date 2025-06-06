@@ -13,8 +13,7 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
-import { sidebarLinks } from "../constants";
-import { cn } from "../lib";
+import { cn, sidebarLinks } from "../lib/utils";
 import { localeNames, supportedLocales } from "@/i18n/locales";
 
 function stripLocaleFromPath(path: string) {
@@ -104,7 +103,6 @@ const MobileNavbar = () => {
               </nav>
             </SheetClose>
 
-            {/* ✅ Language Switcher Footer */}
             <footer className="mb-8 border-t pt-4 px-4">
               <div className="flex gap-2 justify-center">
                 {supportedLocales.map((loc) => (

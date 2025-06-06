@@ -1,3 +1,4 @@
+import Header from "@/components/Header";
 import TransactionTable from "@/components/TransactionTable";
 import { Button } from "@/components/ui/button";
 import { getAllAccounts, getAllTransactions } from "@/lib/api";
@@ -5,8 +6,7 @@ import { Account } from "@/lib/types";
 import { getTranslations } from "next-intl/server";
 import Link from "next/link";
 
-const Transactions = async ({ params }: { params: { locale: string } }) => {
-  const { locale } = await params;
+const Transactions = async () => {
   const transactions = await getAllTransactions();
   const accounts = await getAllAccounts();
 
@@ -14,14 +14,12 @@ const Transactions = async ({ params }: { params: { locale: string } }) => {
     accounts.map((account: Account) => [account.id, account])
   );
 
-  const t = await getTranslations("TransactionsPage");
-
   return (
     <section className="no-scrollbar flex flex-col gap-6  p-8 md:max-h-screen xl:py-12">
-      <h1 className="headline">{t("title")}</h1>
-      <Link href="/transactions/new">
-        <Button variant="outline">{t("newButton")}</Button>
-      </Link>
+      <Header
+        title={"transactions"}
+        btn={{ href: "/transactions/new", btnTitle: "newTransaction" }}
+      />
 
       {transactions.length > 0 && (
         <TransactionTable

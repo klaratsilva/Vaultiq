@@ -1,6 +1,6 @@
 "use client";
 
-import { accountTypeColorsHex } from "@/lib";
+import { accountTypeColorsHex } from "@/lib/utils";
 import { Account, Transaction } from "@/lib/types";
 import { useTranslations } from "next-intl";
 import Link from "next/link";

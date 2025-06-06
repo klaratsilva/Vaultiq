@@ -1,7 +1,7 @@
 {
   "dashboard": {
     "title": "Tableau de Bord Bancaire",
-    "welcome": "Bienvenue dans votre gestionnaire de comptes bancaires",
+
     "totalBalance": "Solde total",
     "totalAccounts": "Comptes totaux",
     "totalUsers": "Utilisateurs totaux",
@@ -20,7 +20,7 @@
     "transactions": "Transactions"
   },
   "languages": {
-    "en": "AN",
+    "en": "EN",
     "fr": "FR"
   },
   "accountForm": {
@@ -98,12 +98,24 @@
     "minutesAlt": "minutes",
     "checking": "Courant",
     "savings": "Épargne",
-    "credit": "Crédit"
+    "credit": "Crédit",
+    "searchAccountPlaceholder": "Rechercher des comptes…"
   },
   "accountDetails": {
     "balance": "Solde",
     "accountId": "ID du compte",
     "accountType": "Type de compte",
     "currency": "Devise"
+  },
+  "headers": {
+    "welcome": "Bienvenue dans votre gestionnaire de comptes bancaires",
+    "accounts": "Liste des comptes",
+    "transactions": "Liste des transactions",
+    "recentAccount": "Liste des comptes récents",
+    "recentTransactions": "Liste des transactions récentes",
+    "newTransaction": "Nouvelle transaction",
+    "newAccount": "Nouveau compte",
+    "addNewAccount": "Ajouter un nouveau compte",
+    "addNewTransaction": "Ajouter un nouveau transaction"
   }
 }
