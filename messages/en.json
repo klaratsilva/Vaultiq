@@ -111,7 +111,7 @@
     "welcome": "Welcome to your bank account manager",
     "accounts": "List of accounts",
     "transactions": "List of transactions",
-    "recentAccount": "List of recent accounts",
+    "recentAccounts": "List of recent accounts",
     "recentTransactions": "List of recent transactions",
     "newTransaction": "New Transaction",
     "newAccount": "New Account",

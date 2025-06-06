@@ -8,6 +8,7 @@ import AccountCard from "./AccountCard";
 import TransactionsTable from "./TransactionTable";
 import { Button } from "./ui/button";
 import Card from "./DashboardSummaryCard";
+import Header from "./Header";
 
 interface DashboardProps {
   accounts: Account[];
@@ -51,32 +52,39 @@ const Dashboard = ({ accounts, transactions, userCount }: DashboardProps) => {
           className="p-4 max-sm:hidden"
         />
       </div>
-      <h2 className="text-xl font-semibold mb-2">{t("recentAccounts")}</h2>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        {recentAccounts.map((acc) => (
-          <div
-            key={acc.id}
-            className="border rounded-xl shadow-sm bg-white p-4"
-          >
-            <AccountCard account={acc} />
-            <div className="mt-2 flex justify-end">
-              <Link href={`/accounts/${acc.id}`}>
-                <Button size="sm" variant="outline">
-                  {t("viewAccount")}
-                </Button>
-              </Link>
-            </div>
+
+      {recentAccounts.length > 0 && (
+        <div className="flex flex-col gap-3">
+          <Header title="recentAccounts" />
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {recentAccounts.map((acc) => (
+              <div
+                key={acc.id}
+                className="border rounded-xl shadow-sm bg-white p-4"
+              >
+                <AccountCard account={acc} />
+                <div className="mt-2 flex justify-end">
+                  <Link href={`/accounts/${acc.id}`}>
+                    <Button size="sm" variant="outline">
+                      {t("viewAccount")}
+                    </Button>
+                  </Link>
+                </div>
+              </div>
+            ))}
           </div>
-        ))}
-      </div>
+        </div>
+      )}
       <div>
-        <h2 className="text-xl font-semibold mb-2">
-          {t("recentTransactions")}
-        </h2>
-        <TransactionsTable
-          transactions={recentTransactions}
-          accountsMap={accountsMap}
-        />
+        {recentTransactions.length > 0 && (
+          <div className="flex flex-col gap-3">
+            <Header title="recentTransactions" />
+            <TransactionsTable
+              transactions={recentTransactions}
+              accountsMap={accountsMap}
+            />
+          </div>
+        )}
       </div>
     </section>
   );

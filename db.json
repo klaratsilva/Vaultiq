@@ -5,7 +5,7 @@
       "name": "Bussines Checking",
       "type": "business",
       "currency": "EUR",
-      "balance": "5899.35",
+      "balance": "5499.35",
       "ownerEmail": "klara.tsilva@gmail.com",
       "ownerName": "klara Silva",
       "ownerId": "887c718d-d7c5-4a5e-8e3f-00e3b5f0e459"
@@ -15,7 +15,7 @@
       "name": "Personal Savings",
       "type": "personal",
       "currency": "EUR",
-      "balance": "4034.26",
+      "balance": "4434.26",
       "ownerEmail": "sim@gmail.com",
       "ownerName": "Simao Silva",
       "ownerId": "8676bf3e-4114-4c07-850e-7fa2345f6a07"
@@ -35,5 +35,18 @@
       "ownerId": "8676bf3e-4114-4c07-850e-7fa2345f6a07"
     }
   ],
-  "transactions": []
+  "transactions": [
+    {
+      "id": "b368",
+      "fromAccountId": "0111",
+      "toAccountId": "0222",
+      "amount": 400,
+      "description": "Bag",
+      "currency": "EUR",
+      "targetCurrency": "EUR",
+      "clientConvertedAmount": 400,
+      "status": "pending",
+      "createdAt": "2025-06-06T06:31:58.982Z"
+    }
+  ]
 }

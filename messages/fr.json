@@ -111,7 +111,7 @@
     "welcome": "Bienvenue dans votre gestionnaire de comptes bancaires",
     "accounts": "Liste des comptes",
     "transactions": "Liste des transactions",
-    "recentAccount": "Liste des comptes récents",
+    "recentAccounts": "Liste des comptes récents",
     "recentTransactions": "Liste des transactions récentes",
     "newTransaction": "Nouvelle transaction",
     "newAccount": "Nouveau compte",
