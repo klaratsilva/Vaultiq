@@ -58,11 +58,13 @@ const AccountsList = () => {
         <Table>
           <TableHeader>
             <TableRow>
-              <TableHead className="w-1/3">{t("accounts")}</TableHead>
-              <TableHead>{t("currency")}</TableHead>
-              <TableHead>{t("balance")}</TableHead>
-              <TableHead>{t("date")}</TableHead>
-              <TableHead>{t("type")}</TableHead>
+              <TableHead>{t("accounts")}</TableHead>
+              <TableHead className="px-2 max-md:hidden">
+                {t("currency")}
+              </TableHead>
+              <TableHead className="px-2">{t("balance")}</TableHead>
+              <TableHead className="px-2 max-md:hidden">{t("date")}</TableHead>
+              <TableHead className="px-2 max-md:hidden">{t("type")}</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
@@ -96,30 +98,22 @@ const AccountsList = () => {
                         </div>
                       </Link>
                     </TableCell>
-                    <TableCell>
-                      <div className="min-w-32 pl-2 pr-10 max-md:hidden">
-                        <Badge
-                          label={currency}
-                          variant={currency}
-                          styleMap={currencyStyles}
-                        />
-                      </div>
+                    <TableCell className="min-w-32 pl-2 pr-10 max-md:hidden">
+                      <Badge
+                        label={currency}
+                        variant={currency}
+                        styleMap={currencyStyles}
+                      />
                     </TableCell>
-                    <TableCell>
-                      <div className=" pl-2 pr-10">
-                        <p className="text-lg">{balance}</p>
-                      </div>
+                    <TableCell className="pl-2 pr-10">
+                      <p className="text-lg max-md:text-sm">{balance}</p>
                     </TableCell>
-                    <TableCell>
-                      <div className="min-w-32 pl-2 pr-10 max-md:hidden">
-                        <p className="text-md">{formatDateTime(createdAt)}</p>
-                      </div>
+                    <TableCell className="min-w-32 pl-2 pr-10 max-md:hidden">
+                      <p className="text-md">{formatDateTime(createdAt)}</p>
                     </TableCell>
 
-                    <TableCell>
-                      <div className="min-w-32 pl-2 pr-10 max-md:hidden">
-                        <p className="text-md">{type}</p>
-                      </div>
+                    <TableCell className="min-w-32 pl-2 pr-10 max-md:hidden">
+                      <p className="text-md">{type}</p>
                     </TableCell>
                   </TableRow>
                 )
