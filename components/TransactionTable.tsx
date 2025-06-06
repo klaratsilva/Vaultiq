@@ -60,7 +60,7 @@ const TransactionsTable = ({ accountsMap, limit }: TransactionsTableProps) => {
     const account = accountsMap[accountId];
     if (!account) {
       return (
-        <span className="italic text-gray-500">{t("loadingAccount")}</span>
+        <span className="italic text-gray-500">{t("accountDeleted")}</span>
       );
     }
 

@@ -65,7 +65,8 @@
     "dateHeader": "Date",
     "noTransactions": "Aucune transaction trouvée.",
     "loadingAccount": "Chargement du compte...",
-    "searchTransactiontPlaceholder": "Rechercher des transactions..."
+    "searchTransactiontPlaceholder": "Rechercher des transactions...",
+    "accountDeleted": "Ce compte a été supprimé"
   },
   "transactionForm": {
     "labels": {

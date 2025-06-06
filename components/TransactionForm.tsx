@@ -110,9 +110,7 @@ const TransactionForm = ({ accounts }: TransactionFormProps) => {
         currency: fromAccount!.currency,
         targetCurrency: toAccount!.currency,
       };
-      console.log("Dispatching");
       const createdTransaction = await createTransaction(payload);
-      console.log(createdTransaction, "createdTransaction");
       dispatch(addTransaction(createdTransaction));
 
       form.reset();
