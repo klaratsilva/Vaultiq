@@ -14,13 +14,6 @@ export const metadata: Metadata = {
 };
 
 const Transactions = async () => {
-  // const transactions = await getAllTransactions();
-  const accounts = await getAllAccounts();
-
-  const accountsMap = Object.fromEntries(
-    accounts.map((account: Account) => [account.id, account])
-  );
-
   return (
     <section className="no-scrollbar flex flex-col gap-6  p-8 md:max-h-screen xl:py-12">
       <Header
@@ -28,7 +21,7 @@ const Transactions = async () => {
         btn={{ href: "/transactions/new", btnTitle: "newTransaction" }}
       />
 
-      <TransactionTable accountsMap={accountsMap} />
+      <TransactionTable />
     </section>
   );
 };

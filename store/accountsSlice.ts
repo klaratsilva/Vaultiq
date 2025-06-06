@@ -1,5 +1,6 @@
 import { createSelector, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { Account } from "@/lib/types";
+import { RootState } from "./store";
 
 interface AccountsState {
   accounts: Account[];
@@ -60,6 +61,21 @@ export const selectFilteredAccounts = createSelector(
       )
     );
   }
+);
+
+export const selectFilteredAccountOptions = (state: RootState) => {
+  return state.accounts.accounts
+    .map(acc => ({    
+      id: acc.id,
+      name: acc.name,
+      currency: acc.currency,
+      ownerName: acc.ownerName, 
+    }));
+};
+export const selectAccounts = (state: RootState) => state.accounts.accounts;
+
+export const selectAccountsMap = createSelector(selectAccounts, (accounts) =>
+  Object.fromEntries(accounts.map((account) => [account.id, account]))
 );
 
 export const selectPaginatedAccounts = createSelector(

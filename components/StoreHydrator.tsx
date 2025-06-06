@@ -24,7 +24,6 @@ const StoreHydrator = ({
       (a, b) =>
         new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
     );
-    console.log(sortedAccounts, "initialAccounts");
 
     const sortedTransactions = [...initialTransactions].sort(
       (a, b) =>

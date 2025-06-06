@@ -27,28 +27,17 @@ import { createTransaction } from "@/lib/api";
 import { Textarea } from "./ui/textarea";
 import { CreateTransactionPayload } from "@/lib/types";
 import { useConvertedAmount } from "@/hooks/useConvertedAmount";
-import { useAppDispatch } from "@/store/hooks";
+import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import { addTransaction } from "@/store/transactionsSlice";
+import { selectFilteredAccountOptions } from "@/store/accountsSlice";
 
-interface TransactionFormProps {
-  accounts: {
-    id: string;
-    name: string;
-    currency: Currency;
-    ownerName: string;
-  }[];
-}
-
-const TransactionForm = ({ accounts }: TransactionFormProps) => {
+const TransactionForm = () => {
+  const accounts = useAppSelector(selectFilteredAccountOptions);
   const dispatch = useAppDispatch();
   const router = useRouter();
   const t = useTranslations("transactionForm");
-  const [isLoading, setIsLoading] = useState(false);
 
-  const accountOptions = useMemo(
-    () => formatAccountOptions(accounts),
-    [accounts]
-  );
+  const [isLoading, setIsLoading] = useState(false);
 
   const form = useForm<z.infer<typeof transactionSchema>>({
     resolver: zodResolver(transactionSchema),
@@ -59,6 +48,11 @@ const TransactionForm = ({ accounts }: TransactionFormProps) => {
       description: "",
     },
   });
+
+  const accountOptions = useMemo(
+    () => formatAccountOptions(accounts),
+    [accounts]
+  );
 
   const watchAmount = form.watch("amount");
   const watchFromAccountId = form.watch("fromAccountId");
@@ -162,7 +156,6 @@ const TransactionForm = ({ accounts }: TransactionFormProps) => {
               </div>
             )}
           />
-
           {convertedAmount !== null && toAccount && (
             <p className="text-sm text-gray-600">
               {t("labels.convertedAmount")}:{" "}
@@ -190,7 +183,6 @@ const TransactionForm = ({ accounts }: TransactionFormProps) => {
               </div>
             )}
           />
-
           <Button
             className="bg-primary cursor-pointer"
             type="submit"
