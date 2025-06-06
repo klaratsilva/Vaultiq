@@ -87,3 +87,17 @@ export async function createTransaction(data: z.infer<typeof transactionSchema>)
     throw error;
   }
 }
+
+export async function getAllUsers() {
+  try {
+    const apiUrl = `${process.env.API_URL}/users`;
+    const res = await fetch(apiUrl, { cache: "no-store" });
+
+    if (!res.ok) throw new Error("Failed to fetch users");
+
+    return await res.json();
+  } catch (error) {
+    console.error("Error fetching users:", error);
+    return [];
+  }
+}

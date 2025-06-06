@@ -11,6 +11,17 @@ import Image from "next/image";
 
 import MobileNavbar from "../../components/MobileNavbar";
 
+export const metadata = {
+  title: "My Bank Manager",
+  description:
+    "Manage your accounts, transactions, and users all in one place.",
+  icons: {
+    icon: "/icons/logo.png",
+    shortcut: "/icons/logo.png",
+    apple: "/icons/logo.png",
+  },
+};
+
 const messagesMap = { en, fr };
 
 export default async function LocaleLayout({

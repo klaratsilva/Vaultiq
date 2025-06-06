@@ -77,13 +77,15 @@ const Dashboard = ({ accounts, transactions, userCount }: DashboardProps) => {
       )}
       <div>
         {recentTransactions.length > 0 && (
-          <div className="flex flex-col gap-3">
-            <Header title="recentTransactions" />
-            <TransactionsTable
-              transactions={recentTransactions}
-              accountsMap={accountsMap}
-            />
-          </div>
+          <Link href={"/transactions"}>
+            <div className="flex flex-col gap-3">
+              <Header title="recentTransactions" />
+              <TransactionsTable
+                transactions={recentTransactions}
+                accountsMap={accountsMap}
+              />{" "}
+            </div>
+          </Link>
         )}
       </div>
     </section>

@@ -1,5 +1,3 @@
-export type AccountStatus = 'active' | 'suspended' | 'pending';
-
 export const accountTypes = ['personal', 'business', 'admin'] as const;
 export const currencies = ['USD', 'EUR', 'GBP', 'JPY', 'CAD'] as const;
 
