@@ -83,7 +83,7 @@ const Dashboard = ({ accounts, transactions, userCount }: DashboardProps) => {
               <TransactionsTable
                 transactions={recentTransactions}
                 accountsMap={accountsMap}
-              />{" "}
+              />
             </div>
           </Link>
         )}

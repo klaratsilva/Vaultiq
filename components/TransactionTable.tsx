@@ -13,10 +13,12 @@ import { Account, Transaction, TransactionStatus } from "@/lib/types";
 import { useTranslations } from "next-intl";
 import { cn, statusStyles, getTypeColor, formatDateTime } from "../lib/utils";
 import { Badge } from "./Badge";
+import { usePagination } from "@/hooks/usePagination";
+import Pagination from "./Pagination";
 
 interface TransactionsTableProps {
   transactions: Transaction[];
-  accountsMap: Record<string, Account>; // pre-fetched and passed in
+  accountsMap: Record<string, Account>;
 }
 
 const TransactionsTable = ({
@@ -24,6 +26,13 @@ const TransactionsTable = ({
   accountsMap,
 }: TransactionsTableProps) => {
   const t = useTranslations("TransactionList");
+  const {
+    paginatedData: paginatedTransactions,
+    currentPage,
+    totalPages,
+    goToNextPage,
+    goToPrevPage,
+  } = usePagination(transactions, 7);
 
   const renderAccountCell = (accountId: string) => {
     const account = accountsMap[accountId];
@@ -50,54 +59,64 @@ const TransactionsTable = ({
   };
 
   return (
-    <div className="rounded-2xl shadow-md border border-grey px-3 pt-3 pb-4 max-lg:w-full bg-white">
-      <Table>
-        <TableHeader>
-          <TableRow>
-            <TableHead className="px-2">{t("fromAccountHeader")}</TableHead>
-            <TableHead className="px-2">{t("toAccountHeader")}</TableHead>
-            <TableHead className="px-2">{t("amountHeader")}</TableHead>
-            <TableHead className="px-2 max-md:hidden">
-              {t("statusHeader")}
-            </TableHead>
-            <TableHead className="px-2 max-md:hidden">
-              {t("dateHeader")}
-            </TableHead>
-            <TableHead className="px-2 max-md:hidden">
-              {t("descriptionHeader")}
-            </TableHead>
-          </TableRow>
-        </TableHeader>
-        <TableBody>
-          {transactions.map((t: Transaction) => (
-            <TableRow key={t.id}>
-              <TableCell>{renderAccountCell(t.fromAccountId)}</TableCell>
-              <TableCell>{renderAccountCell(t.toAccountId)}</TableCell>
-
-              <TableCell className="pl-2 pr-10 text-lg font-semibold">
-                {t.amount} {t.currency}
-              </TableCell>
-
-              <TableCell className="max-md:hidden pl-2 pr-10">
-                <Badge
-                  label={t.status}
-                  variant={t.status}
-                  styleMap={statusStyles}
-                  showDot
-                />
-              </TableCell>
-
-              <TableCell className="max-md:hidden min-w-32 pl-2 pr-10">
-                {formatDateTime(t.createdAt)}
-              </TableCell>
-              <TableCell className="max-md:hidden max-w-[250px] pl-2 pr-10">
-                {t.description}
-              </TableCell>
+    <>
+      <div className="rounded-2xl shadow-md border border-grey px-3 pt-3 pb-4 max-lg:w-full bg-white">
+        <Table>
+          <TableHeader>
+            <TableRow>
+              <TableHead className="px-2">{t("fromAccountHeader")}</TableHead>
+              <TableHead className="px-2">{t("toAccountHeader")}</TableHead>
+              <TableHead className="px-2">{t("amountHeader")}</TableHead>
+              <TableHead className="px-2 max-md:hidden">
+                {t("statusHeader")}
+              </TableHead>
+              <TableHead className="px-2 max-md:hidden">
+                {t("dateHeader")}
+              </TableHead>
+              <TableHead className="px-2 max-md:hidden">
+                {t("descriptionHeader")}
+              </TableHead>
             </TableRow>
-          ))}
-        </TableBody>
-      </Table>
-    </div>
+          </TableHeader>
+          <TableBody>
+            {paginatedTransactions.map((t: Transaction) => (
+              <TableRow key={t.id}>
+                <TableCell>{renderAccountCell(t.fromAccountId)}</TableCell>
+                <TableCell>{renderAccountCell(t.toAccountId)}</TableCell>
+
+                <TableCell className="pl-2 pr-10 text-lg font-semibold">
+                  {t.amount} {t.currency}
+                </TableCell>
+
+                <TableCell className="max-md:hidden pl-2 pr-10">
+                  <Badge
+                    label={t.status}
+                    variant={t.status}
+                    styleMap={statusStyles}
+                    showDot
+                  />
+                </TableCell>
+
+                <TableCell className="max-md:hidden min-w-32 pl-2 pr-10">
+                  {formatDateTime(t.createdAt)}
+                </TableCell>
+                <TableCell className="max-md:hidden max-w-[250px] pl-2 pr-10">
+                  {t.description}
+                </TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </div>
+      {totalPages > 1 && (
+        <Pagination
+          currentPage={currentPage}
+          totalPages={totalPages}
+          onNext={goToNextPage}
+          onPrev={goToPrevPage}
+        />
+      )}
+    </>
   );
 };
 
