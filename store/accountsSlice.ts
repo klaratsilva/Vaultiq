@@ -1,4 +1,4 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createSelector, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { Account } from "@/lib/types";
 
 interface AccountsState {
@@ -34,29 +34,40 @@ const accountsSlice = createSlice({
 
 export const { setAccounts, setSearchTerm, setCurrentPage } = accountsSlice.actions;
 
-export const selectFilteredAccounts = (state: { accounts: AccountsState }) => {
-  if (!state.accounts.searchTerm) return state.accounts.accounts;
+const selectAccountsState = (state: { accounts: AccountsState }) => state.accounts;
 
-  const term = state.accounts.searchTerm.toLowerCase();
-  return state.accounts.accounts.filter(({ name, ownerName, type, balance }) =>
-    [name, ownerName, type, balance.toString()].some((field) =>
-      field.toLowerCase().includes(term)
-    )
-  );
-};
+export const selectFilteredAccounts = createSelector(
+  [selectAccountsState],
+  (accountsState) => {
+    const term = accountsState.searchTerm.toLowerCase();
+    if (!term) return accountsState.accounts;
 
-export const selectPaginatedAccounts = (state: { accounts: AccountsState }) => {
-  const filtered = selectFilteredAccounts(state);
-  const start = (state.accounts.currentPage - 1) * state.accounts.itemsPerPage;
-  const end = start + state.accounts.itemsPerPage;
-  return filtered.slice(start, end);
-};
+    return accountsState.accounts.filter(({ name, ownerName, type, balance }) =>
+      [name, ownerName, type, balance.toString()].some(field =>
+        field.toLowerCase().includes(term)
+      )
+    );
+  }
+);
 
-export const selectTotalPages = (state: { accounts: AccountsState }) => {
-  const filtered = selectFilteredAccounts(state);
-  return Math.max(Math.ceil(filtered.length / state.accounts.itemsPerPage), 1);
-};
+export const selectPaginatedAccounts = createSelector(
+  [selectFilteredAccounts, selectAccountsState],
+  (filteredAccounts, accountsState) => {
+    const start = (accountsState.currentPage - 1) * accountsState.itemsPerPage;
+    const end = start + accountsState.itemsPerPage;
+    return filteredAccounts.slice(start, end);
+  }
+);
 
-export const selectCurrentPage = (state: { accounts: AccountsState }) => state.accounts.currentPage;
+export const selectTotalPages = createSelector(
+  [selectFilteredAccounts, selectAccountsState],
+  (filteredAccounts, accountsState) =>
+    Math.max(Math.ceil(filteredAccounts.length / accountsState.itemsPerPage), 1)
+);
+
+export const selectCurrentPage = createSelector(
+  [selectAccountsState],
+  (accountsState) => accountsState.currentPage
+);
 
 export default accountsSlice.reducer;

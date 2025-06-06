@@ -20,7 +20,7 @@ const Header = ({ title, btn }: HeaderProps) => {
     <>
       <h1 className="text-2xl text-gray-700 font-bold">{t(title)}</h1>
       {btn && (
-        <Link href={btn.href}>
+        <Link href={btn.href} passHref>
           <Button variant="outline">{t(btn.btnTitle)}</Button>
         </Link>
       )}

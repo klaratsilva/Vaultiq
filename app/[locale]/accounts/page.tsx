@@ -22,7 +22,7 @@ const Accounts = async () => {
         title={"accounts"}
         btn={{ href: "/accounts/new", btnTitle: "newAccount" }}
       />
-      <AccountsListWrapper initialAccounts={accounts} />
+      <AccountsList />
     </section>
   );
 };
