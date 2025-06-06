@@ -1,7 +1,6 @@
-import DashboardWrapper from "@/components/DashboardWrapper";
 import Dashboard from "@/components/Dashboard";
 import Header from "@/components/Header";
-import { getAllAccounts, getAllTransactions, getAllUsers } from "@/lib/api";
+import { getAllUsers } from "@/lib/api";
 
 export default async function HomePage() {
   const users = await getAllUsers();

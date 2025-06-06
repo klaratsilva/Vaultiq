@@ -25,7 +25,6 @@ const transactionsSlice = createSlice({
       state.searchTerm = "";
     },
     addTransaction(state, action: PayloadAction<Transaction>) {
-      console.log(action.payload, "payload");
       state.transactions.unshift(action.payload);
     },
     setSearchTerm(state, action: PayloadAction<string>) {

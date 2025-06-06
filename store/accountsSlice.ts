@@ -22,6 +22,9 @@ const accountsSlice = createSlice({
     setAccounts(state, action: PayloadAction<Account[]>) {
       state.accounts = action.payload;
     },
+    addAccount(state, action: PayloadAction<Account>) {
+        state.accounts.unshift(action.payload);
+    },
     setSearchTerm(state, action: PayloadAction<string>) {
       state.searchTerm = action.payload;
       state.currentPage = 1;
@@ -32,7 +35,7 @@ const accountsSlice = createSlice({
   },
 });
 
-export const { setAccounts, setSearchTerm, setCurrentPage } = accountsSlice.actions;
+export const { setAccounts, setSearchTerm, setCurrentPage, addAccount } = accountsSlice.actions;
 
 const selectAccountsState = (state: { accounts: AccountsState }) => state.accounts;
 

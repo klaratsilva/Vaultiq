@@ -1,6 +1,12 @@
 "use client";
 
-import { Form } from "@/components/ui/form";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
 import { accountFormSchema } from "@/lib/utils";
 import { accountTypes, currencies } from "@/lib/types";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -13,6 +19,7 @@ import CustomInput from "./CustomInput";
 import { Button } from "./ui/button";
 
 import CustomSelect from "./CustomSelect";
+import { Input } from "./ui/input";
 
 interface NewAccountFormProps {
   initialData?: Partial<z.infer<typeof accountFormSchema>>;
@@ -41,7 +48,7 @@ const AccountForm = ({ initialData }: NewAccountFormProps) => {
       currency: currencies[0],
       ownerEmail: "",
       ownerName: "",
-      balance: "",
+      balance: 0,
     },
   });
 
@@ -120,12 +127,29 @@ const AccountForm = ({ initialData }: NewAccountFormProps) => {
             label={t("labels.ownerName")}
             placeholder={t("placeholders.ownerName")}
           />
-          <CustomInput
+          <FormField
             control={form.control}
             name="balance"
-            label={t("labels.balance")}
-            placeholder={t("placeholders.balance")}
+            render={({ field }) => (
+              <div className="flex flex-col gap-1.5">
+                <FormLabel>{t("labels.balance")}</FormLabel>
+                <FormControl>
+                  <Input
+                    type="number"
+                    placeholder={t("placeholders.balance")}
+                    className="text-sm rounded-lg border border-gray-300 text-gray-500 placeholder:text-gray-500"
+                    value={field.value || ""}
+                    onChange={(e) =>
+                      field.onChange(Number(e.target.value) || 0)
+                    }
+                    onBlur={field.onBlur}
+                  />
+                </FormControl>
+                <FormMessage />
+              </div>
+            )}
           />
+
           <Button type="submit" className="bg-primary">
             {t("submit")}
           </Button>

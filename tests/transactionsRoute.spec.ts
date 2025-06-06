@@ -13,7 +13,7 @@ test.beforeEach(() => {
 });
 
 // Helper to create test account
-async function createTestAccount(request: APIRequestContext , balance = "1000.00") {
+async function createTestAccount(request: APIRequestContext , balance = 1000) {
   const payload = {
     name: "Test Account",
     type: "personal",
@@ -72,8 +72,8 @@ test.describe('POST /api/transactions', () => {
   });
 
   test('returns 400 if insufficient funds', async ({ request }) => {
-    const fromAccountId = await createTestAccount(request, "500.00");
-    const toAccountId = await createTestAccount(request, "200.00");
+    const fromAccountId = await createTestAccount(request, 500);
+    const toAccountId = await createTestAccount(request, 200);
 
     const insufficientFundsPayload = {
       ...validPayload,
@@ -92,8 +92,8 @@ test.describe('POST /api/transactions', () => {
   });
 
   test('returns 201 for a successful transaction', async ({ request }) => {
-    const fromAccountId = await createTestAccount(request, "500.00");
-    const toAccountId = await createTestAccount(request, "200.00");
+    const fromAccountId = await createTestAccount(request, 5000);
+    const toAccountId = await createTestAccount(request, 200);
 
     const response = await request.post('http://localhost:3000/api/transactions', {
       data: {

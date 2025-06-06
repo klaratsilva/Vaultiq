@@ -11,7 +11,7 @@ interface SearchInputProps {
 
 const SearchInput = ({ placeholder, value, onChange }: SearchInputProps) => {
   return (
-    <div className={`mb-4`}>
+    <div className={`mb-4 p-2`}>
       <Input
         type="search"
         placeholder={placeholder}

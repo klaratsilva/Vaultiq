@@ -11,16 +11,18 @@ export function cn(...inputs: ClassValue[]) {
 export const accountFormSchema = z.object({
    id: z.string().uuid().optional(),      
   ownerId: z.string().uuid().optional(),
-  name: z.string().min(3, "Name must be at least 3 characters"),
+    name: z.string().min(3, "Name must be at least 3 characters"),
   type: z.enum(accountTypes as unknown as [string, ...string[]], {
-    errorMap: () => ({ message: "Invalid account type" }),
-  }),
+      errorMap: () => ({ message: "Invalid account type" }),
+    }),
   currency: z.enum(currencies as unknown as [string, ...string[]], {
-    errorMap: () => ({ message: "Invalid currency" }),
-  }),
-  ownerEmail: z.string().email("Invalid email").optional(),
-  ownerName: z.string().min(3, "Contact name must be at least 3 characters").optional(),
-  balance: z.string().min(1, "Balance must be non-negative"),
+      errorMap: () => ({ message: "Invalid currency" }),
+    }),
+    ownerEmail: z.string().email("Invalid email").optional(),
+    ownerName: z.string().min(3, "Contact name must be at least 3 characters").optional(),
+      balance: z
+    .number({ invalid_type_error: "Amount must be a number" })
+    .positive("Amount must be greater than 0"),
 });
 
 

@@ -14,7 +14,7 @@ export interface Account {
   ownerId: string;           
   ownerEmail: string;           
   ownerName: string;
-  balance: string;     
+  balance: string;    
 }
 
 export interface Transaction {
@@ -31,6 +31,9 @@ export interface Transaction {
 }
 
 export type CreateTransactionPayload = Omit<Transaction, "id" | "createdAt" | "status">;
+export type CreateAccountPayload = Omit<Account, 'id' | 'createdAt'>;
+export type UpdateAccountPayload = Partial<Omit<Account, 'createdAt'>> & { id: string };
+
 
 export type SidebarItem = {
   imgURL: string;

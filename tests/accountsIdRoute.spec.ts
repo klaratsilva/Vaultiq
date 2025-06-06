@@ -19,7 +19,7 @@ test.beforeEach(async ({ request }) => {
       name: 'Business Checking',
       type: 'business',
       currency: 'EUR',
-      balance: '1000.00',
+      balance: 1000,
       ownerEmail: 'klara.tsilva@gmail.com',
       ownerName: 'Klara Silva',
       ownerId: '887c718d-d7c5-4a5e-8e3f-00e3b5f0e459',
@@ -34,7 +34,7 @@ test.beforeEach(async ({ request }) => {
       name: 'Personal Savings',
       type: 'personal',
       currency: 'EUR',
-      balance: '5000.00',
+      balance: 5000,
       ownerEmail: 'sim@gmail.com',
       ownerName: 'Simao Silva',
       ownerId: '8676bf3e-4114-4c07-850e-7fa2345f6a07',
@@ -66,12 +66,20 @@ test.describe('Accounts [id] API', () => {
     expect(json.error).toBe('Account not found');
   });
 
-  test('PATCH updates account successfully', async ({ request }) => {
-    const updatePayload = { name: 'Updated Name' };
-    const response = await request.patch(`${baseUrl}/${existingAccountId1}`, { data: updatePayload });
+  test('PUT updates account successfully', async ({ request }) => {
+    const updatePayload = {
+      name: 'Personal Savings',
+      type: 'personal',
+      currency: 'EUR',
+      balance: 5000,
+      ownerEmail: 'sim@gmail.com',
+      ownerName: 'Peter',
+      ownerId: '8676bf3e-4114-4c07-850e-7fa2345f6a07',
+    };
+    const response = await request.put(`${baseUrl}/${existingAccountId1}`, { data: updatePayload });
     expect(response.status()).toBe(200);
     const json = await response.json();
-    expect(json.name).toBe('Updated Name');
+    expect(json).toMatchObject(updatePayload);
   });
 
   test('DELETE removes account successfully', async ({ request }) => {

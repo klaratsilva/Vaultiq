@@ -13,12 +13,12 @@ export async function GET(request: NextRequest, { params }: { params: { id: stri
   return NextResponse.json(account);
 }
 
-export async function PATCH(request: NextRequest, { params }: { params: { id: string } }) {
+export async function PUT(request: NextRequest, { params }: { params: { id: string } }) {
   const id = params.id;
   const body = await request.json();
 
   const response = await fetch(`${process.env.API_URL}/accounts/${id}`, {
-    method: "PATCH",
+    method: "PUT",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(body),
   });

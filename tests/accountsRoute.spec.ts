@@ -12,7 +12,7 @@ const validPayload = {
   name: 'Business Checking',
   type: 'business',
   currency: 'USD',
-  balance: '1000',
+  balance: 1000,
 };
 
 
