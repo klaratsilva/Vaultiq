@@ -1,28 +1,5 @@
 {
-  "accounts": [
-    {
-      "id": "8ec9ee3d-8533-4a44-99bc-f67688f212d7",
-      "name": "Klara Silva",
-      "type": "personal",
-      "currency": "USD",
-      "balance": "533.00",
-      "ownerEmail": "klara.tsilva@gmail.com",
-      "ownerName": "TEST TEST TES",
-      "ownerId": "887c718d-d7c5-4a5e-8e3f-00e3b5f0e459",
-      "createdAt": "2025-06-06T12:32:32.698Z"
-    },
-    {
-      "id": "3cc47923-bd09-4bbc-9eb2-49516c05e6e3",
-      "name": "Personal Savings",
-      "type": "personal",
-      "currency": "USD",
-      "balance": "601.00",
-      "ownerEmail": "sim@gmail.com",
-      "ownerName": "Filipe SIlva",
-      "ownerId": "8676bf3e-4114-4c07-850e-7fa2345f6a07",
-      "createdAt": "2025-06-06T12:35:31.459Z"
-    }
-  ],
+  "accounts": [],
   "users": [
     {
       "id": "3bc8",

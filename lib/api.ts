@@ -19,7 +19,7 @@ export async function getAccountById(id: string) {
 
 export async function deleteAccount(id: string) {
   try {
-    const apiUrl = `${process.env.API_URL}/accounts/${id}`;
+    const apiUrl = `http://localhost:3000/api/accounts/${id}`;
     const res = await fetch(apiUrl, {
       method: "DELETE",
     });
@@ -74,8 +74,8 @@ export async function createTransaction(
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         ...data,
-        // status: "pending",
-        // createdAt: new Date().toISOString(),
+        status: "pending",
+        createdAt: new Date().toISOString(),
       }),
     });
 

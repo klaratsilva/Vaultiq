@@ -32,21 +32,50 @@ export async function PUT(request: NextRequest, { params }: { params: { id: stri
 }
 
 
+// export async function DELETE(
+//   request: NextRequest,
+//   { params }: { params: { id: string } }
+// ) {
+//     console.log("Deleting account id:", params.id);
+//   try {
+//     const res = await fetch(`${process.env.API_URL}/accounts/${params.id}`, {
+//       method: "DELETE",
+//     });
+
+//     if (!res.ok) {
+//       return NextResponse.json({ error: "Failed to delete account" }, { status: 500 });
+//     }
+
+//     return NextResponse.json({ message: "Account deleted" });
+//   } catch (error) {
+//     return NextResponse.json({ error: "Server error" }, { status: 500 });
+//   }
+// }
+
 export async function DELETE(
   request: NextRequest,
   { params }: { params: { id: string } }
 ) {
+  const { id } = params;
+  console.log("Delete request for id:", id);
+
   try {
-    const res = await fetch(`${process.env.API_URL}/accounts/${params.id}`, {
+    const res = await fetch(`${process.env.API_URL}/accounts/${id}`, {
       method: "DELETE",
     });
 
     if (!res.ok) {
-      return NextResponse.json({ error: "Failed to delete account" }, { status: 500 });
+      const text = await res.text();
+      console.error("Backend delete error:", res.status, text);
+      return NextResponse.json(
+        { error: "Failed to delete account" },
+        { status: res.status }
+      );
     }
 
-    return NextResponse.json({ message: "Account deleted" });
+    return NextResponse.json({ message: "Account deleted" }, { status: 200 });
   } catch (error) {
+    console.error("DELETE route error:", error);
     return NextResponse.json({ error: "Server error" }, { status: 500 });
   }
 }

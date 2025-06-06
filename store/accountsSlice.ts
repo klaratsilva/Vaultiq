@@ -38,10 +38,13 @@ const accountsSlice = createSlice({
     setCurrentPage(state, action: PayloadAction<number>) {
       state.currentPage = action.payload;
     },
+    removeAccount(state, action: PayloadAction<string>) {
+      state.accounts = state.accounts.filter(account => account.id !== action.payload);
+    },
   },
 });
 
-export const { setAccounts, setSearchTerm, setCurrentPage, addAccount, updateAccountAction } = accountsSlice.actions;
+export const { setAccounts, setSearchTerm, setCurrentPage, addAccount, updateAccountAction, removeAccount } = accountsSlice.actions;
 
 const selectAccountsState = (state: { accounts: AccountsState }) => state.accounts;
 

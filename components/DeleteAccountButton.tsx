@@ -4,6 +4,8 @@ import { useTransition } from "react";
 import { useRouter } from "next/navigation";
 import { deleteAccount } from "../lib/api";
 import { Button } from "./ui/button";
+import { useDispatch } from "react-redux";
+import { removeAccount } from "@/store/accountsSlice";
 
 export function DeleteAccountButton({
   id,
@@ -14,6 +16,7 @@ export function DeleteAccountButton({
 }) {
   const [isPending, startTransition] = useTransition();
   const router = useRouter();
+  const dispatch = useDispatch();
 
   const handleClick = () => {
     const confirmDelete = window.confirm("Are you sure?");
@@ -21,8 +24,14 @@ export function DeleteAccountButton({
 
     startTransition(async () => {
       try {
-        await deleteAccount(id);
-        router.push(`/${locale}/accounts`);
+        const success = await deleteAccount(id);
+        if (success) {
+          console.log("Success");
+          dispatch(removeAccount(id));
+          router.push(`/${locale}/accounts`);
+        } else {
+          alert("Failed to delete");
+        }
       } catch (err) {
         alert("Failed to delete");
       }

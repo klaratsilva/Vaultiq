@@ -107,7 +107,9 @@
     "balance": "Solde",
     "accountId": "ID du compte",
     "accountType": "Type de compte",
-    "currency": "Devise"
+    "currency": "Devise",
+    "ownerName": "Nom",
+    "ownerEmail": "Email"
   },
   "headers": {
     "welcome": "Bienvenue dans votre gestionnaire de comptes bancaires",

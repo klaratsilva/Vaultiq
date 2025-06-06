@@ -107,7 +107,9 @@
     "balance": "Balance",
     "accountId": "Account ID",
     "accountType": "Account Type",
-    "currency": "Currency"
+    "currency": "Currency",
+    "ownerName": "Name",
+    "ownerEmail": "Email"
   },
   "headers": {
     "welcome": "Welcome to your bank account manager",
