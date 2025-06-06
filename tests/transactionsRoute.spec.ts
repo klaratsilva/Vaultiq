@@ -40,9 +40,11 @@ test.describe('POST /api/transactions', () => {
 
 
   test.afterAll(() => {
-    fs.copyFileSync(dbBackupPath, dbPath);
-  });
-
+     if (fs.existsSync(dbBackupPath)) {
+       fs.copyFileSync(dbBackupPath, dbPath);
+     }
+   });
+ 
 
     test('returns 400 for missing required fields', async ({ request }) => {
     const response = await request.post('http://localhost:3000/api/transactions', {
@@ -79,7 +81,7 @@ test.describe('POST /api/transactions', () => {
       ...validPayload,
       fromAccountId,
       toAccountId,
-      amount: 999999,  // very large to simulate insufficient balance
+      amount: 999999,  
     };
 
     const response = await request.post('http://localhost:3000/api/transactions', {

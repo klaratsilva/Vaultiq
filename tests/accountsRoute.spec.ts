@@ -21,9 +21,12 @@ test.describe('POST /api/accounts', () => {
     fs.copyFileSync(dbBackupPath, dbPath);
   });
 
-  test.afterAll(() => {
-    fs.copyFileSync(dbBackupPath, dbPath);
-  });
+   test.afterAll(() => {
+      if (fs.existsSync(dbBackupPath)) {
+        fs.copyFileSync(dbBackupPath, dbPath);
+      }
+    });
+  
 
   test('returns 400 for invalid payload', async ({ request }) => {
     const response = await request.post('http://localhost:3000/api/accounts', {
