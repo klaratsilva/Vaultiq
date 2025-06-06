@@ -1,3 +1,4 @@
+import AccountsListWrapper from "@/components/AccountListWrapper";
 import AccountsList from "@/components/AccountsList";
 import Header from "@/components/Header";
 import { getAllAccounts } from "@/lib/api";
@@ -21,7 +22,7 @@ const Accounts = async () => {
         title={"accounts"}
         btn={{ href: "/accounts/new", btnTitle: "newAccount" }}
       />
-      <AccountsList accounts={accounts} />
+      <AccountsListWrapper initialAccounts={accounts} />
     </section>
   );
 };

@@ -1,46 +1,62 @@
-// store/accountsSlice.ts
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { Account } from "@/lib/types";
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-
-export const fetchAccounts = createAsyncThunk(
-  "accounts/fetchAll",
-  async (_, thunkAPI) => {
-    const res = await fetch(`${process.env.API_URL}/accounts`);
-    if (!res.ok) throw new Error("Failed to fetch");
-    return (await res.json()) as Account[];
-  }
-);
 
 interface AccountsState {
-  list: Account[];
-  status: "idle" | "loading" | "succeeded" | "failed";
-  error: string | null;
+  accounts: Account[];
+  searchTerm: string;
+  currentPage: number;
+  itemsPerPage: number;
 }
 
 const initialState: AccountsState = {
-  list: [],
-  status: "idle",
-  error: null,
+  accounts: [],
+  searchTerm: "",
+  currentPage: 1,
+  itemsPerPage: 6,
 };
 
 const accountsSlice = createSlice({
   name: "accounts",
   initialState,
-  reducers: {},
-  extraReducers: (builder) => {
-    builder
-      .addCase(fetchAccounts.pending, (state) => {
-        state.status = "loading";
-      })
-      .addCase(fetchAccounts.fulfilled, (state, action) => {
-        state.status = "succeeded";
-        state.list = action.payload;
-      })
-      .addCase(fetchAccounts.rejected, (state, action) => {
-        state.status = "failed";
-        state.error = action.error.message ?? "Unknown error";
-      });
+  reducers: {
+    setAccounts(state, action: PayloadAction<Account[]>) {
+      state.accounts = action.payload;
+    },
+    setSearchTerm(state, action: PayloadAction<string>) {
+      state.searchTerm = action.payload;
+      state.currentPage = 1;
+    },
+    setCurrentPage(state, action: PayloadAction<number>) {
+      state.currentPage = action.payload;
+    },
   },
 });
+
+export const { setAccounts, setSearchTerm, setCurrentPage } = accountsSlice.actions;
+
+export const selectFilteredAccounts = (state: { accounts: AccountsState }) => {
+  if (!state.accounts.searchTerm) return state.accounts.accounts;
+
+  const term = state.accounts.searchTerm.toLowerCase();
+  return state.accounts.accounts.filter(({ name, ownerName, type, balance }) =>
+    [name, ownerName, type, balance.toString()].some((field) =>
+      field.toLowerCase().includes(term)
+    )
+  );
+};
+
+export const selectPaginatedAccounts = (state: { accounts: AccountsState }) => {
+  const filtered = selectFilteredAccounts(state);
+  const start = (state.accounts.currentPage - 1) * state.accounts.itemsPerPage;
+  const end = start + state.accounts.itemsPerPage;
+  return filtered.slice(start, end);
+};
+
+export const selectTotalPages = (state: { accounts: AccountsState }) => {
+  const filtered = selectFilteredAccounts(state);
+  return Math.max(Math.ceil(filtered.length / state.accounts.itemsPerPage), 1);
+};
+
+export const selectCurrentPage = (state: { accounts: AccountsState }) => state.accounts.currentPage;
 
 export default accountsSlice.reducer;

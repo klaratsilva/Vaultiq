@@ -11,44 +11,51 @@ import {
 import { Account } from "@/lib/types";
 import { useTranslations } from "next-intl";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { cn, currencyStyles, getTypeColor } from "../lib/utils";
 import { Badge, CurrencyBadge } from "./Badge";
 import { Input } from "./ui/input";
 import { usePagination } from "@/hooks/usePagination";
 import Pagination from "./Pagination";
+import {
+  selectCurrentPage,
+  selectFilteredAccounts,
+  selectPaginatedAccounts,
+  selectTotalPages,
+  setAccounts,
+  setCurrentPage,
+} from "@/store/accountsSlice";
+import { useAppDispatch } from "@/store/hooks";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "@/store/store";
+import { setSearchTerm } from "@/store/accountsSlice";
 
 interface AccountsListProps {
   accounts: Account[];
 }
 
-const AccountsList = ({ accounts }: AccountsListProps) => {
-  const [searchTerm, setSearchTerm] = useState("");
+const AccountsList = () => {
   const t = useTranslations("accounts");
+  const dispatch = useDispatch();
 
-  const {
-    paginatedData: paginatedAccounts,
-    currentPage,
-    totalPages,
-    goToNextPage,
-    goToPrevPage,
-  } = usePagination(accounts, 7);
-
-  const filteredAccounts = accounts.filter(
-    ({ name, ownerName, type, balance }) =>
-      [name, ownerName, type, balance].some((field) =>
-        field.toLowerCase().includes(searchTerm.toLowerCase())
-      )
+  const accounts = useSelector((state: RootState) => state.accounts.accounts);
+  const searchTerm = useSelector(
+    (state: RootState) => state.accounts.searchTerm
   );
 
-  const displayedAccounts = searchTerm ? filteredAccounts : paginatedAccounts;
-  const displayedTotalPages = searchTerm ? 1 : totalPages;
+  const paginatedAccounts = useSelector(selectPaginatedAccounts);
+  const currentPage = useSelector(selectCurrentPage);
+  const totalPages = useSelector(selectTotalPages);
+
+  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    dispatch(setSearchTerm(e.target.value));
+  };
 
   return (
     <>
       <article
         className={cn(
-          "rounded-2xl border border-grey px-7 pt-7 pb-10 max-lg:w-full bg-white"
+          "rounded-2xl border border-grey px-7 pt-7 pb-3 max-lg:w-full bg-white"
         )}
       >
         <div className="mb-4">
@@ -56,7 +63,7 @@ const AccountsList = ({ accounts }: AccountsListProps) => {
             type="search"
             placeholder={t("searchAccountPlaceholder")}
             value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
+            onChange={handleSearchChange}
             className="w-full p-2 border rounded"
           />
         </div>
@@ -71,8 +78,8 @@ const AccountsList = ({ accounts }: AccountsListProps) => {
             </TableRow>
           </TableHeader>
           <TableBody>
-            {displayedAccounts.length > 0 ? (
-              displayedAccounts.map(
+            {paginatedAccounts.length > 0 ? (
+              paginatedAccounts.map(
                 ({ id, balance, name, type, ownerName, currency }) => (
                   <TableRow key={id}>
                     <TableCell>
@@ -129,12 +136,12 @@ const AccountsList = ({ accounts }: AccountsListProps) => {
           </TableBody>
         </Table>
       </article>
-      {displayedTotalPages > 1 && (
+      {totalPages > 1 && (
         <Pagination
           currentPage={currentPage}
-          totalPages={displayedTotalPages}
-          onNext={goToNextPage}
-          onPrev={goToPrevPage}
+          totalPages={totalPages}
+          onNext={() => dispatch(setCurrentPage(currentPage + 1))}
+          onPrev={() => dispatch(setCurrentPage(currentPage - 1))}
         />
       )}
     </>

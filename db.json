@@ -23,6 +23,18 @@
       "ownerEmail": "john.doe@example.com",
       "ownerName": "John Doe",
       "ownerId": "0f9e8d7c654321baedcb0987654321fe"
+    },
+    {
+      "id": "614b",
+      "ownerEmail": "george@george.com",
+      "ownerName": "George Clone",
+      "ownerId": "9a73707f-5aa0-4025-af92-4947ebd98d79"
+    },
+    {
+      "id": "24b1",
+      "ownerEmail": "Rachel@rachel.com",
+      "ownerName": "Rachel Jones",
+      "ownerId": "2fb60708-37ba-4931-aa2a-9daa8d209caf"
     }
   ],
   "accounts": [
@@ -75,6 +87,26 @@
       "ownerEmail": "klara.tsilva@gmail.com",
       "ownerName": "Klara Silva",
       "ownerId": "887c718d7c5e3f000e3b5f0e459"
+    },
+    {
+      "id": "9cb24536-162c-473b-966b-25fbf355fe36",
+      "name": "Personal Savings",
+      "type": "personal",
+      "currency": "USD",
+      "balance": "4444",
+      "ownerEmail": "george@george.com",
+      "ownerName": "George Clone",
+      "ownerId": "9a73707f-5aa0-4025-af92-4947ebd98d79"
+    },
+    {
+      "id": "dddae286-ba9a-4d22-a89f-9e6e5ae982da",
+      "name": "Business Admin",
+      "type": "personal",
+      "currency": "USD",
+      "balance": "5000",
+      "ownerEmail": "Rachel@rachel.com",
+      "ownerName": "Rachel Jones",
+      "ownerId": "2fb60708-37ba-4931-aa2a-9daa8d209caf"
     }
   ],
   "transactions": [
