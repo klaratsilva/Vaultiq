@@ -27,15 +27,19 @@ import SearchInput from "./SearchInput";
 
 interface TransactionsTableProps {
   accountsMap: Record<string, Account>;
+  limit?: number;
 }
 
-const TransactionsTable = ({ accountsMap }: TransactionsTableProps) => {
+const TransactionsTable = ({ accountsMap, limit }: TransactionsTableProps) => {
   const t = useTranslations("TransactionList");
   const dispatch = useDispatch();
 
   const transactions = useSelector(
     (state: RootState) => state.transactions.transactions
   );
+
+  const dashBoardTranasactions = transactions.slice(0, limit);
+
   const searchTerm = useSelector(
     (state: RootState) => state.transactions.searchTerm
   );
@@ -43,6 +47,10 @@ const TransactionsTable = ({ accountsMap }: TransactionsTableProps) => {
   const paginatedTransactions = useSelector(selectPaginatedTransactions);
   const currentPage = useSelector(selectCurrentPage);
   const totalPages = useSelector(selectTotalPages);
+
+  const finalTransactions = limit
+    ? dashBoardTranasactions
+    : paginatedTransactions;
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     dispatch(setSearchTerm(e.target.value));
@@ -75,11 +83,13 @@ const TransactionsTable = ({ accountsMap }: TransactionsTableProps) => {
   return (
     <>
       <article className="rounded-2xl shadow-md border border-grey px-3 pt-3 pb-4 max-lg:w-full bg-white">
-        <SearchInput
-          placeholder={t("searchTransactiontPlaceholder")}
-          value={searchTerm}
-          onChange={handleSearchChange}
-        />
+        {!limit && (
+          <SearchInput
+            placeholder={t("searchTransactiontPlaceholder")}
+            value={searchTerm}
+            onChange={handleSearchChange}
+          />
+        )}
         <Table>
           <TableHeader>
             <TableRow>
@@ -98,7 +108,7 @@ const TransactionsTable = ({ accountsMap }: TransactionsTableProps) => {
             </TableRow>
           </TableHeader>
           <TableBody>
-            {paginatedTransactions.map((t: Transaction) => (
+            {finalTransactions.map((t: Transaction) => (
               <TableRow key={t.id}>
                 <TableCell>{renderAccountCell(t.fromAccountId)}</TableCell>
                 <TableCell>{renderAccountCell(t.toAccountId)}</TableCell>
@@ -127,7 +137,7 @@ const TransactionsTable = ({ accountsMap }: TransactionsTableProps) => {
           </TableBody>
         </Table>
       </article>
-      {totalPages > 1 && (
+      {totalPages > 1 && !limit && (
         <Pagination
           currentPage={currentPage}
           totalPages={totalPages}

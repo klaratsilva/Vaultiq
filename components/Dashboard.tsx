@@ -33,7 +33,6 @@ const Dashboard = ({ userCount }: DashboardProps) => {
   );
 
   const recentAccounts = accounts.slice(0, 3);
-  const recentTransactions = transactions.slice(0, 3);
 
   return (
     <section className="space-y-8">
@@ -80,17 +79,12 @@ const Dashboard = ({ userCount }: DashboardProps) => {
         </div>
       )}
       <div>
-        {recentTransactions.length > 0 && (
-          <Link href={"/transactions"}>
-            <div className="flex flex-col gap-3">
-              <Header title="recentTransactions" />
-              <TransactionsTable
-                transactions={recentTransactions}
-                accountsMap={accountsMap}
-              />
-            </div>
-          </Link>
-        )}
+        <Link href={"/transactions"}>
+          <div className="flex flex-col gap-3">
+            <Header title="recentTransactions" />
+            <TransactionsTable limit={3} accountsMap={accountsMap} />
+          </div>
+        </Link>
       </div>
     </section>
   );

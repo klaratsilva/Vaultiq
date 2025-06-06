@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 };
 
 const Transactions = async () => {
-  const transactions = await getAllTransactions();
+  // const transactions = await getAllTransactions();
   const accounts = await getAllAccounts();
 
   const accountsMap = Object.fromEntries(
@@ -28,12 +28,7 @@ const Transactions = async () => {
         btn={{ href: "/transactions/new", btnTitle: "newTransaction" }}
       />
 
-      {transactions.length > 0 && (
-        <TransactionTable
-          transactions={transactions}
-          accountsMap={accountsMap}
-        />
-      )}
+      <TransactionTable accountsMap={accountsMap} />
     </section>
   );
 };

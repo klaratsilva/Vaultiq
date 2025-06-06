@@ -11,6 +11,8 @@ import Image from "next/image";
 
 import MobileNavbar from "../../components/MobileNavbar";
 import { Providers } from "../providers";
+import StoreHydrator from "@/components/StoreHydrator";
+import { getAllAccounts, getAllTransactions } from "@/lib/api";
 
 export const metadata = {
   title: "My Bank Manager",
@@ -33,6 +35,10 @@ export default async function LocaleLayout({
   params: { locale: string };
 }) {
   const { locale } = await params;
+  const [accounts, transactions] = await Promise.all([
+    getAllAccounts(),
+    getAllTransactions(),
+  ]);
 
   if (!hasLocale(routing.locales, locale)) {
     notFound();
@@ -42,26 +48,31 @@ export default async function LocaleLayout({
 
   return (
     <Providers>
-      <NextIntlClientProvider locale={locale} messages={messages}>
-        <main className="relative flex h-screen w-full">
-          <Navbar />
-          <div className="flex size-full flex-col">
-            <div className="flex h-16 p-5 items-center justify-between p- shadow-creditCard md:hidden">
-              <Image
-                className="mt-2 opacity-60"
-                src="/icons/logo.png"
-                alt="logo"
-                width={50}
-                height={50}
-              />
-              <div>
-                <MobileNavbar />
+      <StoreHydrator
+        initialAccounts={accounts}
+        initialTransactions={transactions}
+      >
+        <NextIntlClientProvider locale={locale} messages={messages}>
+          <main className="relative flex h-screen w-full">
+            <Navbar />
+            <div className="flex size-full flex-col">
+              <div className="flex h-16 p-5 items-center justify-between p- shadow-creditCard md:hidden">
+                <Image
+                  className="mt-2 opacity-60"
+                  src="/icons/logo.png"
+                  alt="logo"
+                  width={50}
+                  height={50}
+                />
+                <div>
+                  <MobileNavbar />
+                </div>
               </div>
+              {children}
             </div>
-            {children}
-          </div>
-        </main>
-      </NextIntlClientProvider>
+          </main>
+        </NextIntlClientProvider>
+      </StoreHydrator>
     </Providers>
   );
 }

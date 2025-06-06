@@ -27,6 +27,8 @@ import { createTransaction } from "@/lib/api";
 import { Textarea } from "./ui/textarea";
 import { CreateTransactionPayload } from "@/lib/types";
 import { useConvertedAmount } from "@/hooks/useConvertedAmount";
+import { useAppDispatch } from "@/store/hooks";
+import { addTransaction } from "@/store/transactionsSlice";
 
 interface TransactionFormProps {
   accounts: {
@@ -38,6 +40,7 @@ interface TransactionFormProps {
 }
 
 const TransactionForm = ({ accounts }: TransactionFormProps) => {
+  const dispatch = useAppDispatch();
   const router = useRouter();
   const t = useTranslations("transactionForm");
   const [isLoading, setIsLoading] = useState(false);
@@ -107,9 +110,13 @@ const TransactionForm = ({ accounts }: TransactionFormProps) => {
         currency: fromAccount!.currency,
         targetCurrency: toAccount!.currency,
       };
+      console.log("Dispatching");
+      const createdTransaction = await createTransaction(payload);
+      console.log(createdTransaction, "createdTransaction");
+      dispatch(addTransaction(createdTransaction));
 
-      await createTransaction(payload);
       form.reset();
+
       router.push("/transactions");
     } catch (error: any) {
       alert(t("errors.failedToCreate") + ": " + error.message);

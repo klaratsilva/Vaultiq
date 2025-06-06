@@ -73,6 +73,7 @@ const AccountForm = ({ initialData }: NewAccountFormProps) => {
       }
 
       form.reset();
+      router.refresh();
       router.push("/accounts");
     } catch (error) {
       alert("An unexpected error occurred.");

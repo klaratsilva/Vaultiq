@@ -35,6 +35,12 @@
       "ownerEmail": "Rachel@rachel.com",
       "ownerName": "Rachel Jones",
       "ownerId": "2fb60708-37ba-4931-aa2a-9daa8d209caf"
+    },
+    {
+      "id": "ea3f",
+      "ownerEmail": "Test300@g.vom",
+      "ownerName": "test300",
+      "ownerId": "a8402eeb-69f2-4922-b2d8-818176d32238"
     }
   ],
   "accounts": [
@@ -43,7 +49,7 @@
       "name": "Business Checking",
       "type": "business",
       "currency": "EUR",
-      "balance": "5499.35",
+      "balance": "4822.18",
       "ownerEmail": "klara.tsilva@gmail.com",
       "ownerName": "Klara Silva",
       "ownerId": "887c718d7c5e3f000e3b5f0e459"
@@ -53,7 +59,7 @@
       "name": "Personal Savings",
       "type": "personal",
       "currency": "EUR",
-      "balance": "4434.26",
+      "balance": "4153.30",
       "ownerEmail": "sim@gmail.com",
       "ownerName": "Simao Silva",
       "ownerId": "8676bf3e41144c07850e7fa2345f6a07"
@@ -63,7 +69,7 @@
       "name": "Joint Checking",
       "type": "personal",
       "currency": "USD",
-      "balance": "1200.00",
+      "balance": "2081.48",
       "ownerEmail": "maria@example.com",
       "ownerName": "Maria Garcia",
       "ownerId": "1d2e3f4g567890ab12cd34ef56gh78ij"
@@ -107,6 +113,146 @@
       "ownerEmail": "Rachel@rachel.com",
       "ownerName": "Rachel Jones",
       "ownerId": "2fb60708-37ba-4931-aa2a-9daa8d209caf"
+    },
+    {
+      "id": "1c8c968b-b78d-4883-b511-7af26a39f63c",
+      "name": "Checking special Account",
+      "type": "personal",
+      "currency": "USD",
+      "balance": "5000",
+      "ownerEmail": "klara.tsilva@gmail.com",
+      "ownerName": "klara Silva",
+      "ownerId": "887c718d7c5e3f000e3b5f0e459"
+    },
+    {
+      "id": "f6b16a4a-ce7c-4e13-b03b-924d8dafed58",
+      "name": "Test test",
+      "type": "personal",
+      "currency": "USD",
+      "balance": "5000",
+      "ownerEmail": "klara.tsilva@gmail.com",
+      "ownerName": "klara Silva",
+      "ownerId": "887c718d7c5e3f000e3b5f0e459"
+    },
+    {
+      "id": "c18947e0-8e8c-469d-9745-022c8b4d3695",
+      "name": "Test test 2",
+      "type": "personal",
+      "currency": "USD",
+      "balance": "456",
+      "ownerEmail": "klara.tsilva@gmail.com",
+      "ownerName": "Test",
+      "ownerId": "887c718d7c5e3f000e3b5f0e459"
+    },
+    {
+      "id": "405ffe63-295a-446f-9216-83e00de902ab",
+      "name": "Klara Silva",
+      "type": "personal",
+      "currency": "USD",
+      "balance": "5000",
+      "ownerEmail": "klara.tsilva@gmail.com",
+      "ownerName": "klara Silva",
+      "ownerId": "887c718d7c5e3f000e3b5f0e459"
+    },
+    {
+      "id": "3fbf6510-d248-44e8-bb16-873c4f6ff292",
+      "name": "Klara Silva",
+      "type": "personal",
+      "currency": "USD",
+      "balance": "5000",
+      "ownerEmail": "klara.tsilva@gmail.com",
+      "ownerName": "klara Silva",
+      "ownerId": "887c718d7c5e3f000e3b5f0e459"
+    },
+    {
+      "id": "7a3076da-428c-45a2-b964-67abcd4708cc",
+      "name": "Business Admin",
+      "type": "personal",
+      "currency": "USD",
+      "balance": "5000",
+      "ownerEmail": "Test300@g.vom",
+      "ownerName": "test300",
+      "ownerId": "a8402eeb-69f2-4922-b2d8-818176d32238"
+    },
+    {
+      "id": "02068fe5-8a44-4ae8-ab53-bb0bb731916e",
+      "name": "Tets",
+      "type": "personal",
+      "currency": "USD",
+      "balance": "5000",
+      "ownerEmail": "klara.tsilva@gmail.com",
+      "ownerName": "Tiago Holms",
+      "ownerId": "887c718d7c5e3f000e3b5f0e459"
+    },
+    {
+      "id": "eefc7532-d5a3-4e2c-b100-102a1de421bd",
+      "name": "Klara Silva",
+      "type": "personal",
+      "currency": "USD",
+      "balance": "5000",
+      "ownerEmail": "klara.tsilva@gmail.com",
+      "ownerName": "klara Silva",
+      "ownerId": "887c718d7c5e3f000e3b5f0e459"
+    },
+    {
+      "id": "4c8513a8-ab67-46f6-a15e-96e6eca8c55d",
+      "name": "Klara Silva",
+      "type": "personal",
+      "currency": "USD",
+      "balance": "13144.22",
+      "ownerEmail": "klara.tsilva@gmail.com",
+      "ownerName": "klara",
+      "ownerId": "887c718d7c5e3f000e3b5f0e459"
+    },
+    {
+      "id": "39d3ce8e-d919-459e-bd48-ee16a438f06e",
+      "name": "Klara Silva",
+      "type": "personal",
+      "currency": "USD",
+      "balance": "5000",
+      "ownerEmail": "sim@gmail.com",
+      "ownerName": "Sara James",
+      "ownerId": "8676bf3e41144c07850e7fa2345f6a07"
+    },
+    {
+      "id": "891bd2ce-bf9e-49b1-bdeb-078c124111ef",
+      "name": "Tolentino da Silva",
+      "type": "personal",
+      "currency": "USD",
+      "balance": "5000",
+      "ownerEmail": "sim@gmail.com",
+      "ownerName": "Sara James",
+      "ownerId": "8676bf3e41144c07850e7fa2345f6a07"
+    },
+    {
+      "id": "2f5ac837-e2ab-427e-8e7f-27d7e955b0db",
+      "name": "Klara Silva",
+      "type": "personal",
+      "currency": "USD",
+      "balance": "5000",
+      "ownerEmail": "klara.tsilva@gmail.com",
+      "ownerName": "klara",
+      "ownerId": "887c718d7c5e3f000e3b5f0e459"
+    },
+    {
+      "id": "c5eeeecc-8bef-4030-88d8-4f834f76c27d",
+      "name": "Bussines Checking",
+      "type": "personal",
+      "currency": "USD",
+      "balance": "5000",
+      "ownerEmail": "sim@gmail.com",
+      "ownerName": "klara Silva",
+      "ownerId": "8676bf3e41144c07850e7fa2345f6a07"
+    },
+    {
+      "id": "b69c4892-77cd-4a02-9261-bf07dbbeb239",
+      "name": "Personal Savings",
+      "type": "personal",
+      "currency": "USD",
+      "balance": "4000",
+      "ownerEmail": "sim@gmail.com",
+      "ownerName": "Sara James",
+      "ownerId": "8676bf3e41144c07850e7fa2345f6a07"
     }
   ],
   "transactions": [
@@ -229,6 +375,66 @@
       "clientConvertedAmount": 335,
       "status": "default",
       "createdAt": "2025-05-28T09:40:00.000Z"
+    },
+    {
+      "id": "dc7c",
+      "fromAccountId": "0222-8676bf3e4c07850",
+      "toAccountId": "0333-1d2e3f4g567890a",
+      "amount": 361.96,
+      "description": "ddd",
+      "currency": "EUR",
+      "targetCurrency": "USD",
+      "clientConvertedAmount": 333,
+      "status": "pending",
+      "createdAt": "2025-06-06T10:21:04.765Z"
+    },
+    {
+      "id": "d755",
+      "fromAccountId": "0333-1d2e3f4g567890a",
+      "toAccountId": "0222-8676bf3e4c07850",
+      "amount": 419.52,
+      "description": "test",
+      "currency": "USD",
+      "targetCurrency": "EUR",
+      "clientConvertedAmount": 456,
+      "status": "pending",
+      "createdAt": "2025-06-06T10:24:06.996Z"
+    },
+    {
+      "id": "3f42",
+      "fromAccountId": "0111-887c718d7c5e3f0",
+      "toAccountId": "0333-1d2e3f4g567890a",
+      "amount": 616.3,
+      "description": "test 2",
+      "currency": "EUR",
+      "targetCurrency": "USD",
+      "clientConvertedAmount": 567,
+      "status": "pending",
+      "createdAt": "2025-06-06T10:30:33.602Z"
+    },
+    {
+      "id": "69df",
+      "fromAccountId": "0111-887c718d7c5e3f0",
+      "toAccountId": "0333-1d2e3f4g567890a",
+      "amount": 60.87,
+      "description": "test 3",
+      "currency": "EUR",
+      "targetCurrency": "USD",
+      "clientConvertedAmount": 56,
+      "status": "pending",
+      "createdAt": "2025-06-06T10:31:03.129Z"
+    },
+    {
+      "id": "a503",
+      "fromAccountId": "0222-8676bf3e4c07850",
+      "toAccountId": "0333-1d2e3f4g567890a",
+      "amount": 375,
+      "description": "test 4",
+      "currency": "EUR",
+      "targetCurrency": "USD",
+      "clientConvertedAmount": 345,
+      "status": "pending",
+      "createdAt": "2025-06-06T10:33:54.039Z"
     }
   ]
 }

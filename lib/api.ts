@@ -1,3 +1,4 @@
+import { CreateTransactionPayload, Transaction } from "./types";
 import { transactionSchema } from "./utils";
 import { z } from "zod";
 
@@ -64,7 +65,9 @@ export async function getAllTransactions() {
   }
 }
 
-export async function createTransaction(data: z.infer<typeof transactionSchema>): Promise<z.infer<typeof transactionSchema>> {
+export async function createTransaction(
+  data: CreateTransactionPayload
+): Promise<Transaction>  {
   try {
     const res = await fetch("/api/transactions", {
       method: "POST",
@@ -101,3 +104,5 @@ export async function getAllUsers() {
     return [];
   }
 }
+
+
