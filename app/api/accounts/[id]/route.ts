@@ -1,9 +1,10 @@
+import { API_URL } from "@/lib/utils";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(request: NextRequest, { params }: { params: { id: string } }) {
   const id = await params.id;
 
-  const response = await fetch(`${process.env.API_URL}/accounts/${id}`);
+  const response = await fetch(`${API_URL}/accounts/${id}`);
 
   if (!response.ok) {
     return NextResponse.json({ error: "Account not found" }, { status: 404 });
@@ -18,7 +19,7 @@ export async function PUT(request: NextRequest, { params }: { params: { id: stri
   const incomingData = await request.json();
 
   // 🔍 Step 1: Fetch the existing account from the API
-  const existingRes = await fetch(`${process.env.API_URL}/accounts/${id}`);
+  const existingRes = await fetch(`${API_URL}/accounts/${id}`);
 
   if (!existingRes.ok) {
     return NextResponse.json({ error: "Failed to fetch existing account" }, { status: 404 });
@@ -32,7 +33,7 @@ export async function PUT(request: NextRequest, { params }: { params: { id: stri
     ...incomingData, 
   };
 
-  const updateRes = await fetch(`${process.env.API_URL}/accounts/${id}`, {
+  const updateRes = await fetch(`${API_URL}/accounts/${id}`, {
     method: "PUT",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(updatedPayload),
@@ -54,7 +55,7 @@ export async function DELETE(
   const { id } = await params;
 
   try {
-    const res = await fetch(`${process.env.API_URL}/accounts/${id}`, {
+    const res = await fetch(`${API_URL}/accounts/${id}`, {
       method: "DELETE",
     });
 

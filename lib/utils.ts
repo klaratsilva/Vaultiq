@@ -4,6 +4,9 @@ import { twMerge } from "tailwind-merge";
 import { z } from "zod";
 import { Account, AccountType, accountTypes, currencies } from "./types";
 
+export const API_URL="http://localhost:4000"
+export const NEXT_PUBLIC_API_URL="http://localhost:3000"
+
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }

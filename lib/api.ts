@@ -1,10 +1,10 @@
 import { CreateTransactionPayload, Transaction } from "./types";
-import { accountFormSchema, transactionSchema } from "./utils";
+import { accountFormSchema, API_URL, transactionSchema } from "./utils";
 import { z } from "zod";
 
 export async function getAccountById(id: string) {
   try {
-    const apiUrl = `${process.env.API_URL}/accounts/${id}`; // Backend, not the frontend
+    const apiUrl = `${API_URL}/accounts/${id}`; // Backend, not the frontend
     const res = await fetch(apiUrl, { cache: "no-store" });
 
     if (!res.ok) return null;
@@ -37,7 +37,7 @@ export async function deleteAccount(id: string) {
 
 export async function getAllAccounts() {
   try {
-    const apiUrl = `${process.env.API_URL}/accounts`;
+    const apiUrl = `${API_URL}/accounts`;
     const res = await fetch(apiUrl, { cache: "no-store" });
 
     if (!res.ok) throw new Error("Failed to fetch accounts");
@@ -65,7 +65,7 @@ export async function getAllAccountsApi() {
 
 export async function getAllTransactions() {
   try {
-    const apiUrl = `${process.env.API_URL}/transactions`; // use env for flexibility
+    const apiUrl = `${API_URL}/transactions`; 
     const res = await fetch(apiUrl, { cache: "no-store" });
 
     if (!res.ok) {
@@ -107,7 +107,7 @@ export async function createTransaction(
 
 export async function getAllUsers() {
   try {
-    const apiUrl = `${process.env.API_URL}/users`;
+    const apiUrl = `${API_URL}/users`;
     const res = await fetch(apiUrl, { cache: "no-store" });
 
     if (!res.ok) throw new Error("Failed to fetch users");

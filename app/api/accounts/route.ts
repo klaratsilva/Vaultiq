@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { v4 as uuidv4 } from "uuid";
-import { accountFormSchema } from "@/lib/utils"; // your Zod schema
+import { accountFormSchema, API_URL } from "@/lib/utils"; 
 
 export async function POST(request: NextRequest) {
   try {
@@ -27,7 +27,7 @@ export async function POST(request: NextRequest) {
 
     // Check if user exists in json-server
     const userCheckResponse = await fetch(
-      `${process.env.API_URL}/users?ownerEmail=${encodeURIComponent(ownerEmail)}`
+      `${API_URL}/users?ownerEmail=${encodeURIComponent(ownerEmail)}`
     );
     const users = await userCheckResponse.json();
 
@@ -39,7 +39,7 @@ export async function POST(request: NextRequest) {
       ownerId = uuidv4();
 
     // Create new user in json-server
-      await fetch(`${process.env.API_URL}/users`, {
+      await fetch(`${API_URL}/users`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ ownerEmail, ownerName, ownerId }),
@@ -56,7 +56,7 @@ export async function POST(request: NextRequest) {
       createdAt: new Date().toISOString(),
     };
 
-    const createAccountRes = await fetch(`${process.env.API_URL}/accounts`, {
+    const createAccountRes = await fetch(`${API_URL}/accounts`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(newAccount),
@@ -74,7 +74,7 @@ export async function POST(request: NextRequest) {
 
 export async function GET() {
   try {
-    const res = await fetch(`${process.env.API_URL}/accounts`);
+    const res = await fetch(`${API_URL}/accounts`);
 
     if (!res.ok) {
       return new Response("Failed to fetch", { status: 500 });

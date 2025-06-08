@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { extendedTransactionSchema } from "@/lib/utils";
+import { API_URL, extendedTransactionSchema } from "@/lib/utils";
 
 export async function POST(request: Request) {
   try {
@@ -10,8 +10,8 @@ export async function POST(request: Request) {
 
     // Fetching sender and receiver accounts
     const [fromRes, toRes] = await Promise.all([
-      fetch(`${process.env.API_URL}/accounts/${fromAccountId}`),
-      fetch(`${process.env.API_URL}/accounts/${toAccountId}`),
+      fetch(`${API_URL}/accounts/${fromAccountId}`),
+      fetch(`${API_URL}/accounts/${toAccountId}`),
     ]);
 
     if (!fromRes.ok || !toRes.ok) {
@@ -41,12 +41,12 @@ export async function POST(request: Request) {
 
     // Update balances
     const [patchFromRes, patchToRes] = await Promise.all([
-      fetch(`${process.env.API_URL}/accounts/${fromAccountId}`, {
+      fetch(`${API_URL}/accounts/${fromAccountId}`, {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ balance: updatedFromBalance }),
       }),
-      fetch(`${process.env.API_URL}/accounts/${toAccountId}`, {
+      fetch(`${API_URL}/accounts/${toAccountId}`, {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ balance: updatedToBalance }),
@@ -60,8 +60,7 @@ export async function POST(request: Request) {
       );
     }
 
-    // Save the transaction itself, including currency details and client converted amount
-    const saveTransactionRes = await fetch(`${process.env.API_URL}/transactions`, {
+    const saveTransactionRes = await fetch(`${API_URL}/transactions`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
