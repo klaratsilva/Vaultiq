@@ -1,9 +1,7 @@
-// app/[locale]/layout.tsx
 import { NextIntlClientProvider, hasLocale } from "next-intl";
 import { notFound } from "next/navigation";
 import { routing } from "../../i18n/routing";
 
-// Import your messages here (paths relative to this file)
 import en from "../../messages/en.json";
 import fr from "../../messages/fr.json";
 import Navbar from "@/components/NavBar";
@@ -56,14 +54,19 @@ export default async function LocaleLayout({
           <main className="relative flex h-screen w-full">
             <Navbar />
             <div className="flex size-full flex-col">
-              <div className="flex h-16 p-5 items-center justify-between p- shadow-creditCard md:hidden">
-                <Image
-                  className="mt-2 opacity-60"
-                  src="/icons/logo.png"
-                  alt="logo"
-                  width={50}
-                  height={50}
-                />
+              <div className="flex h-16 p-5 items-center justify-between md:hidden mb-2">
+                <div className="flex justify-center items-center">
+                  <Image
+                    className="mt-2 opacity-60"
+                    src="/icons/logo.png"
+                    alt="logo"
+                    width={44}
+                    height={44}
+                  />
+                  <h1 className="mt-3 text-xl font-bold text-primary">
+                    VaultIq
+                  </h1>
+                </div>
                 <div>
                   <MobileNavbar />
                 </div>

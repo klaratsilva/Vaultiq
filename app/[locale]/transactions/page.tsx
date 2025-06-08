@@ -15,12 +15,11 @@ export const metadata: Metadata = {
 
 const Transactions = async () => {
   return (
-    <section className="no-scrollbar flex flex-col gap-6  p-8 md:max-h-screen xl:py-12">
+    <section className="page-section">
       <Header
         title={"transactions"}
         btn={{ href: "/transactions/new", btnTitle: "newTransaction" }}
       />
-
       <TransactionTable />
     </section>
   );

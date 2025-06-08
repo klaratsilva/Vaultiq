@@ -52,10 +52,10 @@ const MobileNavbar = () => {
               src="/icons/logo.png"
               className="opacity-60"
               alt="logo"
-              width={64}
-              height={64}
+              width={44}
+              height={44}
             />
-            <h1 className="text-4xl font-bold text-primary">VaultIq</h1>
+            <h1 className="text-2xl font-bold text-primary">VaultIq</h1>
           </Link>
           <div className="flex h-[calc(100vh-72px)] flex-col justify-between overflow-y-auto">
             <SheetClose asChild>

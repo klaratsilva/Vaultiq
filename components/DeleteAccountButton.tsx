@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useTransition } from "react";
+import { useTransition } from "react";
 import { useRouter } from "next/navigation";
 import { deleteAccount } from "../lib/api";
 import { Button } from "./ui/button";
@@ -15,29 +15,28 @@ export function DeleteAccountButton({
   id: string;
   locale: string;
 }) {
-  const [isPending, setIsPending] = useState(false);
+  const [isPending, startTransition] = useTransition();
   const router = useRouter();
   const dispatch = useDispatch();
   const t = useTranslations("accountDetails");
 
-  const handleClick = async () => {
+  const handleClick = () => {
     const confirmDelete = window.confirm("Are you sure?");
     if (!confirmDelete) return;
 
-    setIsPending(true);
-    try {
-      const success = await deleteAccount(id);
-      if (success) {
-        dispatch(removeAccount(id));
-        router.push(`/${locale}/accounts`);
-      } else {
+    startTransition(async () => {
+      try {
+        const success = await deleteAccount(id);
+        if (success) {
+          dispatch(removeAccount(id));
+          router.push(`/${locale}/accounts`);
+        } else {
+          alert("Failed to delete");
+        }
+      } catch (err) {
         alert("Failed to delete");
       }
-    } catch (err) {
-      alert("Failed to delete");
-    } finally {
-      setIsPending(false);
-    }
+    });
   };
 
   return (

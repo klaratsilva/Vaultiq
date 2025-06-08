@@ -12,7 +12,7 @@ export default async function EditAccountPage({ params }: Props) {
   if (!account) throw new Error("Account not found");
 
   return (
-    <section className="flex flex-col gap-6 overflow-y-scroll p-8 md:max-h-screen xl:py-12">
+    <section className="page-section">
       <h1 className="text-2xl text-bold">Edit your account: {id}</h1>
       <AccountForm initialData={account} />
     </section>
