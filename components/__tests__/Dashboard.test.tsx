@@ -1,7 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import Dashboard from "../Dashboard";
 import { useSelector } from "react-redux";
-import { useTranslations } from "next-intl";
 
 // Mocks
 jest.mock("react-redux", () => ({
@@ -12,7 +11,7 @@ jest.mock("next-intl", () => ({
   useTranslations: () => (key: string) => key,
 }));
 
-jest.mock("../DashboardSummaryCard", () => ({ title, value }: any) => (
+jest.mock("../SummaryCard", () => ({ title, value }: any) => (
   <div>
     <h2>{title}</h2>
     <p>{value}</p>

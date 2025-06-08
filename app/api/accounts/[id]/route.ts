@@ -15,19 +15,37 @@ export async function GET(request: NextRequest, { params }: { params: { id: stri
 
 export async function PUT(request: NextRequest, { params }: { params: { id: string } }) {
   const id = params.id;
-  const body = await request.json();
+  const incomingData = await request.json();
 
-  const response = await fetch(`${process.env.API_URL}/accounts/${id}`, {
-    method: "PUT",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(body),
-  });
+  // 🔍 Step 1: Fetch the existing account from the API
+  const existingRes = await fetch(`${process.env.API_URL}/accounts/${id}`);
 
-  if (!response.ok) {
-    return NextResponse.json({ error: "Failed to update account" }, { status: 500 });
+  if (!existingRes.ok) {
+    return NextResponse.json({ error: "Failed to fetch existing account" }, { status: 404 });
   }
 
-  const updatedAccount = await response.json();
+  const existingAccount = await existingRes.json();
+
+
+  const updatedPayload = {
+    ...existingAccount,
+    ...incomingData, 
+  };
+
+  console.log(updatedPayload, "updatedPayload")
+  
+  const updateRes = await fetch(`${process.env.API_URL}/accounts/${id}`, {
+    method: "PUT",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(updatedPayload),
+  });
+
+  if (!updateRes.ok) {
+    const errorData = await updateRes.json().catch(() => ({}));
+    return NextResponse.json({ error: errorData?.message || "Failed to update account" }, { status: 500 });
+  }
+
+  const updatedAccount = await updateRes.json();
   return NextResponse.json(updatedAccount);
 }
 
@@ -35,7 +53,7 @@ export async function DELETE(
   request: NextRequest,
   { params }: { params: { id: string } }
 ) {
-  const { id } = params;
+  const { id } = await params;
 
   try {
     const res = await fetch(`${process.env.API_URL}/accounts/${id}`, {

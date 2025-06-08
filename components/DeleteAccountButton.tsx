@@ -20,7 +20,7 @@ export function DeleteAccountButton({
   const dispatch = useDispatch();
   const t = useTranslations("accountDetails");
 
-  const handleClick = () => {
+  const handleClick = async () => {
     const confirmDelete = window.confirm("Are you sure?");
     if (!confirmDelete) return;
 
