@@ -1,28 +1,6 @@
 {
   "accounts": [
     {
-      "id": "88e25d16-eba4-4c7b-886a-ad162f93c653",
-      "name": "Personal Savings",
-      "type": "personal",
-      "currency": "USD",
-      "balance": "227.00",
-      "ownerEmail": "klara.tsilva@gmail.com",
-      "ownerName": "klara Silva",
-      "ownerId": "887c718d-d7c5-4a5e-8e3f-00e3b5f0e459",
-      "createdAt": "2025-06-06T14:09:51.123Z"
-    },
-    {
-      "id": "00d78f4b-d25c-4128-bd86-5b9f7c6d17de",
-      "name": "Personal Checking",
-      "type": "personal",
-      "currency": "USD",
-      "balance": "10921.00",
-      "ownerEmail": "simao@gmail.com",
-      "ownerName": "Simao Silva",
-      "ownerId": "0d4042c2-a776-4ead-8e3b-0d1e0c63ffd9",
-      "createdAt": "2025-06-06T15:58:37.787Z"
-    },
-    {
       "id": "e5cbe4a9-7db2-4206-9866-c407d3ea7624",
       "name": "Personal Savings",
       "type": "personal",

@@ -1,6 +1,6 @@
 import { Account } from "@/lib/types";
-import Link from "next/link";
 import { useTranslations } from "next-intl";
+import Link from "next/link";
 import AccountCard from "./AccountCard";
 import Header from "./Header";
 import { Button } from "./ui/button";
@@ -13,7 +13,7 @@ const RecentAccounts = ({ accounts }: { accounts: Account[] }) => {
   return (
     <div className="flex flex-col gap-3">
       <Header title="recentAccounts" />
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="recent-accounts-card-list">
         {accounts.map((acc) => (
           <div
             key={acc.id}

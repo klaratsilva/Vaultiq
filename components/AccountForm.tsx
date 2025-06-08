@@ -63,10 +63,8 @@ const AccountForm = ({ initialData }: NewAccountFormProps) => {
     setIsLoading(true);
 
     try {
-      console.log("FORM SUBMITTED:", data);
       if (isEdit && initialData?.id) {
         const updatedAccount = await updateAccount(initialData.id, data);
-        console.log("udaped");
         dispatch(updateAccountAction(updatedAccount));
       } else {
         const createdAccount = await createAccount(data);

@@ -26,7 +26,6 @@ export function DeleteAccountButton({
       try {
         const success = await deleteAccount(id);
         if (success) {
-          console.log("Success");
           dispatch(removeAccount(id));
           router.push(`/${locale}/accounts`);
         } else {

@@ -118,4 +118,36 @@
   .headline {
     @apply text-2xl text-gray-700 font-bold;
   } 
+  
+  .transaction-table {
+    @apply rounded-2xl shadow-md border px-3 pt-3 pb-4 border-gray-200 max-lg:w-full bg-white;
+  }
+
+  .transaction-table-type {
+    @apply size-[48px] flex items-center justify-center rounded-4xl max-md:hidden p-2;
+  }
+
+  .transaction-form {
+    @apply w-full max-w-full md:max-w-[60%];
+  }
+
+  .recent-accounts-card-list {
+    @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6;
+  }
+
+  .recent-accounts-card {
+    @apply border rounded-xl shadow-sm bg-white p-4;
+  }
+
+  .navbar {
+    @apply sticky left-0 top-0 flex h-screen w-fit flex-col justify-between p-6 border-r border-gray-200 bg-white pt-6 text-white max-md:hidden 2xl:w-[355px];
+  }
+
+  .navbar-logo-text {
+    @apply text-3xl text-primary font-bold;
+  }
+
+  .locale-switcher-link {
+    @apply w-10 h-10 flex items-center justify-center rounded-full text-sm uppercase transition;
+  }
 }

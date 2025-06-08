@@ -115,7 +115,6 @@ const TransactionForm = () => {
       dispatch(addTransaction(createdTransaction));
 
       const updatedAccounts = await getAllAccountsApi();
-      console.log(updatedAccounts, "updatedAccounts");
       dispatch(setAccounts(updatedAccounts));
 
       form.reset();
@@ -128,7 +127,7 @@ const TransactionForm = () => {
   }
 
   return (
-    <section className="w-full max-w-full md:max-w-[60%]">
+    <section className="transaction-form">
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-5">
           <CustomSelect

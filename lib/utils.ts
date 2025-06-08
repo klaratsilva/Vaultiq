@@ -197,3 +197,11 @@ export const currencyStyles = {
   },
 };
 
+interface HasCreatedAt {
+  createdAt: string;
+}
+
+export const sortByCreatedAt = <T extends HasCreatedAt>(items: T[]): T[] =>
+  [...items].sort(
+    (a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+  );

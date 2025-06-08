@@ -19,8 +19,9 @@ const Pagination = ({
       disabled={currentPage === 1}
       variant="outline"
       className="disabled:opacity-50 text-xs"
+      aria-label="Previous page"
     >
-      Prev
+      ◀
     </Button>
     <span className="px-3 py-1.5 text-xs font-medium">
       Page {currentPage} of {totalPages}
@@ -30,8 +31,9 @@ const Pagination = ({
       variant="outline"
       disabled={currentPage === totalPages}
       className="disabled:opacity-50 text-xs"
+      aria-label="Next page"
     >
-      Next
+      ▶
     </Button>
   </div>
 );

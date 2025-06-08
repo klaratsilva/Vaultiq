@@ -15,6 +15,7 @@ import {
 } from "@/components/ui/sheet";
 import { cn, sidebarLinks } from "../lib/utils";
 import { localeNames, supportedLocales } from "@/i18n/locales";
+import LocaleSwitcher from "./LocaleSwitcher";
 
 function stripLocaleFromPath(path: string) {
   const parts = path.split("/").slice(2);
@@ -102,26 +103,12 @@ const MobileNavbar = () => {
                 })}
               </nav>
             </SheetClose>
-
-            <footer className="mb-8 border-t pt-4 px-4">
-              <div className="flex gap-2 justify-center">
-                {supportedLocales.map((loc) => (
-                  <Link
-                    key={loc}
-                    href={`/${loc}${basePath}`}
-                    className={cn(
-                      "w-10 h-10 flex items-center justify-center rounded-full text-sm uppercase transition",
-                      loc === locale
-                        ? "bg-primary text-white"
-                        : "bg-gray-200 text-gray-800 hover:bg-gray-300"
-                    )}
-                    aria-label={`Switch to ${localeNames[loc]}`}
-                  >
-                    {loc}
-                  </Link>
-                ))}
-              </div>
-            </footer>
+            <LocaleSwitcher
+              supportedLocales={supportedLocales}
+              basePath={basePath}
+              locale={locale}
+              localeNames={localeNames}
+            />
           </div>
         </SheetContent>
       </Sheet>

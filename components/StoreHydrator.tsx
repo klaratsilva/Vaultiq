@@ -1,10 +1,11 @@
 "use client";
 
-import { ReactNode, useEffect } from "react";
+import { ReactNode, useEffect, useMemo } from "react";
 import { useAppDispatch } from "@/store/hooks";
 import { setAccounts } from "@/store/accountsSlice";
 import { setTransactions } from "@/store/transactionsSlice";
 import { Account, Transaction } from "@/lib/types";
+import { sortByCreatedAt } from "@/lib/utils";
 
 interface Props {
   initialAccounts: Account[];
@@ -19,17 +20,16 @@ const StoreHydrator = ({
 }: Props) => {
   const dispatch = useAppDispatch();
 
+  const sortedAccounts = useMemo(
+    () => sortByCreatedAt(initialAccounts),
+    [initialAccounts]
+  );
+  const sortedTransactions = useMemo(
+    () => sortByCreatedAt(initialTransactions),
+    [initialTransactions]
+  );
+
   useEffect(() => {
-    const sortedAccounts = [...initialAccounts].sort(
-      (a, b) =>
-        new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
-    );
-
-    const sortedTransactions = [...initialTransactions].sort(
-      (a, b) =>
-        new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
-    );
-
     dispatch(setAccounts(sortedAccounts));
     dispatch(setTransactions(sortedTransactions));
   }, [dispatch, initialAccounts, initialTransactions]);

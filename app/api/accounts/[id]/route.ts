@@ -36,7 +36,6 @@ export async function DELETE(
   { params }: { params: { id: string } }
 ) {
   const { id } = params;
-  console.log("Delete request for id:", id);
 
   try {
     const res = await fetch(`${process.env.API_URL}/accounts/${id}`, {

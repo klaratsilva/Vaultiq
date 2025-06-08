@@ -10,10 +10,12 @@ import {
 } from "@/components/ui/table";
 
 import { Account, Transaction } from "@/lib/types";
+import { selectAccountsMap } from "@/store/accountsSlice";
+import { useAppSelector } from "@/store/hooks";
 import { RootState } from "@/store/store";
 import {
-  selectTransactionCurrentPage,
   selectPaginatedTransactions,
+  selectTransactionCurrentPage,
   selectTransactionTotalPages,
   setCurrentPage,
   setSearchTerm,
@@ -24,8 +26,6 @@ import { formatDateTime, getTypeColor, statusStyles } from "../lib/utils";
 import { Badge } from "./Badge";
 import Pagination from "./Pagination";
 import SearchInput from "./SearchInput";
-import { useAppSelector } from "@/store/hooks";
-import { selectAccountsMap } from "@/store/accountsSlice";
 
 interface TransactionsTableProps {
   limit?: number;
@@ -55,7 +55,7 @@ const TransactionsTable = ({ limit }: TransactionsTableProps) => {
   };
   return (
     <>
-      <article className="rounded-2xl shadow-md border border-grey px-3 pt-3 pb-4 max-lg:w-full bg-white">
+      <article className="transaction-table">
         {!limit && (
           <SearchInput
             placeholder={t("searchTransactiontPlaceholder")}
@@ -152,7 +152,7 @@ function renderAccountCell(
   return (
     <div className="p-2 flex items-center gap-3">
       <div
-        className="size-[48px] flex items-center justify-center rounded-4xl max-md:hidden p-2"
+        className="transaction-table-type"
         style={{ backgroundColor: getTypeColor(account.type) }}
       >
         <h1 className="text-xl text-white">{account.ownerName?.[0]}</h1>
