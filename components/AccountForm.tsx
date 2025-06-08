@@ -82,28 +82,33 @@ const AccountForm = ({ initialData }: NewAccountFormProps) => {
   }
 
   return (
-    <section className="w-full max-w-full md:max-w-[60%]">
+    <section className="form-container">
       <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-5">
+        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
           <CustomInput
             control={form.control}
             name="name"
             label={t("labels.accountName")}
             placeholder={t("placeholders.accountName")}
           />
-          <div className="flex gap-10">
-            <CustomSelect
-              control={form.control}
-              name="type"
-              label={t("labels.accountType")}
-              options={accountTypeOptions}
-            />
-            <CustomSelect
-              control={form.control}
-              name="currency"
-              label={t("labels.currency")}
-              options={currencyOptions}
-            />
+
+          <div className="flex flex-col md:flex-row gap-5 md:gap-10 max-w-full md:max-w-[100%]">
+            <div className="flex-1 min-w-0 gap-2">
+              <CustomSelect
+                control={form.control}
+                name="type"
+                label={t("labels.accountType")}
+                options={accountTypeOptions}
+              />
+            </div>
+            <div className="flex-1 min-w-0">
+              <CustomSelect
+                control={form.control}
+                name="currency"
+                label={t("labels.currency")}
+                options={currencyOptions}
+              />
+            </div>
           </div>
 
           <CustomInput
@@ -128,7 +133,7 @@ const AccountForm = ({ initialData }: NewAccountFormProps) => {
                   <Input
                     type="number"
                     placeholder={t("placeholders.balance")}
-                    className="text-sm rounded-lg border border-gray-300 text-gray-500 placeholder:text-gray-500"
+                    className="account-input"
                     value={field.value || ""}
                     onChange={(e) =>
                       field.onChange(Number(e.target.value) || 0)

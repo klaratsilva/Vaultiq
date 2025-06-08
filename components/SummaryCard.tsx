@@ -5,7 +5,12 @@ interface CardProps {
   className?: string;
 }
 
-const Card = ({ title, value, backgroundColor, className = "" }: CardProps) => {
+const SummaryCard = ({
+  title,
+  value,
+  backgroundColor,
+  className = "",
+}: CardProps) => {
   return (
     <div
       className={`card p-4 rounded-lg shadow-md text-white ${className}`}
@@ -17,4 +22,4 @@ const Card = ({ title, value, backgroundColor, className = "" }: CardProps) => {
   );
 };
 
-export default Card;
+export default SummaryCard;

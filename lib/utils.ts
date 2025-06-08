@@ -99,13 +99,13 @@ export const formatDateTime = (dateString: Date | string) => {
 
 
   export const statusStyles = {
-    active: {
+    completed: {
       borderColor: "border-green-300",
       backgroundColor: "bg-green-500",
       textColor: "text-green-700",
       chipBackgroundColor: "bg-green-100",
     },
-    inactive: {
+    cancelled: {
       borderColor: "border-gray-300",
       backgroundColor: "bg-gray-500",
       textColor: "text-gray-700",
@@ -117,17 +117,11 @@ export const formatDateTime = (dateString: Date | string) => {
       textColor: "text-yellow-800",
       chipBackgroundColor: "bg-yellow-100",
     },
-    suspended: {
+    failed: {
       borderColor: "border-red-300",
       backgroundColor: "bg-red-500",
       textColor: "text-red-700",
       chipBackgroundColor: "bg-red-100",
-    },
-    default: {
-      borderColor: "border-neutral-300",
-      backgroundColor: "bg-neutral-400",
-      textColor: "text-neutral-700",
-      chipBackgroundColor: "bg-neutral-100",
     },
   };
 

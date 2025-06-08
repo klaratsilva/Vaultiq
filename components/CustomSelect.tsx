@@ -42,7 +42,7 @@ const CustomSelect = <TFieldValues extends FieldValues>({
             defaultValue={field.value}
           >
             <FormControl>
-              <SelectTrigger className="w-full md:w-100">
+              <SelectTrigger className="w-full">
                 <SelectValue placeholder={placeholder || `Select ${label}`} />
               </SelectTrigger>
             </FormControl>

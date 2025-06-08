@@ -127,8 +127,8 @@
     @apply size-[48px] flex items-center justify-center rounded-4xl max-md:hidden p-2;
   }
 
-  .transaction-form {
-    @apply w-full max-w-full md:max-w-[60%];
+  .form-container {
+    @apply w-full max-w-full lg:max-w-[60%];
   }
 
   .recent-accounts-card-list {
@@ -149,5 +149,9 @@
 
   .locale-switcher-link {
     @apply w-10 h-10 flex items-center justify-center rounded-full text-sm uppercase transition;
+  }
+
+  .account-input {
+    @apply text-sm rounded-lg border border-gray-300 text-gray-500 placeholder:text-gray-500;
   }
 }

@@ -113,7 +113,9 @@
     "accountType": "Type de compte",
     "currency": "Devise",
     "ownerName": "Nom",
-    "ownerEmail": "Email"
+    "ownerEmail": "Email",
+    "deleting": "Suppression...",
+    "delete": "Supprimer"
   },
   "headers": {
     "welcome": "Bienvenue dans votre gestionnaire de comptes bancaires",

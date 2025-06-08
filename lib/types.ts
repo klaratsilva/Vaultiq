@@ -4,7 +4,7 @@ export const currencies = ['USD', 'EUR', 'GBP', 'JPY', 'CAD'] as const;
 export type AccountType = typeof accountTypes[number];
 export type Currency = typeof currencies[number];
 
-export type TransactionStatus = "active" | "inactive" | "pending" | "suspended" | "default";
+export type TransactionStatus = "pending" | "completed" | "cancelled" | "failed";
 
 export interface Account {
   id: string;                

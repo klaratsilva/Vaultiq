@@ -16,6 +16,10 @@ jest.mock("next/navigation", () => ({
   }),
 }));
 
+jest.mock("next-intl", () => ({
+  useTranslations: () => (key: string) => key,
+}));
+
 jest.mock("../../lib/api", () => ({
   deleteAccount: jest.fn(),
 }));
@@ -94,6 +98,8 @@ describe("DeleteAccountButton", () => {
     render(<DeleteAccountButton id={id} locale={locale} />);
     fireEvent.click(screen.getByRole("button", { name: /delete/i }));
 
-    expect(await screen.findByText(/deleting.../i)).toBeInTheDocument();
+    await waitFor(() => {
+      expect(screen.getByText(/Deleting/i)).toBeInTheDocument();
+    });
   });
 });

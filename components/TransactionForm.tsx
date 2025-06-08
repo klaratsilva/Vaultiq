@@ -127,7 +127,7 @@ const TransactionForm = () => {
   }
 
   return (
-    <section className="transaction-form">
+    <section className="form-container">
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-5">
           <CustomSelect

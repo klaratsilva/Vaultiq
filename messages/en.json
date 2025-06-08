@@ -113,7 +113,9 @@
     "accountType": "Account Type",
     "currency": "Currency",
     "ownerName": "Name",
-    "ownerEmail": "Email"
+    "ownerEmail": "Email",
+    "deleting": "Deleting...",
+    "delete": "Delete"
   },
   "headers": {
     "welcome": "Welcome to your bank account manager",

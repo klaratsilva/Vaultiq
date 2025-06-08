@@ -6,7 +6,7 @@ import { useTranslations } from "next-intl";
 import Link from "next/link";
 import { useMemo } from "react";
 import { useSelector } from "react-redux";
-import Card from "./DashboardSummaryCard";
+import SummaryCard from "./SummaryCard";
 import Header from "./Header";
 import RecentAccounts from "./RecentAccounts";
 import TransactionsTable from "./TransactionTable";
@@ -29,18 +29,18 @@ const Dashboard = ({ userCount }: DashboardProps) => {
   return (
     <section className="space-y-8">
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
-        <Card
+        <SummaryCard
           title={t("totalBalance")}
           value={`$${totalBalance.toFixed(2)}`}
           backgroundColor={accountTypeColorsHex.personal}
         />
-        <Card
+        <SummaryCard
           title={t("totalAccounts")}
           value={accounts.length}
           backgroundColor={accountTypeColorsHex.business}
           className="max-sm:hidden"
         />
-        <Card
+        <SummaryCard
           title={t("totalUsers")}
           value={userCount}
           backgroundColor={accountTypeColorsHex.admin}

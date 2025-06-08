@@ -32,7 +32,7 @@ export const Badge = ({
   showDot = false,
 }: BadgeProps) => {
   const { borderColor, backgroundColor, textColor, chipBackgroundColor } =
-    styleMap[variant] || styleMap.default;
+    styleMap[variant] || styleMap.pending;
 
   return (
     <div
