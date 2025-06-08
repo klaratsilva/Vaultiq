@@ -1,5 +1,7 @@
 import { createSlice, createSelector, PayloadAction } from "@reduxjs/toolkit";
 import { Transaction } from "@/lib/types";
+import { createPaginationSelectors } from "./utils/pagination";
+import { RootState } from "./store";
 
 interface TransactionsState {
   transactions: Transaction[];
@@ -37,45 +39,6 @@ const transactionsSlice = createSlice({
   },
 });
 
-const selectTransactionsState = (state: { transactions: TransactionsState }) =>
-  state.transactions;
-
-export const selectFilteredTransactions = createSelector(
-  [selectTransactionsState],
-  (transactionsState) => {
-    const term = transactionsState.searchTerm.toLowerCase();
-    if (!term) return transactionsState.transactions;
-
-    return transactionsState.transactions.filter(
-      (txn) =>
-        txn.description.toLowerCase().includes(term) ||
-        txn.currency.toLowerCase().includes(term) ||
-        txn.status.toLowerCase().includes(term)
-    );
-  }
-);
-
-export const selectPaginatedTransactions = createSelector(
-  [selectFilteredTransactions, selectTransactionsState],
-  (filtered, transactionsState) => {
-    const start =
-      (transactionsState.currentPage - 1) * transactionsState.itemsPerPage;
-    const end = start + transactionsState.itemsPerPage;
-    return filtered.slice(start, end);
-  }
-);
-
-export const selectTotalPages = createSelector(
-  [selectFilteredTransactions, selectTransactionsState],
-  (filtered, transactionsState) =>
-    Math.max(Math.ceil(filtered.length / transactionsState.itemsPerPage), 1)
-);
-
-export const selectCurrentPage = createSelector(
-  [selectTransactionsState],
-  (transactionsState) => transactionsState.currentPage
-);
-
 export const {
   setTransactions,
   setSearchTerm,
@@ -84,3 +47,30 @@ export const {
 } = transactionsSlice.actions;
 
 export default transactionsSlice.reducer;
+
+const selectTransactionsState = (state: RootState) => ({
+  items: state.transactions.transactions,
+  searchTerm: state.transactions.searchTerm,
+  currentPage: state.transactions.currentPage,
+  itemsPerPage: state.transactions.itemsPerPage,
+});
+
+const {
+  selectFilteredItems: selectFilteredTransactions,
+  selectPaginatedItems: selectPaginatedTransactions,
+  selectTotalPages: selectTransactionTotalPages,
+  selectCurrentPage: selectTransactionCurrentPage,
+} = createPaginationSelectors(
+  selectTransactionsState,
+  (txn, term) =>
+    txn.description.toLowerCase().includes(term) ||
+    txn.currency.toLowerCase().includes(term) ||
+    txn.status.toLowerCase().includes(term)
+);
+
+export {
+  selectFilteredTransactions,
+  selectPaginatedTransactions,
+  selectTransactionTotalPages,
+  selectTransactionCurrentPage,
+};

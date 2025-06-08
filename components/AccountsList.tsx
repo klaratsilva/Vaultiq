@@ -10,9 +10,9 @@ import {
 } from "@/components/ui/table";
 import { Account } from "@/lib/types";
 import {
-  selectCurrentPage,
+  selectAccountCurrentPage,
   selectPaginatedAccounts,
-  selectTotalPages,
+  selectAccountTotalPages,
   setCurrentPage,
   setSearchTerm,
 } from "@/store/accountsSlice";
@@ -38,8 +38,8 @@ const AccountsList = () => {
   );
 
   const paginatedAccounts = useSelector(selectPaginatedAccounts);
-  const currentPage = useSelector(selectCurrentPage);
-  const totalPages = useSelector(selectTotalPages);
+  const currentPage = useSelector(selectAccountCurrentPage);
+  const totalPages = useSelector(selectAccountTotalPages);
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     dispatch(setSearchTerm(e.target.value));

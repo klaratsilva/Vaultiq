@@ -44,7 +44,7 @@ test.describe('POST /api/accounts', () => {
         ownerEmail: '', 
       },
     });
-     expect(response.status()).toBe(400);
+    expect(response.status()).toBe(400);
     const body = await response.json();
     expect(Array.isArray(body)).toBe(true);
     expect(body.some((err: { path: string | string[]; }) => err.path.includes('ownerEmail'))).toBe(true);

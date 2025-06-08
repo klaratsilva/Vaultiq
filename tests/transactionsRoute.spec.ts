@@ -12,7 +12,6 @@ test.beforeEach(() => {
   }
 });
 
-// Helper to create test account
 async function createTestAccount(request: APIRequestContext , balance = 1000) {
   const payload = {
     name: "Test Account",
@@ -37,8 +36,6 @@ const validPayload = {
 };
 
 test.describe('POST /api/transactions', () => {
-
-
   test.afterAll(() => {
      if (fs.existsSync(dbBackupPath)) {
        fs.copyFileSync(dbBackupPath, dbPath);
@@ -105,7 +102,7 @@ test.describe('POST /api/transactions', () => {
       },
     });
   if (response.status() !== 201) {
-    console.error(await response.json()); // <- This will show you the Zod error(s)
+    console.error(await response.json());
   }
 
   expect(response.status()).toBe(201);

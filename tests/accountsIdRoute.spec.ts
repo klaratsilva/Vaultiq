@@ -28,7 +28,6 @@ test.beforeEach(async ({ request }) => {
   const json1 = await res1.json();
   existingAccountId1 = json1.id;
 
-  // Create second account, save ID
   const res2 = await request.post(baseUrl, {
     data: {
       name: 'Personal Savings',

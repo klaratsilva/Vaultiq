@@ -12,9 +12,9 @@ import {
 import { Account, Transaction } from "@/lib/types";
 import { RootState } from "@/store/store";
 import {
-  selectCurrentPage,
+  selectTransactionCurrentPage,
   selectPaginatedTransactions,
-  selectTotalPages,
+  selectTransactionTotalPages,
   setCurrentPage,
   setSearchTerm,
 } from "@/store/transactionsSlice";
@@ -40,8 +40,8 @@ const TransactionsTable = ({ limit }: TransactionsTableProps) => {
     (state: RootState) => state.transactions.transactions
   );
   const paginatedTransactions = useSelector(selectPaginatedTransactions);
-  const currentPage = useSelector(selectCurrentPage);
-  const totalPages = useSelector(selectTotalPages);
+  const currentPage = useSelector(selectTransactionCurrentPage);
+  const totalPages = useSelector(selectTransactionTotalPages);
   const searchTerm = useSelector(
     (state: RootState) => state.transactions.searchTerm
   );

@@ -1,6 +1,7 @@
 import { createSelector, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { Account } from "@/lib/types";
 import { RootState } from "./store";
+import { createPaginationSelectors } from "./utils/pagination";
 
 interface AccountsState {
   accounts: Account[];
@@ -13,7 +14,7 @@ const initialState: AccountsState = {
   accounts: [],
   searchTerm: "",
   currentPage: 1,
-  itemsPerPage: 6,
+  itemsPerPage: 5,
 };
 
 const accountsSlice = createSlice({
@@ -47,57 +48,37 @@ const accountsSlice = createSlice({
 
 export const { setAccounts, setSearchTerm, setCurrentPage, addAccount, updateAccountAction, removeAccount } = accountsSlice.actions;
 
-const selectAccountsState = (state: { accounts: AccountsState }) => state.accounts;
-
-export const selectFilteredAccounts = createSelector(
-  [selectAccountsState],
-  (accountsState) => {
-    const term = accountsState.searchTerm.toLowerCase();
-    if (!term) return accountsState.accounts;
-
-    return accountsState.accounts.filter(({ name, ownerName, type, balance }) =>
-      [name, ownerName, type, balance.toString()].some(field =>
-        field.toLowerCase().includes(term)
-      )
-    );
-  }
-);
-
 export const selectAccounts = (state: RootState) => state.accounts.accounts;
-
-export const selectFilteredAccountOptions = createSelector(
-  [selectAccounts],
-  (accounts) =>
-    accounts.map((acc) => ({
-      id: acc.id,
-      name: acc.name,
-      currency: acc.currency,
-      ownerName: acc.ownerName,
-    }))
-);
 
 export const selectAccountsMap = createSelector(selectAccounts, (accounts) =>
   Object.fromEntries(accounts.map((account) => [account.id, account]))
 );
 
-export const selectPaginatedAccounts = createSelector(
-  [selectFilteredAccounts, selectAccountsState],
-  (filteredAccounts, accountsState) => {
-    const start = (accountsState.currentPage - 1) * accountsState.itemsPerPage;
-    const end = start + accountsState.itemsPerPage;
-    return filteredAccounts.slice(start, end);
-  }
-);
-
-export const selectTotalPages = createSelector(
-  [selectFilteredAccounts, selectAccountsState],
-  (filteredAccounts, accountsState) =>
-    Math.max(Math.ceil(filteredAccounts.length / accountsState.itemsPerPage), 1)
-);
-
-export const selectCurrentPage = createSelector(
-  [selectAccountsState],
-  (accountsState) => accountsState.currentPage
-);
-
 export default accountsSlice.reducer;
+
+const selectAccountsState = (state: RootState) => ({
+  items: state.accounts.accounts,
+  searchTerm: state.accounts.searchTerm,
+  currentPage: state.accounts.currentPage,
+  itemsPerPage: state.accounts.itemsPerPage,
+});
+
+const {
+  selectFilteredItems: selectFilteredAccounts,
+  selectPaginatedItems: selectPaginatedAccounts,
+  selectTotalPages: selectAccountTotalPages,
+  selectCurrentPage: selectAccountCurrentPage,
+} = createPaginationSelectors(
+  selectAccountsState,
+  (acc, term) =>
+    [acc.name, acc.ownerName, acc.type, acc.balance.toString()].some((field) =>
+      field.toLowerCase().includes(term)
+    )
+);
+
+export {
+  selectFilteredAccounts,
+  selectPaginatedAccounts,
+  selectAccountTotalPages,
+  selectAccountCurrentPage,
+};
