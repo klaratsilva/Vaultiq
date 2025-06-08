@@ -92,16 +92,9 @@
   }
   body {
     @apply bg-background text-foreground;
-    font-family: var(--font-inter);
   }
 }
 
-
-  .ibm-plex {
-     font-family: var(--font-ibm-plex-serif);
-  }
-
- 
 
 @layer components {
   .bg-main-1 {
