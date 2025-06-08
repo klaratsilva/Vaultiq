@@ -1,4 +1,4 @@
-# ValtIq – Fund Transfer App
+# ValtIq – Bank account management app
 
 Web application for bank account management that allows users to create, edit, search, and delete bank accounts
 and performs fund transfers between accounts. Built with Next.js 15, TypeScript, App Router, Server Components, and Redux. It supports international currency transfers, localization, and runs entirely without containerization or special dependencies.
