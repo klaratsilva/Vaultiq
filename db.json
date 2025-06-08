@@ -5,7 +5,7 @@
       "name": "Personal Savings",
       "type": "personal",
       "currency": "USD",
-      "balance": 560,
+      "balance": "227.00",
       "ownerEmail": "klara.tsilva@gmail.com",
       "ownerName": "klara Silva",
       "ownerId": "887c718d-d7c5-4a5e-8e3f-00e3b5f0e459",
@@ -16,7 +16,7 @@
       "name": "Personal Checking",
       "type": "personal",
       "currency": "USD",
-      "balance": "10132.00",
+      "balance": "10921.00",
       "ownerEmail": "simao@gmail.com",
       "ownerName": "Simao Silva",
       "ownerId": "0d4042c2-a776-4ead-8e3b-0d1e0c63ffd9",
@@ -27,11 +27,22 @@
       "name": "Personal Savings",
       "type": "personal",
       "currency": "EUR",
-      "balance": "9856.52",
+      "balance": "13311.52",
       "ownerEmail": "filipeSilva@gmail.com",
       "ownerName": "Filipe Silva",
       "ownerId": "88c5e70d-91f0-45d6-acbd-2a82ad0d433b",
       "createdAt": "2025-06-06T15:59:17.177Z"
+    },
+    {
+      "id": "420297b8-6e78-4761-a57a-19382f8d5b98",
+      "name": "Klara Silva",
+      "type": "personal",
+      "currency": "USD",
+      "balance": "2043.40",
+      "ownerEmail": "klara.tsilva@gmail.com",
+      "ownerName": "klara Silva",
+      "ownerId": "887c718d-d7c5-4a5e-8e3f-00e3b5f0e459",
+      "createdAt": "2025-06-08T12:39:33.634Z"
     }
   ],
   "users": [
@@ -204,6 +215,42 @@
       "clientConvertedAmount": 56,
       "status": "pending",
       "createdAt": "2025-06-06T17:25:05.015Z"
+    },
+    {
+      "id": "8af5",
+      "fromAccountId": "420297b8-6e78-4761-a57a-19382f8d5b98",
+      "toAccountId": "00d78f4b-d25c-4128-bd86-5b9f7c6d17de",
+      "amount": 456,
+      "description": "eeeee",
+      "currency": "USD",
+      "targetCurrency": "USD",
+      "clientConvertedAmount": 456,
+      "status": "pending",
+      "createdAt": "2025-06-08T12:39:56.939Z"
+    },
+    {
+      "id": "6f0b",
+      "fromAccountId": "88e25d16-eba4-4c7b-886a-ad162f93c653",
+      "toAccountId": "00d78f4b-d25c-4128-bd86-5b9f7c6d17de",
+      "amount": 333,
+      "description": "test",
+      "currency": "USD",
+      "targetCurrency": "USD",
+      "clientConvertedAmount": 333,
+      "status": "pending",
+      "createdAt": "2025-06-08T12:40:24.167Z"
+    },
+    {
+      "id": "1bc9",
+      "fromAccountId": "420297b8-6e78-4761-a57a-19382f8d5b98",
+      "toAccountId": "e5cbe4a9-7db2-4206-9866-c407d3ea7624",
+      "amount": 3178.6,
+      "description": "Heelo test",
+      "currency": "USD",
+      "targetCurrency": "EUR",
+      "clientConvertedAmount": 3455,
+      "status": "pending",
+      "createdAt": "2025-06-08T12:51:58.785Z"
     }
   ]
 }

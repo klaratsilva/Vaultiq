@@ -17,7 +17,7 @@ describe('convertCurrency', () => {
 
    it('throws error for unsupported currency', () => {
     expect(() => convertCurrency(100, 'USD', 'ABC', exchangeRates)).toThrow(/Unsupported currency/);
-    expect(() => convertCurrency(100, 'XYZ', 'USD', exchangeRates)).toThrow('Unsupported currency');
+    expect(() => convertCurrency(100, 'XYZ', 'USD', exchangeRates)).toThrow(/Unsupported currency/);
   });
 
   it('rounds the converted amount to 2 decimals', () => {

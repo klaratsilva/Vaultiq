@@ -18,7 +18,6 @@ describe('formatDateTime', () => {
 describe('formatAccountOptions', () => {
   it('formats accounts correctly', () => {
     const accounts: Account[] = [
-     
           {
             id: "1",
             name: "Business Checking",
@@ -28,6 +27,7 @@ describe('formatAccountOptions', () => {
             ownerEmail: "alice@example.com",
             ownerName: "Alice Johnson",
             ownerId: "123e4567-e89b-12d3-a456-426614174000",
+            createdAt: "23-4-2034"
           },
            {
             id: "2",
@@ -38,6 +38,7 @@ describe('formatAccountOptions', () => {
             ownerEmail: "sim@gmail.com",
             ownerName: "Simao Silva",
             ownerId: "8676bf3e-4114-4c07-850e-7fa2345f6a07",
+            createdAt: "23-4-2034"
           },
     ];
 

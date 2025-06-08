@@ -1,26 +1,19 @@
-import React from "react";
-import { render, screen, fireEvent, waitFor } from "@testing-library/react";
-import AccountForm from "../AccountForm";
 import * as api from "@/lib/api";
 import * as redux from "@/store/hooks";
+import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import { useRouter } from "next/navigation";
-import { Provider } from "react-redux";
-import { store } from "../../store/store";
+import AccountForm from "../AccountForm";
 
-// Mock next-intl translations
 jest.mock("next-intl", () => ({
   useTranslations: () => (key: string) => key.split(".").pop(),
 }));
 
-// Mock next/navigation
 jest.mock("next/navigation", () => ({
   useRouter: jest.fn(),
 }));
 
-// Mock API module
 jest.mock("../../lib/api");
 
-// Mock redux hooks
 jest.mock("../../store/hooks");
 
 describe("AccountForm", () => {

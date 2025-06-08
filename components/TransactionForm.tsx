@@ -86,6 +86,11 @@ const TransactionForm = () => {
     accounts,
   });
 
+  const insufficientFunds = useMemo(() => {
+    if (!fromAccount) return false;
+    return watchAmount > Number(fromAccount.balance);
+  }, [watchAmount, fromAccount]);
+
   async function onSubmit(values: z.infer<typeof transactionSchema>) {
     setIsLoading(true);
     try {
@@ -158,6 +163,11 @@ const TransactionForm = () => {
                   />
                 </FormControl>
                 <FormMessage />
+                {insufficientFunds && (
+                  <p className="text-red-600 text-sm mt-1">
+                    {t("errors.insufficientFunds")}
+                  </p>
+                )}
               </div>
             )}
           />
@@ -191,7 +201,7 @@ const TransactionForm = () => {
           <Button
             className="bg-primary cursor-pointer"
             type="submit"
-            disabled={isLoading}
+            disabled={isLoading || insufficientFunds}
           >
             {isLoading ? t("buttons.processing") : t("buttons.submit")}
           </Button>

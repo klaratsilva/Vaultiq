@@ -25,10 +25,6 @@ import { Badge } from "./Badge";
 import Pagination from "./Pagination";
 import SearchInput from "./SearchInput";
 
-interface AccountsListProps {
-  accounts: Account[];
-}
-
 const AccountsList = () => {
   const t = useTranslations("accounts");
   const dispatch = useDispatch();

@@ -1,22 +1,15 @@
-// __tests__/TransactionForm.redux.spec.tsx
-import React from "react";
-import { render, screen, fireEvent } from "@testing-library/react";
-import { Provider } from "react-redux";
 import { configureStore } from "@reduxjs/toolkit";
-import userEvent from "@testing-library/user-event";
+import { render, screen } from "@testing-library/react";
+import React from "react";
+import { Provider } from "react-redux";
 
 import TransactionForm from "@/components/TransactionForm";
-import accountsReducer, {
-  // adjust path if needed
-  selectFilteredAccountOptions,
-  setAccounts,
-} from "@/store/accountsSlice";
-import transactionsReducer from "@/store/transactionsSlice";
 import { AccountType, Currency } from "@/lib/types";
+import accountsReducer from "@/store/accountsSlice";
+import transactionsReducer from "@/store/transactionsSlice";
 
-// Mock out modules that TransactionForm consumes:
 jest.mock("next-intl", () => ({
-  useTranslations: () => (key: string) => key, // simply returns the key
+  useTranslations: () => (key: string) => key,
 }));
 jest.mock("next/navigation", () => ({
   useRouter: () => ({ push: jest.fn() }),
@@ -39,7 +32,6 @@ jest.mock("../../lib/api", () => ({
   ),
 }));
 
-// Sample “accounts” state to preload into the store:
 const mockAccounts = [
   {
     id: "acc-1",
@@ -65,7 +57,6 @@ const mockAccounts = [
   },
 ];
 
-// Helper to render the component with a preloaded Redux store:
 function renderWithRedux(
   ui: React.ReactElement,
   {

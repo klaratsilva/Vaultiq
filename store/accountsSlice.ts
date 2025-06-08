@@ -56,12 +56,15 @@ export const selectAccountsMap = createSelector(selectAccounts, (accounts) =>
 
 export default accountsSlice.reducer;
 
-const selectAccountsState = (state: RootState) => ({
-  items: state.accounts.accounts,
-  searchTerm: state.accounts.searchTerm,
-  currentPage: state.accounts.currentPage,
-  itemsPerPage: state.accounts.itemsPerPage,
-});
+const selectAccountsState = createSelector(
+  (state: RootState) => state.accounts,
+  (accountsState) => ({
+    items: accountsState.accounts,
+    searchTerm: accountsState.searchTerm,
+    currentPage: accountsState.currentPage,
+    itemsPerPage: accountsState.itemsPerPage,
+  })
+);
 
 const {
   selectFilteredItems: selectFilteredAccounts,
@@ -82,3 +85,15 @@ export {
   selectAccountTotalPages,
   selectAccountCurrentPage,
 };
+
+export const selectFilteredAccountOptions = createSelector(
+  [selectAccounts],
+  (accounts) =>
+    accounts.map((acc) => ({
+      id: acc.id,
+      name: acc.name,
+      currency: acc.currency,
+      ownerName: acc.ownerName,
+      balance: acc.balance,
+    }))
+);

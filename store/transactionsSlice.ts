@@ -48,12 +48,15 @@ export const {
 
 export default transactionsSlice.reducer;
 
-const selectTransactionsState = (state: RootState) => ({
-  items: state.transactions.transactions,
-  searchTerm: state.transactions.searchTerm,
-  currentPage: state.transactions.currentPage,
-  itemsPerPage: state.transactions.itemsPerPage,
-});
+export const selectTransactionsState = createSelector(
+  (state: RootState) => state.transactions,
+  (transactionsState) => ({
+    items: transactionsState.transactions,
+    searchTerm: transactionsState.searchTerm,
+    currentPage: transactionsState.currentPage,
+    itemsPerPage: transactionsState.itemsPerPage,
+  })
+);
 
 const {
   selectFilteredItems: selectFilteredTransactions,

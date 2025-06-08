@@ -88,6 +88,9 @@
       "createSuccess": "Transaction créée !",
       "createError": "Échec de la création de la transaction : ",
       "unexpectedError": "Une erreur inattendue est survenue."
+    },
+    "errors": {
+      "insufficientFunds": "Fonds insuffisants sur le compte de l'expéditeur."
     }
   },
   "accounts": {

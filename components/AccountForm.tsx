@@ -7,22 +7,22 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import { accountFormSchema } from "@/lib/utils";
 import { accountTypes, currencies } from "@/lib/types";
+import { accountFormSchema } from "@/lib/utils";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useTranslations } from "next-intl";
 import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import CustomInput from "./CustomInput";
 import { Button } from "./ui/button";
 
-import CustomSelect from "./CustomSelect";
-import { Input } from "./ui/input";
-import { updateAccount, createAccount } from "@/lib/api";
+import { createAccount, updateAccount } from "@/lib/api";
 import { addAccount, updateAccountAction } from "@/store/accountsSlice";
 import { useAppDispatch } from "@/store/hooks";
+import CustomSelect from "./CustomSelect";
+import { Input } from "./ui/input";
 
 interface NewAccountFormProps {
   initialData?: Partial<z.infer<typeof accountFormSchema>>;

@@ -1,8 +1,8 @@
 import { render, screen } from "@testing-library/react";
-import Navbar from "../NavBar";
-import { usePathname } from "next/navigation";
-import { useLocale, useTranslations } from "next-intl";
 import clsx from "clsx";
+import { useLocale, useTranslations } from "next-intl";
+import { usePathname } from "next/navigation";
+import Navbar from "../NavBar";
 
 jest.mock("next/navigation", () => ({
   usePathname: jest.fn(),

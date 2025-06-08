@@ -88,6 +88,9 @@
       "createSuccess": "Transaction created!",
       "createError": "Failed to create transaction: ",
       "unexpectedError": "An unexpected error occurred."
+    },
+    "errors": {
+      "insufficientFunds": "Insufficient funds in sender's account."
     }
   },
   "accounts": {
