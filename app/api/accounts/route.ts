@@ -13,6 +13,11 @@ export async function POST(request: NextRequest) {
 
     const { ownerEmail, ownerName, ...accountData } = validation.data;
 
+    const balance =
+      typeof accountData.balance === "string"
+    ? parseFloat(accountData.balance)
+    : accountData.balance;
+
     if (!ownerEmail || !ownerName) {
       return NextResponse.json(
         { error: "ownerEmail and ownerName required" },
@@ -43,6 +48,7 @@ export async function POST(request: NextRequest) {
 
     const newAccount = {
       ...accountData,
+      balance,
       ownerEmail,
       ownerName,
       ownerId,

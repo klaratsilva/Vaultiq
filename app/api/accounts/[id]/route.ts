@@ -32,8 +32,6 @@ export async function PUT(request: NextRequest, { params }: { params: { id: stri
     ...incomingData, 
   };
 
-  console.log(updatedPayload, "updatedPayload")
-  
   const updateRes = await fetch(`${process.env.API_URL}/accounts/${id}`, {
     method: "PUT",
     headers: { "Content-Type": "application/json" },
